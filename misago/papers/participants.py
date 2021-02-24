@@ -3,52 +3,52 @@ from django.utils.translation import gettext as _
 
 from ..core.mail import build_mail, send_messages
 from .events import record_event
-from .models import ThreadParticipant
+from .models import PaperParticipant
 
 User = get_user_model()
 
 
-def has_participants(thread):
-    return thread.threadparticipant_set.exists()
+def has_participants(paper):
+    return paper.paperparticipant_set.exists()
 
 
 def make_participants_aware(user, target):
     if hasattr(target, "__iter__"):
-        make_threads_participants_aware(user, target)
+        make_papers_participants_aware(user, target)
     else:
-        make_thread_participants_aware(user, target)
+        make_paper_participants_aware(user, target)
 
 
-def make_threads_participants_aware(user, threads):
-    threads_dict = {}
-    for thread in threads:
-        thread.participant = None
-        threads_dict[thread.pk] = thread
+def make_papers_participants_aware(user, papers):
+    papers_dict = {}
+    for paper in papers:
+        paper.participant = None
+        papers_dict[paper.pk] = paper
 
-    participants_qs = ThreadParticipant.objects.filter(
-        user=user, thread_id__in=threads_dict.keys()
+    participants_qs = PaperParticipant.objects.filter(
+        user=user, paper_id__in=papers_dict.keys()
     )
 
     for participant in participants_qs:
         participant.user = user
-        threads_dict[participant.thread_id].participant = participant
+        papers_dict[participant.paper_id].participant = participant
 
 
-def make_thread_participants_aware(user, thread):
-    thread.participants_list = []
-    thread.participant = None
+def make_paper_participants_aware(user, paper):
+    paper.participants_list = []
+    paper.participant = None
 
-    participants_qs = ThreadParticipant.objects.filter(thread=thread)
+    participants_qs = PaperParticipant.objects.filter(paper=paper)
     participants_qs = participants_qs.select_related("user")
     for participant in participants_qs.order_by("-is_owner", "user__slug"):
-        participant.thread = thread
-        thread.participants_list.append(participant)
+        participant.paper = paper
+        paper.participants_list.append(participant)
         if participant.user == user:
-            thread.participant = participant
-    return thread.participants_list
+            paper.participant = participant
+    return paper.participants_list
 
 
-def set_users_unread_private_threads_sync(
+def set_users_unread_private_papers_sync(
     users=None, participants=None, exclude_user=None
 ):
     users_ids = []
@@ -62,23 +62,23 @@ def set_users_unread_private_threads_sync(
     if not users_ids:
         return
 
-    User.objects.filter(id__in=set(users_ids)).update(sync_unread_private_threads=True)
+    User.objects.filter(id__in=set(users_ids)).update(sync_unread_private_papers=True)
 
 
-def set_owner(thread, user):
-    ThreadParticipant.objects.set_owner(thread, user)
+def set_owner(paper, user):
+    PaperParticipant.objects.set_owner(paper, user)
 
 
-def change_owner(request, thread, new_owner):
-    ThreadParticipant.objects.set_owner(thread, new_owner)
-    set_users_unread_private_threads_sync(
-        participants=thread.participants_list, exclude_user=request.user
+def change_owner(request, paper, new_owner):
+    PaperParticipant.objects.set_owner(paper, new_owner)
+    set_users_unread_private_papers_sync(
+        participants=paper.participants_list, exclude_user=request.user
     )
 
-    if thread.participant and thread.participant.is_owner:
+    if paper.participant and paper.participant.is_owner:
         record_event(
             request,
-            thread,
+            paper,
             "changed_owner",
             {
                 "user": {
@@ -89,19 +89,19 @@ def change_owner(request, thread, new_owner):
             },
         )
     else:
-        record_event(request, thread, "tookover")
+        record_event(request, paper, "tookover")
 
 
-def add_participant(request, thread, new_participant):
-    """adds single participant to thread, registers this on the event"""
-    add_participants(request, thread, [new_participant])
+def add_participant(request, paper, new_participant):
+    """adds single participant to paper, registers this on the event"""
+    add_participants(request, paper, [new_participant])
 
     if request.user == new_participant:
-        record_event(request, thread, "entered_thread")
+        record_event(request, paper, "entered_paper")
     else:
         record_event(
             request,
-            thread,
+            paper,
             "added_participant",
             {
                 "user": {
@@ -113,66 +113,66 @@ def add_participant(request, thread, new_participant):
         )
 
 
-def add_participants(request, thread, users):
+def add_participants(request, paper, users):
     """
-    Add multiple participants to thread, set "recound private threads" flag on them
-    notify them about being added to thread.
+    Add multiple participants to paper, set "recound private papers" flag on them
+    notify them about being added to paper.
     """
-    ThreadParticipant.objects.add_participants(thread, users)
+    PaperParticipant.objects.add_participants(paper, users)
 
     try:
-        thread_participants = thread.participants_list
+        paper_participants = paper.participants_list
     except AttributeError:
-        thread_participants = []
+        paper_participants = []
 
-    set_users_unread_private_threads_sync(
-        users=users, participants=thread_participants, exclude_user=request.user
+    set_users_unread_private_papers_sync(
+        users=users, participants=paper_participants, exclude_user=request.user
     )
 
     emails = []
     for user in users:
         if user != request.user:
-            emails.append(build_noticiation_email(request, thread, user))
+            emails.append(build_noticiation_email(request, paper, user))
     if emails:
         send_messages(emails)
 
 
-def build_noticiation_email(request, thread, user):
+def build_noticiation_email(request, paper, user):
     subject = _(
-        '%(user)s has invited you to participate in private thread "%(thread)s"'
+        '%(user)s has invited you to participate in private paper "%(paper)s"'
     )
-    subject_formats = {"thread": thread.title, "user": request.user.username}
+    subject_formats = {"paper": paper.title, "user": request.user.username}
 
     return build_mail(
         user,
         subject % subject_formats,
-        "misago/emails/privatethread/added",
+        "misago/emails/privatepaper/added",
         sender=request.user,
-        context={"settings": request.settings, "thread": thread},
+        context={"settings": request.settings, "paper": paper},
     )
 
 
-def remove_participant(request, thread, user):
-    """remove thread participant, set "recound private threads" flag on user"""
+def remove_participant(request, paper, user):
+    """remove paper participant, set "recound private papers" flag on user"""
     removed_owner = False
     remaining_participants = []
 
-    for participant in thread.participants_list:
+    for participant in paper.participants_list:
         if participant.user == user:
             removed_owner = participant.is_owner
         else:
             remaining_participants.append(participant.user)
 
-    set_users_unread_private_threads_sync(participants=thread.participants_list)
+    set_users_unread_private_papers_sync(participants=paper.participants_list)
 
     if not remaining_participants:
-        thread.delete()
+        paper.delete()
     else:
-        thread.threadparticipant_set.filter(user=user).delete()
-        thread.subscription_set.filter(user=user).delete()
+        paper.paperparticipant_set.filter(user=user).delete()
+        paper.subscription_set.filter(user=user).delete()
 
         if removed_owner:
-            thread.is_closed = True  # flag thread to close
+            paper.is_closed = True  # flag paper to close
 
             if request.user == user:
                 event_type = "owner_left"
@@ -186,7 +186,7 @@ def remove_participant(request, thread, user):
 
         record_event(
             request,
-            thread,
+            paper,
             event_type,
             {
                 "user": {

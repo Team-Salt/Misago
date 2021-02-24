@@ -6,9 +6,9 @@ from ...categories.permissions import allow_browse_category, allow_see_category
 from ...categories.serializers import CategorySerializer
 from ...core.shortcuts import validate_slug
 from ...core.viewmodel import ViewModel as BaseViewModel
-from ..permissions import allow_use_private_threads
+from ..permissions import allow_use_private_papers
 
-__all__ = ["ThreadsRootCategory", "ThreadsCategory", "PrivateThreadsCategory"]
+__all__ = ["PapersRootCategory", "PapersCategory", "PrivatePapersCategory"]
 
 
 class ViewModel(BaseViewModel):
@@ -50,7 +50,7 @@ class ViewModel(BaseViewModel):
         return {"category": self._model, "subcategories": self._children}
 
 
-class ThreadsRootCategory(ViewModel):
+class PapersRootCategory(ViewModel):
     def get_categories(self, request):
         return [Category.objects.root_category()] + list(
             Category.objects.all_categories()
@@ -59,7 +59,7 @@ class ThreadsRootCategory(ViewModel):
         )
 
 
-class ThreadsCategory(ThreadsRootCategory):
+class PapersCategory(PapersRootCategory):
     @property
     def level(self):
         return self._model.level
@@ -79,12 +79,12 @@ class ThreadsCategory(ThreadsRootCategory):
         raise Http404()
 
 
-class PrivateThreadsCategory(ViewModel):
+class PrivatePapersCategory(ViewModel):
     def get_categories(self, request):
-        return [Category.objects.private_threads()]
+        return [Category.objects.private_papers()]
 
     def get_category(self, request, categories, **kwargs):
-        allow_use_private_threads(request.user_acl)
+        allow_use_private_papers(request.user_acl)
 
         return categories[0]
 

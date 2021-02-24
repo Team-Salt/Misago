@@ -4,22 +4,22 @@ from ...conf import settings
 
 from ..views.attachment import attachment_server
 from ..views.goto import (
-    ThreadGotoPostView,
-    ThreadGotoLastView,
-    ThreadGotoNewView,
-    ThreadGotoBestAnswerView,
-    ThreadGotoUnapprovedView,
-    PrivateThreadGotoPostView,
-    PrivateThreadGotoLastView,
-    PrivateThreadGotoNewView,
+    PaperGotoPostView,
+    PaperGotoLastView,
+    PaperGotoNewView,
+    PaperGotoBestAnswerView,
+    PaperGotoUnapprovedView,
+    PrivatePaperGotoPostView,
+    PrivatePaperGotoLastView,
+    PrivatePaperGotoNewView,
 )
-from ..views.list import ForumThreadsList, CategoryThreadsList, PrivateThreadsList
-from ..views.thread import ThreadView, PrivateThreadView
+from ..views.list import ForumPapersList, CategoryPapersList, PrivatePapersList
+from ..views.paper import PaperView, PrivatePaperView
 
 LISTS_TYPES = ("all", "my", "new", "unread", "subscribed", "unapproved")
 
 
-def threads_list_patterns(prefix, view, patterns):
+def papers_list_patterns(prefix, view, patterns):
     urls = []
     for i, pattern in enumerate(patterns):
         if i > 0:
@@ -39,15 +39,15 @@ def threads_list_patterns(prefix, view, patterns):
 
 
 if settings.MISAGO_THREADS_ON_INDEX:
-    urlpatterns = threads_list_patterns(
+    urlpatterns = papers_list_patterns(
         "papers",
-        ForumThreadsList,
+        ForumPapersList,
         (r"^$", r"^my/$", r"^new/$", r"^unread/$", r"^subscribed/$", r"^unapproved/$"),
     )
 else:
-    urlpatterns = threads_list_patterns(
+    urlpatterns = papers_list_patterns(
         "papers",
-        ForumThreadsList,
+        ForumPapersList,
         (
             r"^papers/$",
             r"^papers/my/$",
@@ -58,9 +58,9 @@ else:
         ),
     )
 
-urlpatterns += threads_list_patterns(
+urlpatterns += papers_list_patterns(
     "category",
-    CategoryThreadsList,
+    CategoryPapersList,
     (
         r"^c/(?P<slug>[-a-zA-Z0-9]+)/(?P<pk>\d+)/$",
         r"^c/(?P<slug>[-a-zA-Z0-9]+)/(?P<pk>\d+)/my/$",
@@ -71,9 +71,9 @@ urlpatterns += threads_list_patterns(
     ),
 )
 
-urlpatterns += threads_list_patterns(
+urlpatterns += papers_list_patterns(
     "private-papers",
-    PrivateThreadsList,
+    PrivatePapersList,
     (
         r"^private-papers/$",
         r"^private-papers/my/$",
@@ -84,7 +84,7 @@ urlpatterns += threads_list_patterns(
 )
 
 
-def thread_view_patterns(prefix, view):
+def paper_view_patterns(prefix, view):
     urls = [
         url(
             r"^%s/(?P<slug>[-a-zA-Z0-9]+)/(?P<pk>\d+)/$" % prefix[0],
@@ -100,8 +100,8 @@ def thread_view_patterns(prefix, view):
     return urls
 
 
-urlpatterns += thread_view_patterns("paper", ThreadView)
-urlpatterns += thread_view_patterns("private-paper", PrivateThreadView)
+urlpatterns += paper_view_patterns("paper", PaperView)
+urlpatterns += paper_view_patterns("private-paper", PrivatePaperView)
 
 
 def goto_patterns(prefix, **views):
@@ -129,18 +129,18 @@ def goto_patterns(prefix, **views):
 
 urlpatterns += goto_patterns(
     "paper",
-    post=ThreadGotoPostView,
-    last=ThreadGotoLastView,
-    new=ThreadGotoNewView,
-    best_answer=ThreadGotoBestAnswerView,
-    unapproved=ThreadGotoUnapprovedView,
+    post=PaperGotoPostView,
+    last=PaperGotoLastView,
+    new=PaperGotoNewView,
+    best_answer=PaperGotoBestAnswerView,
+    unapproved=PaperGotoUnapprovedView,
 )
 
 urlpatterns += goto_patterns(
     "private-paper",
-    post=PrivateThreadGotoPostView,
-    last=PrivateThreadGotoLastView,
-    new=PrivateThreadGotoNewView,
+    post=PrivatePaperGotoPostView,
+    last=PrivatePaperGotoLastView,
+    new=PrivatePaperGotoNewView,
 )
 
 urlpatterns += [

@@ -10,7 +10,7 @@ from ...users.test import AuthenticatedUserTestCase
 from ..checksums import update_post_checksum
 from ..events import record_event
 from ..moderation import hide_post
-from ..moderation import threads as threads_moderation
+from ..moderation import papers as threads_moderation
 
 cache_versions = get_cache_versions()
 

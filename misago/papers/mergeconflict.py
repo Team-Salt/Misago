@@ -5,22 +5,22 @@ from .models import Poll
 
 
 class MergeConflictHandler:
-    def __init__(self, threads):
+    def __init__(self, papers):
         self.items = []
         self.choices = {0: None}
 
         self._is_valid = False
         self._resolution = None
 
-        self.threads = threads
-        self.populate_from_threads(threads)
+        self.papers = papers
+        self.populate_from_papers(papers)
 
         if len(self.items) == 1:
             self._is_valid = True
             self._resolution = self.items[0]
 
-    def populate_from_threads(self, threads):
-        raise NotImplementedError("merge handler must define populate_from_threads")
+    def populate_from_papers(self, papers):
+        raise NotImplementedError("merge handler must define populate_from_papers")
 
     def is_merge_conflict(self):
         return len(self.items) > 1
@@ -45,28 +45,28 @@ class MergeConflictHandler:
 class BestAnswerMergeHandler(MergeConflictHandler):
     data_name = "best_answer"
 
-    def populate_from_threads(self, threads):
-        for thread in threads:
-            if thread.has_best_answer:
-                self.items.append(thread)
-                self.choices[thread.pk] = thread
-        self.items.sort(key=lambda thread: (thread.title, thread.id))
+    def populate_from_papers(self, papers):
+        for paper in papers:
+            if paper.has_best_answer:
+                self.items.append(paper)
+                self.choices[paper.pk] = paper
+        self.items.sort(key=lambda paper: (paper.title, paper.id))
 
     def get_available_resolutions(self):
         resolutions = [[0, _("Unmark all best answers")]]
-        for thread in self.items:
-            resolutions.append([thread.pk, thread.title])
+        for paper in self.items:
+            resolutions.append([paper.pk, paper.title])
         return resolutions
 
 
 class PollMergeHandler(MergeConflictHandler):
     data_name = "poll"
 
-    def populate_from_threads(self, threads):
-        for thread in threads:
+    def populate_from_papers(self, papers):
+        for paper in papers:
             try:
-                self.items.append(thread.poll)
-                self.choices[thread.poll.id] = thread.poll
+                self.items.append(paper.poll)
+                self.choices[paper.poll.id] = paper.poll
             except Poll.DoesNotExist:
                 pass
         self.items.sort(key=lambda poll: poll.question)
@@ -75,7 +75,7 @@ class PollMergeHandler(MergeConflictHandler):
         resolutions = [[0, _("Delete all polls")]]
         for poll in self.items:
             resolutions.append(
-                [poll.id, "%s (%s)" % (poll.question, poll.thread.title)]
+                [poll.id, "%s (%s)" % (poll.question, poll.paper.title)]
             )
         return resolutions
 
@@ -88,9 +88,9 @@ class MergeConflict:
 
     HANDLERS = (BestAnswerMergeHandler, PollMergeHandler)
 
-    def __init__(self, data=None, threads=None):
+    def __init__(self, data=None, papers=None):
         self.data = data or {}
-        self._handlers = [Handler(threads) for Handler in self.HANDLERS]
+        self._handlers = [Handler(papers) for Handler in self.HANDLERS]
         self._conflicts = [i for i in self._handlers if i.is_merge_conflict()]
         self.set_resolution(data)
 

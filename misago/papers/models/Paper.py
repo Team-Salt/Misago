@@ -8,15 +8,15 @@ from ...conf import settings
 from ...core.utils import slugify
 
 
-class Thread(models.Model):
+class Paper(models.Model):
     WEIGHT_DEFAULT = 0
     WEIGHT_PINNED = 1
     WEIGHT_GLOBAL = 2
 
     WEIGHT_CHOICES = [
-        (WEIGHT_DEFAULT, _("Don't pin thread")),
-        (WEIGHT_PINNED, _("Pin thread within category")),
-        (WEIGHT_GLOBAL, _("Pin thread globally")),
+        (WEIGHT_DEFAULT, _("Don't pin paper")),
+        (WEIGHT_PINNED, _("Pin paper within category")),
+        (WEIGHT_GLOBAL, _("Pin paper globally")),
     ]
 
     category = models.ForeignKey("misago_categories.Category", on_delete=models.CASCADE)
@@ -93,7 +93,7 @@ class Thread(models.Model):
     participants = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name="privatepaper_set",
-        through="ThreadParticipant",
+        through="paperParticipant",
         through_fields=("paper", "user"),
     )
 
@@ -146,25 +146,25 @@ class Thread(models.Model):
         return self.title
 
     def delete(self, *args, **kwargs):
-        from ..signals import delete_thread
+        from ..signals import delete_paper
 
-        delete_thread.send(sender=self)
+        delete_paper.send(sender=self)
 
         super().delete(*args, **kwargs)
 
-    def merge(self, other_thread):
-        if self.pk == other_thread.pk:
-            raise ValueError("thread can't be merged with itself")
+    def merge(self, other_paper):
+        if self.pk == other_paper.pk:
+            raise ValueError("paper can't be merged with itself")
 
-        from ..signals import merge_thread
+        from ..signals import merge_paper
 
-        merge_thread.send(sender=self, other_thread=other_thread)
+        merge_paper.send(sender=self, other_paper=other_paper)
 
     def move(self, new_category):
-        from ..signals import move_thread
+        from ..signals import move_paper
 
         self.category = new_category
-        move_thread.send(sender=self)
+        move_paper.send(sender=self)
 
     def synchronize(self):
         try:
@@ -215,47 +215,47 @@ class Thread(models.Model):
         return bool(self.best_answer_id)
 
     @property
-    def thread_type(self):
-        return self.category.thread_type
+    def paper_type(self):
+        return self.category.paper_type
 
     def get_api_url(self):
-        return self.thread_type.get_thread_api_url(self)
+        return self.paper_type.get_paper_api_url(self)
 
     def get_editor_api_url(self):
-        return self.thread_type.get_thread_editor_api_url(self)
+        return self.paper_type.get_paper_editor_api_url(self)
 
     def get_merge_api_url(self):
-        return self.thread_type.get_thread_merge_api_url(self)
+        return self.paper_type.get_paper_merge_api_url(self)
 
     def get_posts_api_url(self):
-        return self.thread_type.get_thread_posts_api_url(self)
+        return self.paper_type.get_paper_posts_api_url(self)
 
     def get_post_merge_api_url(self):
-        return self.thread_type.get_post_merge_api_url(self)
+        return self.paper_type.get_post_merge_api_url(self)
 
     def get_post_move_api_url(self):
-        return self.thread_type.get_post_move_api_url(self)
+        return self.paper_type.get_post_move_api_url(self)
 
     def get_post_split_api_url(self):
-        return self.thread_type.get_post_split_api_url(self)
+        return self.paper_type.get_post_split_api_url(self)
 
     def get_poll_api_url(self):
-        return self.thread_type.get_thread_poll_api_url(self)
+        return self.paper_type.get_paper_poll_api_url(self)
 
     def get_absolute_url(self, page=1):
-        return self.thread_type.get_thread_absolute_url(self, page)
+        return self.paper_type.get_paper_absolute_url(self, page)
 
     def get_new_post_url(self):
-        return self.thread_type.get_thread_new_post_url(self)
+        return self.paper_type.get_paper_new_post_url(self)
 
     def get_last_post_url(self):
-        return self.thread_type.get_thread_last_post_url(self)
+        return self.paper_type.get_paper_last_post_url(self)
 
     def get_best_answer_url(self):
-        return self.thread_type.get_thread_best_answer_url(self)
+        return self.paper_type.get_paper_best_answer_url(self)
 
     def get_unapproved_post_url(self):
-        return self.thread_type.get_thread_unapproved_post_url(self)
+        return self.paper_type.get_paper_unapproved_post_url(self)
 
     def set_title(self, title):
         self.title = title
@@ -286,8 +286,8 @@ class Thread(models.Model):
             self.last_poster_slug = slugify(post.poster_name)
 
     def set_best_answer(self, user, post):
-        if post.thread_id != self.id:
-            raise ValueError("post to set as best answer must be in same thread")
+        if post.paper_id != self.id:
+            raise ValueError("post to set as best answer must be in same paper")
         if post.is_first_post:
             raise ValueError("post to set as best answer can't be first post")
         if post.is_hidden:

@@ -30,8 +30,8 @@ def protect_post(user, post):
     post.is_protected = True
     post.save(update_fields=["is_protected"])
     if post.is_best_answer:
-        post.thread.best_answer_is_protected = True
-        post.thread.save(update_fields=["best_answer_is_protected"])
+        post.paper.best_answer_is_protected = True
+        post.paper.save(update_fields=["best_answer_is_protected"])
     return True
 
 
@@ -42,15 +42,15 @@ def unprotect_post(user, post):
     post.is_protected = False
     post.save(update_fields=["is_protected"])
     if post.is_best_answer:
-        post.thread.best_answer_is_protected = False
-        post.thread.save(update_fields=["best_answer_is_protected"])
+        post.paper.best_answer_is_protected = False
+        post.paper.save(update_fields=["best_answer_is_protected"])
     return True
 
 
 def unhide_post(user, post):
     if post.is_first_post:
         raise ModerationError(
-            _("You can't make original post visible without revealing thread.")
+            _("You can't make original post visible without revealing paper.")
         )
 
     if not post.is_hidden:
@@ -63,7 +63,7 @@ def unhide_post(user, post):
 
 def hide_post(user, post):
     if post.is_first_post:
-        raise ModerationError(_("You can't hide original post without hiding thread."))
+        raise ModerationError(_("You can't hide original post without hiding paper."))
 
     if post.is_hidden:
         return False
@@ -89,7 +89,7 @@ def hide_post(user, post):
 def delete_post(user, post):
     if post.is_first_post:
         raise ModerationError(
-            _("You can't delete original post without deleting thread.")
+            _("You can't delete original post without deleting paper.")
         )
 
     post.delete()

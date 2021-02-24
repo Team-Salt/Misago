@@ -7,9 +7,9 @@ from django.utils import timezone
 
 class PostEdit(models.Model):
     category = models.ForeignKey("misago_categories.Category", on_delete=models.CASCADE)
-    thread = models.ForeignKey("misago_threads.Thread", on_delete=models.CASCADE)
+    paper = models.ForeignKey("misago_papers.Thread", on_delete=models.CASCADE)
     post = models.ForeignKey(
-        "misago_threads.Post", related_name="edits_record", on_delete=models.CASCADE
+        "misago_papers.Post", related_name="edits_record", on_delete=models.CASCADE
     )
 
     edited_on = models.DateTimeField(default=timezone.now)

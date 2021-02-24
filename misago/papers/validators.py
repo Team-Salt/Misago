@@ -9,13 +9,13 @@ from ..categories.models import Category
 from ..categories.permissions import can_browse_category, can_see_category
 from ..conf import settings
 from ..core.validators import validate_sluggable
-from .threadtypes import trees_map
+from .papertypes import trees_map
 
 
 def validate_category(user_acl, category_id, allow_root=False):
     try:
-        threads_tree_id = trees_map.get_tree_id_for_root(THREADS_ROOT_NAME)
-        category = Category.objects.get(tree_id=threads_tree_id, id=category_id)
+        papers_tree_id = trees_map.get_tree_id_for_root(THREADS_ROOT_NAME)
+        category = Category.objects.get(tree_id=papers_tree_id, id=category_id)
     except Category.DoesNotExist:
         category = None
 
@@ -31,42 +31,42 @@ def validate_category(user_acl, category_id, allow_root=False):
     return category
 
 
-def validate_thread_title(settings, title):
-    validate_thread_title_length(settings, title)
+def validate_paper_title(settings, title):
+    validate_paper_title_length(settings, title)
 
-    error_not_sluggable = _("Thread title should contain alpha-numeric characters.")
-    error_slug_too_long = _("Thread title is too long.")
+    error_not_sluggable = _("Paper title should contain alpha-numeric characters.")
+    error_slug_too_long = _("Paper title is too long.")
     validate_sluggable(error_not_sluggable, error_slug_too_long)(title)
 
 
-def validate_thread_title_length(settings, value):
+def validate_paper_title_length(settings, value):
     value_len = len(value)
 
     if not value_len:
-        raise ValidationError(_("You have to enter an thread title."))
+        raise ValidationError(_("You have to enter an paper title."))
 
-    if value_len < settings.thread_title_length_min:
+    if value_len < settings.paper_title_length_min:
         # pylint: disable=line-too-long
         message = ngettext(
-            "Thread title should be at least %(limit_value)s character long (it has %(show_value)s).",
-            "Thread title should be at least %(limit_value)s characters long (it has %(show_value)s).",
-            settings.thread_title_length_min,
+            "Paper title should be at least %(limit_value)s character long (it has %(show_value)s).",
+            "Paper title should be at least %(limit_value)s characters long (it has %(show_value)s).",
+            settings.paper_title_length_min,
         )
         raise ValidationError(
             message
-            % {"limit_value": settings.thread_title_length_min, "show_value": value_len}
+            % {"limit_value": settings.paper_title_length_min, "show_value": value_len}
         )
 
-    if value_len > settings.thread_title_length_max:
+    if value_len > settings.paper_title_length_max:
         # pylint: disable=line-too-long
         message = ngettext(
-            "Thread title cannot be longer than %(limit_value)s character (it has %(show_value)s).",
-            "Thread title cannot be longer than %(limit_value)s characters (it has %(show_value)s).",
-            settings.thread_title_length_max,
+            "Paper title cannot be longer than %(limit_value)s character (it has %(show_value)s).",
+            "Paper title cannot be longer than %(limit_value)s characters (it has %(show_value)s).",
+            settings.paper_title_length_max,
         )
         raise ValidationError(
             message
-            % {"limit_value": settings.thread_title_length_max, "show_value": value_len}
+            % {"limit_value": settings.paper_title_length_max, "show_value": value_len}
         )
 
 

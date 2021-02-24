@@ -8,7 +8,7 @@ from ...acl import algebra
 from ...acl.decorators import return_boolean
 from ...acl.models import Role
 from ...admin.forms import YesNoSwitch
-from ..models import Poll, Thread
+from ..models import Poll, Paper
 
 __all__ = [
     "allow_start_poll",
@@ -104,7 +104,7 @@ def add_acl_to_thread(user_acl, thread):
 
 def register_with(registry):
     registry.acl_annotator(Poll, add_acl_to_poll)
-    registry.acl_annotator(Thread, add_acl_to_thread)
+    registry.acl_annotator(Paper, add_acl_to_thread)
 
 
 def allow_start_poll(user_acl, target):

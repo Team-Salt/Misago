@@ -6,19 +6,19 @@ from ...categories import PRIVATE_THREADS_ROOT_NAME, THREADS_ROOT_NAME
 from ...categories.models import Category
 from ...core.shortcuts import validate_slug
 from ...core.viewmodel import ViewModel as BaseViewModel
-from ...readtracker.threadstracker import make_read_aware
-from ..models import Poll, Thread
+from ...readtracker.paperstracker import make_read_aware
+from ..models import Poll, Paper
 from ..participants import make_participants_aware
 from ..permissions import (
-    allow_see_private_thread,
-    allow_see_thread,
-    allow_use_private_threads,
+    allow_see_private_paper,
+    allow_see_paper,
+    allow_use_private_papers,
 )
-from ..serializers import PrivateThreadSerializer, ThreadSerializer
+from ..serializers import PrivatePaperSerializer, PaperSerializer
 from ..subscriptions import make_subscription_aware
-from ..threadtypes import trees_map
+from ..papertypes import trees_map
 
-__all__ = ["ForumThread", "PrivateThread"]
+__all__ = ["ForumPaper", "PrivatePaper"]
 
 BASE_RELATIONS = [
     "category",
@@ -41,10 +41,10 @@ class ViewModel(BaseViewModel):
         subscription_aware=False,
         poll_votes_aware=False,
     ):
-        model = self.get_thread(request, pk, slug)
+        model = self.get_paper(request, pk, slug)
 
         if path_aware:
-            model.path = self.get_thread_path(model.category)
+            model.path = self.get_paper_path(model.category)
 
         add_acl_to_obj(request.user_acl, model.category)
         add_acl_to_obj(request.user_acl, model)
@@ -69,82 +69,82 @@ class ViewModel(BaseViewModel):
     def poll(self):
         return self._poll
 
-    def get_thread(self, request, pk, slug=None):
+    def get_paper(self, request, pk, slug=None):
         raise NotImplementedError(
-            "Thread view model has to implement get_thread(request, pk, slug=None)"
+            "Paper view model has to implement get_paper(request, pk, slug=None)"
         )
 
-    def get_thread_path(self, category):
-        thread_path = []
+    def get_paper_path(self, category):
+        paper_path = []
 
         if category.level:
             categories = Category.objects.filter(
                 tree_id=category.tree_id, lft__lte=category.lft, rght__gte=category.rght
             ).order_by("level")
-            thread_path = list(categories)
+            paper_path = list(categories)
         else:
-            thread_path = [category]
+            paper_path = [category]
 
-        thread_path[0].name = self.get_root_name()
-        return thread_path
+        paper_path[0].name = self.get_root_name()
+        return paper_path
 
     def get_root_name(self):
-        raise NotImplementedError("Thread view model has to implement get_root_name()")
+        raise NotImplementedError("Paper view model has to implement get_root_name()")
 
     def get_frontend_context(self):
         raise NotImplementedError(
-            "Thread view model has to implement get_frontend_context()"
+            "Paper view model has to implement get_frontend_context()"
         )
 
     def get_template_context(self):
         return {
-            "thread": self._model,
+            "paper": self._model,
             "poll": self._poll,
             "category": self._model.category,
             "breadcrumbs": self._model.path,
         }
 
 
-class ForumThread(ViewModel):
-    def get_thread(self, request, pk, slug=None):
-        thread = get_object_or_404(
-            Thread.objects.select_related(*BASE_RELATIONS),
+class ForumPaper(ViewModel):
+    def get_paper(self, request, pk, slug=None):
+        paper = get_object_or_404(
+            Paper.objects.select_related(*BASE_RELATIONS),
             pk=pk,
             category__tree_id=trees_map.get_tree_id_for_root(THREADS_ROOT_NAME),
         )
 
-        allow_see_thread(request.user_acl, thread)
+        allow_see_paper(request.user_acl, paper)
         if slug:
-            validate_slug(thread, slug)
-        return thread
+            validate_slug(paper, slug)
+        return paper
 
     def get_root_name(self):
-        return _("Threads")
+        return _("Papers")
 
     def get_frontend_context(self):
-        return ThreadSerializer(self._model).data
+        return PaperSerializer(self._model).data
 
 
-class PrivateThread(ViewModel):
-    def get_thread(self, request, pk, slug=None):
-        allow_use_private_threads(request.user_acl)
+class PrivatePaper(ViewModel):
+    def get_paper(self, request, pk, slug=None):
+        allow_use_private_papers(request.user_acl)
 
-        thread = get_object_or_404(
-            Thread.objects.select_related(*BASE_RELATIONS),
+        paper = get_object_or_404(
+            Paper.objects.select_related(*BASE_RELATIONS),
             pk=pk,
             category__tree_id=trees_map.get_tree_id_for_root(PRIVATE_THREADS_ROOT_NAME),
         )
 
-        make_participants_aware(request.user, thread)
-        allow_see_private_thread(request.user_acl, thread)
+        make_participants_aware(request.user, paper)
+        allow_see_private_paper(request.user_acl, paper)
 
         if slug:
-            validate_slug(thread, slug)
+            validate_slug(paper, slug)
 
-        return thread
+        return paper
 
     def get_root_name(self):
-        return _("Private threads")
+        return _("Private papers")
 
     def get_frontend_context(self):
-        return PrivateThreadSerializer(self._model).data
+        return PrivatePaperSerializer(self._model).data

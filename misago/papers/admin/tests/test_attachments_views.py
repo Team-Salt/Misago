@@ -11,7 +11,7 @@ class AttachmentAdminViewsTests(AdminTestCase):
         super().setUp()
 
         self.category = Category.objects.get(slug="first-category")
-        self.post = test.post_thread(category=self.category).first_post
+        self.post = test.post_paper(category=self.category).first_post
 
         self.filetype = AttachmentType.objects.order_by("id").first()
 

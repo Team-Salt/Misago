@@ -30,15 +30,15 @@ def add_likes_to_posts(user, posts):
 
 
 SUPPORTED_THREAD_ROUTES = {
-    "misago:thread": "pk",
-    "misago:thread-post": "pk",
-    "misago:thread-last": "pk",
-    "misago:thread-new": "pk",
-    "misago:thread-unapproved": "pk",
+    "misago:paper": "pk",
+    "misago:paper-post": "pk",
+    "misago:paper-last": "pk",
+    "misago:paper-new": "pk",
+    "misago:paper-unapproved": "pk",
 }
 
 
-def get_thread_id_from_url(request, url):  # pylint: disable=too-many-return-statements
+def get_paper_id_from_url(request, url):  # pylint: disable=too-many-return-statements
     clean_url = str(url).strip()
     url_bits = urlparse(clean_url)
 

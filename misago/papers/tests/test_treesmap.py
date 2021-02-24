@@ -1,9 +1,9 @@
 from django.test import TestCase
 
 from ...categories.models import Category
-from ..threadtypes.treesmap import TreesMap
+from ..papertypes.treesmap import TreesMap
 
-THREAD_TYPE = "misago.threads.threadtypes.thread.Thread"
+THREAD_TYPE = "misago.threads.papertypes.thread.Thread"
 
 
 class TreesMapTests(TestCase):

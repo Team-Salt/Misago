@@ -7,17 +7,17 @@ from ..permissions import exclude_invisible_posts
 from ..serializers import PostSerializer
 from ..utils import add_likes_to_posts
 
-__all__ = ["ThreadPosts"]
+__all__ = ["PaperPosts"]
 
 
 class ViewModel:
-    def __init__(self, request, thread, page):  # pylint: disable=too-many-locals
+    def __init__(self, request, paper, page):  # pylint: disable=too-many-locals
         try:
-            thread_model = thread.unwrap()
+            paper_model = paper.unwrap()
         except AttributeError:
-            thread_model = thread
+            paper_model = paper
 
-        posts_queryset = self.get_posts_queryset(request, thread_model)
+        posts_queryset = self.get_posts_queryset(request, paper_model)
 
         posts_limit = request.settings.posts_per_page
         posts_orphans = request.settings.posts_per_page_orphans
@@ -30,19 +30,19 @@ class ViewModel:
         posters = []
 
         for post in posts:
-            post.category = thread.category
-            post.thread = thread_model
+            post.category = paper.category
+            post.paper = paper_model
 
             if post.poster:
                 posters.append(post.poster)
 
         make_users_status_aware(request, posters)
 
-        if thread.category.acl["can_see_posts_likes"]:
+        if paper.category.acl["can_see_posts_likes"]:
             add_likes_to_posts(request.user, posts)
 
         # add events to posts
-        if thread_model.has_events:
+        if paper_model.has_events:
             first_post = None
             if list_page.has_previous():
                 first_post = posts[0]
@@ -52,7 +52,7 @@ class ViewModel:
 
             events_limit = request.settings.events_per_page
             posts += self.get_events_queryset(
-                request, thread_model, events_limit, first_post, last_post
+                request, paper_model, events_limit, first_post, last_post
             )
 
             # sort both by pk
@@ -67,9 +67,9 @@ class ViewModel:
         self.posts = posts
         self.paginator = paginator
 
-    def get_posts_queryset(self, request, thread):
+    def get_posts_queryset(self, request, paper):
         queryset = (
-            thread.post_set.select_related(
+            paper.post_set.select_related(
                 "category",
                 "poster",
                 "poster__rank",
@@ -79,12 +79,12 @@ class ViewModel:
             .filter(is_event=False)
             .order_by("id")
         )
-        return exclude_invisible_posts(request.user_acl, thread.category, queryset)
+        return exclude_invisible_posts(request.user_acl, paper.category, queryset)
 
     def get_events_queryset(
-        self, request, thread, limit, first_post=None, last_post=None
+        self, request, paper, limit, first_post=None, last_post=None
     ):
-        queryset = thread.post_set.select_related(
+        queryset = paper.post_set.select_related(
             "category",
             "poster",
             "poster__rank",
@@ -97,7 +97,7 @@ class ViewModel:
         if last_post:
             queryset = queryset.filter(pk__lt=last_post.pk)
 
-        queryset = exclude_invisible_posts(request.user_acl, thread.category, queryset)
+        queryset = exclude_invisible_posts(request.user_acl, paper.category, queryset)
         return list(queryset.order_by("-id")[:limit])
 
     def get_frontend_context(self):
@@ -115,5 +115,5 @@ class ViewModel:
         return {"posts": self.posts, "paginator": self.paginator}
 
 
-class ThreadPosts(ViewModel):
+class PaperPosts(ViewModel):
     pass

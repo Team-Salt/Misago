@@ -16,7 +16,7 @@ from ..filtersearch import filter_search
 
 class Post(models.Model):
     category = models.ForeignKey("misago_categories.Category", on_delete=models.CASCADE)
-    thread = models.ForeignKey("misago_threads.Thread", on_delete=models.CASCADE)
+    paper = models.ForeignKey("misago_papers.Thread", on_delete=models.CASCADE)
     poster = models.ForeignKey(
         settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL
     )
@@ -71,7 +71,7 @@ class Post(models.Model):
     liked_by = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name="liked_post_set",
-        through="misago_threads.PostLike",
+        through="misago_papers.PostLike",
     )
 
     search_document = models.TextField(null=True, blank=True)
@@ -98,7 +98,7 @@ class Post(models.Model):
         ]
 
         index_together = [
-            ("thread", "id"),  # speed up threadview for team members
+            ("paper", "id"),  # speed up paperview for team members
             ("is_event", "is_hidden"),
             ("poster", "posted_on"),
         ]
@@ -123,8 +123,8 @@ class Post(models.Model):
         ):
             raise ValueError("post can't be merged with other user's post")
 
-        if self.thread_id != other_post.thread_id:
-            raise ValueError("only posts belonging to same thread can be merged")
+        if self.paper_id != other_post.paper_id:
+            raise ValueError("only posts belonging to same paper can be merged")
 
         if self.is_event or other_post.is_event:
             raise ValueError("can't merge events")
@@ -139,22 +139,22 @@ class Post(models.Model):
         if self.is_protected:
             other_post.is_protected = True
         if self.is_best_answer:
-            self.thread.best_answer = other_post
+            self.paper.best_answer = other_post
         if other_post.is_best_answer:
-            self.thread.best_answer_is_protected = other_post.is_protected
+            self.paper.best_answer_is_protected = other_post.is_protected
 
         from ..signals import merge_post
 
         merge_post.send(sender=self, other_post=other_post)
 
-    def move(self, new_thread):
+    def move(self, new_paper):
         from ..signals import move_post
 
         if self.is_best_answer:
-            self.thread.clear_best_answer()
+            self.paper.clear_best_answer()
 
-        self.category = new_thread.category
-        self.thread = new_thread
+        self.category = new_paper.category
+        self.paper = new_paper
         move_post.send(sender=self)
 
     @property
@@ -180,31 +180,31 @@ class Post(models.Model):
         return self._finalised_parsed
 
     @property
-    def thread_type(self):
-        return self.category.thread_type
+    def paper_type(self):
+        return self.category.paper_type
 
     def get_api_url(self):
-        return self.thread_type.get_post_api_url(self)
+        return self.paper_type.get_post_api_url(self)
 
     def get_likes_api_url(self):
-        return self.thread_type.get_post_likes_api_url(self)
+        return self.paper_type.get_post_likes_api_url(self)
 
     def get_editor_api_url(self):
-        return self.thread_type.get_post_editor_api_url(self)
+        return self.paper_type.get_post_editor_api_url(self)
 
     def get_edits_api_url(self):
-        return self.thread_type.get_post_edits_api_url(self)
+        return self.paper_type.get_post_edits_api_url(self)
 
     def get_read_api_url(self):
-        return self.thread_type.get_post_read_api_url(self)
+        return self.paper_type.get_post_read_api_url(self)
 
     def get_absolute_url(self):
-        return self.thread_type.get_post_absolute_url(self)
+        return self.paper_type.get_post_absolute_url(self)
 
-    def set_search_document(self, thread_title=None):
-        if thread_title:
+    def set_search_document(self, paper_title=None):
+        if paper_title:
             self.search_document = filter_search(
-                "\n\n".join([thread_title, self.original])
+                "\n\n".join([paper_title, self.original])
             )
         else:
             self.search_document = filter_search(self.original)
@@ -228,8 +228,8 @@ class Post(models.Model):
 
     @property
     def is_first_post(self):
-        return self.id == self.thread.first_post_id
+        return self.id == self.paper.first_post_id
 
     @property
     def is_best_answer(self):
-        return self.id == self.thread.best_answer_id
+        return self.id == self.paper.best_answer_id

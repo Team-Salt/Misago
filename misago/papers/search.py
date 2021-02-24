@@ -5,27 +5,27 @@ from ..conf import settings
 from ..core.shortcuts import paginate, pagination_dict
 from ..search import SearchProvider
 from .filtersearch import filter_search
-from .models import Post, Thread
-from .permissions import exclude_invisible_threads
+from .models import Post, Paper
+from .permissions import exclude_invisible_papers
 from .serializers import FeedSerializer
 from .utils import add_categories_to_items
-from .viewmodels import ThreadsRootCategory
+from .viewmodels import PapersRootCategory
 
 
-class SearchThreads(SearchProvider):
-    name = _("Threads")
+class SearchPapers(SearchProvider):
+    name = _("Papers")
     icon = "forum"
-    url = "threads"
+    url = "papers"
 
     def search(self, query, page=1):
-        root_category = ThreadsRootCategory(self.request)
-        threads_categories = [root_category.unwrap()] + root_category.subcategories
+        root_category = PapersRootCategory(self.request)
+        papers_categories = [root_category.unwrap()] + root_category.subcategories
 
         if len(query) > 1:
-            visible_threads = exclude_invisible_threads(
-                self.request.user_acl, threads_categories, Thread.objects
+            visible_papers = exclude_invisible_papers(
+                self.request.user_acl, papers_categories, Paper.objects
             )
-            results = search_threads(self.request, query, visible_threads)
+            results = search_papers(self.request, query, visible_papers)
         else:
             results = []
 
@@ -39,18 +39,18 @@ class SearchThreads(SearchProvider):
         paginator = pagination_dict(list_page)
 
         posts = []
-        threads = []
+        papers = []
         if paginator["count"]:
             posts = list(
-                list_page.object_list.select_related("thread", "poster", "poster__rank")
+                list_page.object_list.select_related("paper", "poster", "poster__rank")
             )
 
-            threads = []
+            papers = []
             for post in posts:
-                threads.append(post.thread)
+                papers.append(post.paper)
 
             add_categories_to_items(
-                root_category.unwrap(), threads_categories, posts + threads
+                root_category.unwrap(), papers_categories, posts + papers
             )
 
         results = {
@@ -63,7 +63,7 @@ class SearchThreads(SearchProvider):
         return results
 
 
-def search_threads(request, query, visible_threads):
+def search_papers(request, query, visible_papers):
     max_hits = request.settings.posts_per_page * 5
 
     search_query = SearchQuery(
@@ -77,7 +77,7 @@ def search_threads(request, query, visible_threads):
         is_event=False,
         is_hidden=False,
         is_unapproved=False,
-        thread_id__in=visible_threads.values("id"),
+        paper_id__in=visible_papers.values("id"),
         search_vector=search_query,
     )
 

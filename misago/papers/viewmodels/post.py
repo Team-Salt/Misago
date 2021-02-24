@@ -4,39 +4,39 @@ from ...acl.objectacl import add_acl_to_obj
 from ...core.viewmodel import ViewModel as BaseViewModel
 from ..permissions import exclude_invisible_posts
 
-__all__ = ["ThreadPost"]
+__all__ = ["PaperPost"]
 
 
 class ViewModel(BaseViewModel):
-    def __init__(self, request, thread, pk):
-        model = self.get_post(request, thread, pk)
+    def __init__(self, request, paper, pk):
+        model = self.get_post(request, paper, pk)
 
         add_acl_to_obj(request.user_acl, model)
 
         self._model = model
 
-    def get_post(self, request, thread, pk):
+    def get_post(self, request, paper, pk):
         try:
-            thread_model = thread.unwrap()
+            paper_model = paper.unwrap()
         except AttributeError:
-            thread_model = thread
+            paper_model = paper
 
-        queryset = self.get_queryset(request, thread_model).select_related(
+        queryset = self.get_queryset(request, paper_model).select_related(
             "poster", "poster__rank", "poster__ban_cache"
         )
 
         post = get_object_or_404(queryset, pk=pk)
 
-        post.thread = thread_model
-        post.category = thread.category
+        post.paper = paper_model
+        post.category = paper.category
 
         return post
 
-    def get_queryset(self, request, thread):
+    def get_queryset(self, request, paper):
         return exclude_invisible_posts(
-            request.user_acl, thread.category, thread.post_set
+            request.user_acl, paper.category, paper.post_set
         )
 
 
-class ThreadPost(ViewModel):
+class PaperPost(ViewModel):
     pass

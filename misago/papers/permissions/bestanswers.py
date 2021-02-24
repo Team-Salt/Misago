@@ -8,7 +8,7 @@ from ...acl import algebra
 from ...acl.decorators import return_boolean
 from ...categories.models import Category, CategoryRole
 from ...categories.permissions import get_categories_roles
-from ..models import Post, Thread
+from ..models import Post, Paper
 
 __all__nope = [
     "allow_mark_best_answer",
@@ -31,21 +31,21 @@ class CategoryPermissionsForm(forms.Form):
         label=_("Can mark posts as best answers"),
         coerce=int,
         initial=0,
-        choices=[(0, _("No")), (1, _("Own threads")), (2, _("All threads"))],
+        choices=[(0, _("No")), (1, _("Own papers")), (2, _("All papers"))],
     )
     can_change_marked_answers = forms.TypedChoiceField(
         label=_("Can change marked answers"),
         coerce=int,
         initial=0,
-        choices=[(0, _("No")), (1, _("Own threads")), (2, _("All threads"))],
+        choices=[(0, _("No")), (1, _("Own papers")), (2, _("All papers"))],
     )
     best_answer_change_time = forms.IntegerField(
         label=_(
-            "Time limit for changing marked best answer in owned thread, in minutes"
+            "Time limit for changing marked best answer in owned paper, in minutes"
         ),
         help_text=_(
             "Enter 0 to don't limit time for changing marked best answer in "
-            "owned thread."
+            "owned paper."
         ),
         initial=0,
         min_value=0,
@@ -68,10 +68,10 @@ def build_acl(acl, roles, key_name):
                 category_acl, category, categories_roles, key_name
             )
 
-    private_category = Category.objects.private_threads()
-    private_threads_acl = acl["categories"].get(private_category.pk)
-    if private_threads_acl:
-        private_threads_acl.update(
+    private_category = Category.objects.private_papers()
+    private_papers_acl = acl["categories"].get(private_category.pk)
+    if private_papers_acl:
+        private_papers_acl.update(
             {
                 "can_mark_best_answers": 0,
                 "can_change_marked_answers": 0,
@@ -104,12 +104,12 @@ def build_category_acl(acl, category, categories_roles, key_name):
     return final_acl
 
 
-def add_acl_to_thread(user_acl, thread):
-    thread.acl.update(
+def add_acl_to_paper(user_acl, paper):
+    paper.acl.update(
         {
-            "can_mark_best_answer": can_mark_best_answer(user_acl, thread),
-            "can_change_best_answer": can_change_best_answer(user_acl, thread),
-            "can_unmark_best_answer": can_unmark_best_answer(user_acl, thread),
+            "can_mark_best_answer": can_mark_best_answer(user_acl, paper),
+            "can_change_best_answer": can_change_best_answer(user_acl, paper),
+            "can_unmark_best_answer": can_unmark_best_answer(user_acl, paper),
         }
     )
 
@@ -125,7 +125,7 @@ def add_acl_to_post(user_acl, post):
 
 
 def register_with(registry):
-    registry.acl_annotator(Thread, add_acl_to_thread)
+    registry.acl_annotator(Paper, add_acl_to_paper)
     registry.acl_annotator(Post, add_acl_to_post)
 
 
@@ -150,16 +150,16 @@ def allow_mark_best_answer(user_acl, target):
     ):
         raise PermissionDenied(
             _(
-                "You don't have permission to mark best answer in this thread "
+                "You don't have permission to mark best answer in this paper "
                 "because you didn't start it."
             )
         )
 
-    if not category_acl["can_close_threads"]:
+    if not category_acl["can_close_papers"]:
         if target.category.is_closed:
             raise PermissionDenied(
                 _(
-                    "You don't have permission to mark best answer in this thread "
+                    "You don't have permission to mark best answer in this paper "
                     'because its category "%(category)s" is closed.'
                 )
                 % {"category": target.category}
@@ -167,7 +167,7 @@ def allow_mark_best_answer(user_acl, target):
         if target.is_closed:
             raise PermissionDenied(
                 _(
-                    "You can't mark best answer in this thread because it's closed "
+                    "You can't mark best answer in this paper because it's closed "
                     "and you don't have permission to open it."
                 )
             )
@@ -185,7 +185,7 @@ def allow_change_best_answer(user_acl, target):
     if not category_acl.get("can_change_marked_answers"):
         raise PermissionDenied(
             _(
-                "You don't have permission to change this thread's marked answer "
+                "You don't have permission to change this paper's marked answer "
                 'because it\'s in the "%(category)s" category.'
             )
             % {"category": target.category}
@@ -195,8 +195,8 @@ def allow_change_best_answer(user_acl, target):
         if user_acl["user_id"] != target.starter_id:
             raise PermissionDenied(
                 _(
-                    "You don't have permission to change this thread's marked answer "
-                    "because you are not a thread starter."
+                    "You don't have permission to change this paper's marked answer "
+                    "because you are not a paper starter."
                 )
             )
         if not has_time_to_change_answer(user_acl, target):
@@ -213,7 +213,7 @@ def allow_change_best_answer(user_acl, target):
     if target.best_answer_is_protected and not category_acl["can_protect_posts"]:
         raise PermissionDenied(
             _(
-                "You don't have permission to change this thread's best answer "
+                "You don't have permission to change this paper's best answer "
                 "because a moderator has protected it."
             )
         )
@@ -234,7 +234,7 @@ def allow_unmark_best_answer(user_acl, target):
     if not category_acl.get("can_change_marked_answers"):
         raise PermissionDenied(
             _(
-                "You don't have permission to unmark threads answers in "
+                "You don't have permission to unmark papers answers in "
                 'the "%(category)s" category.'
             )
             % {"category": target.category}
@@ -245,7 +245,7 @@ def allow_unmark_best_answer(user_acl, target):
             raise PermissionDenied(
                 _(
                     "You don't have permission to unmark this best answer "
-                    "because you are not a thread starter."
+                    "because you are not a paper starter."
                 )
             )
         if not has_time_to_change_answer(user_acl, target):
@@ -259,7 +259,7 @@ def allow_unmark_best_answer(user_acl, target):
                 message % {"minutes": category_acl["best_answer_change_time"]}
             )
 
-    if not category_acl["can_close_threads"]:
+    if not category_acl["can_close_papers"]:
         if target.category.is_closed:
             raise PermissionDenied(
                 _(
@@ -271,7 +271,7 @@ def allow_unmark_best_answer(user_acl, target):
         if target.is_closed:
             raise PermissionDenied(
                 _(
-                    "You can't unmark this thread's best answer "
+                    "You can't unmark this paper's best answer "
                     "because it's closed and you don't have permission to open it."
                 )
             )
@@ -279,7 +279,7 @@ def allow_unmark_best_answer(user_acl, target):
     if target.best_answer_is_protected and not category_acl["can_protect_posts"]:
         raise PermissionDenied(
             _(
-                "You don't have permission to unmark this thread's best answer "
+                "You don't have permission to unmark this paper's best answer "
                 "because a moderator has protected it."
             )
         )
@@ -308,18 +308,18 @@ def allow_mark_as_best_answer(user_acl, target):
 
     if (
         category_acl["can_mark_best_answers"] == 1
-        and user_acl["user_id"] != target.thread.starter_id
+        and user_acl["user_id"] != target.paper.starter_id
     ):
         raise PermissionDenied(
             _(
-                "You don't have permission to mark best answer in this thread "
+                "You don't have permission to mark best answer in this paper "
                 "because you didn't start it."
             )
         )
 
     if target.is_first_post:
         raise PermissionDenied(
-            _("First post in a thread can't be marked as best answer.")
+            _("First post in a paper can't be marked as best answer.")
         )
 
     if target.is_hidden:

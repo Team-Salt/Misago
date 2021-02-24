@@ -5,13 +5,13 @@ from django.test import TestCase
 
 from .. import test
 from ...categories.models import Category
-from ..management.commands import synchronizethreads
+from ..management.commands import synchronizepapers
 
 
 class SynchronizeThreadsTests(TestCase):
     def test_no_threads_sync(self):
         """command works when there are no threads"""
-        command = synchronizethreads.Command()
+        command = synchronizepapers.Command()
 
         out = StringIO()
         call_command(command, stdout=out)
@@ -29,7 +29,7 @@ class SynchronizeThreadsTests(TestCase):
             thread.replies = 0
             thread.save()
 
-        command = synchronizethreads.Command()
+        command = synchronizepapers.Command()
 
         out = StringIO()
         call_command(command, stdout=out)

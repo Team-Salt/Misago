@@ -8,20 +8,20 @@ from ..categories.models import Category
 from ..core.utils import slugify
 from ..users.test import create_test_user
 from .checksums import update_post_checksum
-from .models import Poll, Post, Thread
+from .models import Poll, Post, Paper
 
 default_category_acl = {
     "can_see": 1,
     "can_browse": 1,
-    "can_see_all_threads": 1,
-    "can_see_own_threads": 0,
-    "can_hide_threads": 0,
+    "can_see_all_papers": 1,
+    "can_see_own_papers": 0,
+    "can_hide_papers": 0,
     "can_approve_content": 0,
     "can_edit_posts": 0,
     "can_hide_posts": 0,
     "can_hide_own_posts": 0,
-    "can_merge_threads": 0,
-    "can_close_threads": 0,
+    "can_merge_papers": 0,
+    "can_close_papers": 0,
 }
 
 
@@ -69,9 +69,9 @@ def patch_other_category_acl(acl_patch=None):
     return patch_user_acl(patch_acl)
 
 
-def patch_private_threads_acl(acl_patch=None):
+def patch_private_papers_acl(acl_patch=None):
     def patch_acl(_, user_acl):
-        category = Category.objects.private_threads()
+        category = Category.objects.private_papers()
         category_acl = user_acl["categories"][category.id]
         category_acl.update(default_category_acl)
         if acl_patch:
@@ -81,9 +81,9 @@ def patch_private_threads_acl(acl_patch=None):
     return patch_user_acl(patch_acl)
 
 
-def other_user_cant_use_private_threads(user, user_acl):
+def other_user_cant_use_private_papers(user, user_acl):
     if user.slug == "otheruser":
-        user_acl.update({"can_use_private_threads": False})
+        user_acl.update({"can_use_private_papers": False})
 
 
 def create_category_acl_patch(category_slug, acl_patch):
@@ -121,9 +121,9 @@ def cleanup_patched_acl(user_acl, category_acl, category):
 User = get_user_model()
 
 
-def post_thread(
+def post_paper(
     category,
-    title="Test thread",
+    title="Test paper",
     poster="Tester",
     is_global=False,
     is_pinned=False,
@@ -171,20 +171,20 @@ def post_thread(
             }
         )
 
-    thread = Thread.objects.create(**kwargs)
-    reply_thread(
-        thread,
+    paper = paper.objects.create(**kwargs)
+    reply_paper(
+        paper,
         poster=poster,
         posted_on=started_on,
         is_hidden=is_hidden,
         is_unapproved=is_unapproved,
     )
 
-    return thread
+    return paper
 
 
-def reply_thread(
-    thread,
+def reply_paper(
+    paper,
     poster="Tester",
     message="I am test message",
     is_unapproved=False,
@@ -195,11 +195,11 @@ def reply_thread(
     has_open_reports=False,
     posted_on=None,
 ):
-    posted_on = posted_on or thread.last_post_on + timedelta(minutes=5)
+    posted_on = posted_on or paper.last_post_on + timedelta(minutes=5)
 
     kwargs = {
-        "category": thread.category,
-        "thread": thread,
+        "category": paper.category,
+        "paper": paper,
         "original": message,
         "parsed": message,
         "checksum": "nope",
@@ -223,18 +223,18 @@ def reply_thread(
     update_post_checksum(post)
     post.save()
 
-    thread.synchronize()
-    thread.save()
-    thread.category.synchronize()
-    thread.category.save()
+    paper.synchronize()
+    paper.save()
+    paper.category.synchronize()
+    paper.category.save()
 
     return post
 
 
-def post_poll(thread, poster):
+def post_poll(paper, poster):
     poll = Poll.objects.create(
-        category=thread.category,
-        thread=thread,
+        category=paper.category,
+        paper=paper,
         poster=poster,
         poster_name=poster.username,
         poster_slug=poster.slug,
@@ -256,8 +256,8 @@ def post_poll(thread, poster):
         user = create_test_user("User", "user@example.com")
 
     poll.pollvote_set.create(
-        category=thread.category,
-        thread=thread,
+        category=paper.category,
+        paper=paper,
         voter=user,
         voter_name=user.username,
         voter_slug=user.slug,
@@ -266,16 +266,16 @@ def post_poll(thread, poster):
 
     # test user voted on third and last choices
     poll.pollvote_set.create(
-        category=thread.category,
-        thread=thread,
+        category=paper.category,
+        paper=paper,
         voter=poster,
         voter_name=poster.username,
         voter_slug=poster.slug,
         choice_hash="gggggggggggg",
     )
     poll.pollvote_set.create(
-        category=thread.category,
-        thread=thread,
+        category=paper.category,
+        paper=paper,
         voter=poster,
         voter_name=poster.username,
         voter_slug=poster.slug,
@@ -284,8 +284,8 @@ def post_poll(thread, poster):
 
     # somebody else voted on third option before being deleted
     poll.pollvote_set.create(
-        category=thread.category,
-        thread=thread,
+        category=paper.category,
+        paper=paper,
         voter_name="deleted",
         voter_slug="deleted",
         choice_hash="gggggggggggg",
@@ -301,7 +301,7 @@ def like_post(post, liker=None, username=None):
     if liker:
         like = post.postlike_set.create(
             category=post.category,
-            thread=post.thread,
+            paper=post.paper,
             liker=liker,
             liker_name=liker.username,
             liker_slug=liker.slug,
@@ -313,7 +313,7 @@ def like_post(post, liker=None, username=None):
     else:
         like = post.postlike_set.create(
             category=post.category,
-            thread=post.thread,
+            paper=post.paper,
             liker_name=username,
             liker_slug=slugify(username),
         )

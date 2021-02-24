@@ -8,7 +8,7 @@ from ...categories.models import Category
 from ...conf.test import override_dynamic_settings
 from ..models import Thread
 from ..test import patch_category_acl
-from ..threadtypes import trees_map
+from ..papertypes import trees_map
 from .test_threads_api import ThreadsApiTestCase
 
 

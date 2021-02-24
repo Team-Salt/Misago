@@ -5,7 +5,7 @@ from ...categories.serializers import CategorySerializer
 from ...core.serializers import MutableFields
 from ..models import Thread
 from .poll import PollSerializer
-from .threadparticipant import ThreadParticipantSerializer
+from .paperparticipant import ThreadParticipantSerializer
 
 __all__ = ["ThreadSerializer", "PrivateThreadSerializer", "ThreadsListSerializer"]
 

@@ -6,7 +6,7 @@ from ...conf import settings
 
 class Subscription(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    thread = models.ForeignKey("Paper", on_delete=models.CASCADE)
+    paper = models.ForeignKey("Paper", on_delete=models.CASCADE)
     category = models.ForeignKey("misago_categories.Category", on_delete=models.CASCADE)
 
     last_read_on = models.DateTimeField(default=timezone.now)

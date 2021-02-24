@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
-from ..models import ThreadParticipant
+from ..models import PaperParticipant
 
-__all__ = ["ThreadParticipantSerializer"]
+__all__ = ["PaperParticipantSerializer"]
 
 
-class ThreadParticipantSerializer(serializers.ModelSerializer):
+class PaperParticipantSerializer(serializers.ModelSerializer):
     id = serializers.SerializerMethodField()
     username = serializers.SerializerMethodField()
     avatars = serializers.SerializerMethodField()
@@ -13,7 +13,7 @@ class ThreadParticipantSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
 
     class Meta:
-        model = ThreadParticipant
+        model = PaperParticipant
         fields = ["id", "username", "avatars", "url", "is_owner"]
 
     def get_id(self, obj):

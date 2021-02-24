@@ -9,7 +9,7 @@ from ...acl.models import Role
 from ...admin.forms import YesNoSwitch
 from ...categories import PRIVATE_THREADS_ROOT_NAME
 from ...categories.models import Category
-from ..models import Thread
+from ..models import Paper
 
 __all__ = [
     "allow_use_private_papers",
@@ -171,7 +171,7 @@ def add_acl_to_paper(user_acl, paper):
 
 
 def register_with(registry):
-    registry.acl_annotator(Thread, add_acl_to_paper)
+    registry.acl_annotator(Paper, add_acl_to_paper)
 
 
 def allow_use_private_papers(user_acl):

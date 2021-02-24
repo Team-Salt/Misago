@@ -5,8 +5,8 @@ from django.utils import timezone
 
 class PostLike(models.Model):
     category = models.ForeignKey("misago_categories.Category", on_delete=models.CASCADE)
-    thread = models.ForeignKey("misago_threads.Thread", on_delete=models.CASCADE)
-    post = models.ForeignKey("misago_threads.Post", on_delete=models.CASCADE)
+    paper = models.ForeignKey("misago_papers.Thread", on_delete=models.CASCADE)
+    post = models.ForeignKey("misago_papers.Post", on_delete=models.CASCADE)
 
     liker = models.ForeignKey(
         settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL

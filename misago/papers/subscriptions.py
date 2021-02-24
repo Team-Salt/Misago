@@ -3,37 +3,37 @@ from .models import Subscription
 
 def make_subscription_aware(user, target):
     if hasattr(target, "__iter__"):
-        make_threads_subscription_aware(user, target)
+        make_papers_subscription_aware(user, target)
     else:
-        make_thread_subscription_aware(user, target)
+        make_paper_subscription_aware(user, target)
 
 
-def make_threads_subscription_aware(user, threads):
-    if not threads:
+def make_papers_subscription_aware(user, papers):
+    if not papers:
         return
 
     if user.is_anonymous:
-        for thread in threads:
-            thread.subscription = None
+        for paper in papers:
+            paper.subscription = None
     else:
-        threads_dict = {}
-        for thread in threads:
-            thread.subscription = None
-            threads_dict[thread.pk] = thread
+        papers_dict = {}
+        for paper in papers:
+            paper.subscription = None
+            papers_dict[paper.pk] = paper
 
         subscriptions_queryset = user.subscription_set.filter(
-            thread_id__in=threads_dict.keys()
+            paper_id__in=papers_dict.keys()
         )
 
         for subscription in subscriptions_queryset.iterator():
-            threads_dict[subscription.thread_id].subscription = subscription
+            papers_dict[subscription.paper_id].subscription = subscription
 
 
-def make_thread_subscription_aware(user, thread):
+def make_paper_subscription_aware(user, paper):
     if user.is_anonymous:
-        thread.subscription = None
+        paper.subscription = None
     else:
         try:
-            thread.subscription = user.subscription_set.get(thread=thread)
+            paper.subscription = user.subscription_set.get(paper=paper)
         except Subscription.DoesNotExist:
-            thread.subscription = None
+            paper.subscription = None

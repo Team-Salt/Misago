@@ -9,7 +9,7 @@ from django.utils import timezone
 
 class Poll(models.Model):
     category = models.ForeignKey("misago_categories.Category", on_delete=models.CASCADE)
-    thread = models.OneToOneField("misago_threads.Thread", on_delete=models.CASCADE)
+    paper = models.OneToOneField("misago_papers.Paper", on_delete=models.CASCADE)
     poster = models.ForeignKey(
         settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL
     )
@@ -27,13 +27,13 @@ class Poll(models.Model):
     votes = models.PositiveIntegerField(default=0)
     is_public = models.BooleanField(default=False)
 
-    def move(self, thread):
-        if self.thread_id != thread.id:
-            self.thread = thread
-            self.category_id = thread.category_id
+    def move(self, paper):
+        if self.paper_id != paper.id:
+            self.paper = paper
+            self.category_id = paper.category_id
             self.save()
 
-            self.pollvote_set.update(thread=self.thread, category_id=self.category_id)
+            self.pollvote_set.update(paper=self.paper, category_id=self.category_id)
 
     @property
     def ends_on(self):
@@ -47,14 +47,14 @@ class Poll(models.Model):
         return False
 
     @property
-    def thread_type(self):
-        return self.category.thread_type
+    def paper_type(self):
+        return self.category.paper_type
 
     def get_api_url(self):
-        return self.thread_type.get_poll_api_url(self)
+        return self.paper_type.get_poll_api_url(self)
 
     def get_votes_api_url(self):
-        return self.thread_type.get_poll_votes_api_url(self)
+        return self.paper_type.get_poll_votes_api_url(self)
 
     def make_choices_votes_aware(self, user):
         if user.is_anonymous:

@@ -1,11 +1,11 @@
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from . import ThreadType
+from . import PaperType
 from ...categories import PRIVATE_THREADS_ROOT_NAME
 
 
-class PrivateThread(ThreadType):
+class PrivatePaper(PaperType):
     root_name = PRIVATE_THREADS_ROOT_NAME
 
     def get_category_name(self, category):

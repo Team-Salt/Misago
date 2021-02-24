@@ -8,7 +8,7 @@ from ...categories.models import Category
 from ...users.test import AuthenticatedUserTestCase
 from ..models import Thread
 from ..test import patch_category_acl
-from ..threadtypes import trees_map
+from ..papertypes import trees_map
 
 
 class ThreadsApiTestCase(AuthenticatedUserTestCase):

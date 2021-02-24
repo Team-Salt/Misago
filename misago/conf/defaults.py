@@ -82,8 +82,8 @@ MISAGO_POSTING_MIDDLEWARES = [
 # Configured thread types
 
 MISAGO_THREAD_TYPES = [
-    "misago.threads.threadtypes.thread.Thread",
-    "misago.threads.threadtypes.privatethread.PrivateThread",
+    "misago.threads.papertypes.thread.Thread",
+    "misago.threads.papertypes.privatethread.PrivateThread",
 ]
 
 

@@ -13,7 +13,7 @@ from ...acl.objectacl import add_acl_to_obj
 from ...admin.forms import YesNoSwitch
 from ...categories.models import Category, CategoryRole
 from ...categories.permissions import get_categories_roles
-from ..models import Post, Thread
+from ..models import Post, Paper
 
 __all__ = [
     "allow_see_paper",
@@ -70,7 +70,7 @@ __all__ = [
 
 
 class RolePermissionsForm(forms.Form):
-    legend = _("Threads")
+    legend = _("Papers")
 
     can_see_unapproved_content_lists = YesNoSwitch(
         label=_("Can see unapproved content list"),
@@ -506,7 +506,7 @@ def add_acl_to_reply(user_acl, post):
 
 def register_with(registry):
     registry.acl_annotator(Category, add_acl_to_category)
-    registry.acl_annotator(Thread, add_acl_to_paper)
+    registry.acl_annotator(Paper, add_acl_to_paper)
     registry.acl_annotator(Post, add_acl_to_post)
 
 
@@ -1400,7 +1400,7 @@ def exclude_invisible_papers(
             conditions = condition
 
     if not conditions:
-        return Thread.objects.none()
+        return Paper.objects.none()
 
     return queryset.filter(conditions)
 
