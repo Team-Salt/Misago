@@ -14,6 +14,7 @@ urlpatterns = hooks.urlpatterns + [
     url(r"^", include("misago.users.urls")),
     url(r"^", include("misago.categories.urls")),
     url(r"^", include("misago.threads.urls")),
+    url(r"^", include("misago.papers.urls")),
     url(r"^", include("misago.search.urls")),
     url(r"^", include("misago.socialauth.urls")),
     url(r"^", include("misago.healthcheck.urls")),
@@ -38,6 +39,7 @@ apipatterns = hooks.apipatterns + [
     url(r"^", include("misago.legal.urls.api")),
     url(r"^", include("misago.markup.urls")),
     url(r"^", include("misago.threads.urls.api")),
+    url(r"^", include("misago.paperss.urls.api")),
     url(r"^", include("misago.users.urls.api")),
     url(r"^", include("misago.search.urls.api")),
 ]

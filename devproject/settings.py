@@ -194,6 +194,7 @@ INSTALLED_APPS = INSTALLED_PLUGINS + [
     "misago.legal",
     "misago.categories",
     "misago.threads",
+    "misago.papers",
     "misago.readtracker",
     "misago.search",
     "misago.socialauth",
