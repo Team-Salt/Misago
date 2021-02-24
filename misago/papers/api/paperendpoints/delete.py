@@ -1,21 +1,21 @@
 from django.db import transaction
 from rest_framework.response import Response
 
-from ...moderation import threads as moderation
-from ...permissions import allow_delete_thread
+from ...moderation import papers as moderation
+from ...permissions import allow_delete_paper
 from ...serializers import DeleteThreadsSerializer
 
 
 @transaction.atomic
-def delete_thread(request, thread):
-    allow_delete_thread(request.user_acl, thread)
-    moderation.delete_thread(request, thread)
+def delete_paper(request, paper):
+    allow_delete_paper(request.user_acl, paper)
+    moderation.delete_paper(request, paper)
     return Response({})
 
 
 def delete_bulk(request, viewmodel):
     serializer = DeleteThreadsSerializer(
-        data={"threads": request.data},
+        data={"papers": request.data},
         context={
             "request": request,
             "settings": request.settings,
@@ -24,8 +24,8 @@ def delete_bulk(request, viewmodel):
     )
 
     if not serializer.is_valid():
-        if "threads" in serializer.errors:
-            errors = serializer.errors["threads"]
+        if "papers" in serializer.errors:
+            errors = serializer.errors["papers"]
             if "details" in errors:
                 return Response(hydrate_error_details(errors["details"]), status=400)
             # Fix for KeyError - errors[0]
@@ -37,14 +37,14 @@ def delete_bulk(request, viewmodel):
         errors = list(serializer.errors)[0][0]
         return Response({"detail": errors}, status=400)
 
-    for thread in serializer.validated_data["threads"]:
+    for paper in serializer.validated_data["papers"]:
         with transaction.atomic():
-            delete_thread(request, thread)
+            delete_paper(request, paper)
 
     return Response([])
 
 
 def hydrate_error_details(errors):
     for error in errors:
-        error["thread"]["id"] = int(error["thread"]["id"])
+        error["paper"]["id"] = int(error["paper"]["id"])
     return errors

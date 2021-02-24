@@ -4,81 +4,81 @@ from django.utils import timezone
 from ..events import record_event
 
 __all__ = [
-    "change_thread_title",
-    "pin_thread_globally",
-    "pin_thread_locally",
-    "unpin_thread",
-    "move_thread",
-    "merge_thread",
-    "approve_thread",
-    "open_thread",
-    "close_thread",
-    "unhide_thread",
-    "hide_thread",
-    "delete_thread",
+    "change_paper_title",
+    "pin_paper_globally",
+    "pin_paper_locally",
+    "unpin_paper",
+    "move_paper",
+    "merge_paper",
+    "approve_paper",
+    "open_paper",
+    "close_paper",
+    "unhide_paper",
+    "hide_paper",
+    "delete_paper",
 ]
 
 
 @transaction.atomic
-def change_thread_title(request, thread, new_title):
-    if thread.title == new_title:
+def change_paper_title(request, paper, new_title):
+    if paper.title == new_title:
         return False
 
-    old_title = thread.title
-    thread.set_title(new_title)
-    thread.save(update_fields=["title", "slug"])
+    old_title = paper.title
+    paper.set_title(new_title)
+    paper.save(update_fields=["title", "slug"])
 
-    thread.first_post.set_search_document(thread.title)
-    thread.first_post.save(update_fields=["search_document"])
+    paper.first_post.set_search_document(paper.title)
+    paper.first_post.save(update_fields=["search_document"])
 
-    thread.first_post.update_search_vector()
-    thread.first_post.save(update_fields=["search_vector"])
+    paper.first_post.update_search_vector()
+    paper.first_post.save(update_fields=["search_vector"])
 
-    record_event(request, thread, "changed_title", {"old_title": old_title})
+    record_event(request, paper, "changed_title", {"old_title": old_title})
     return True
 
 
 @transaction.atomic
-def pin_thread_globally(request, thread):
-    if thread.weight == 2:
+def pin_paper_globally(request, paper):
+    if paper.weight == 2:
         return False
 
-    thread.weight = 2
-    record_event(request, thread, "pinned_globally")
+    paper.weight = 2
+    record_event(request, paper, "pinned_globally")
     return True
 
 
 @transaction.atomic
-def pin_thread_locally(request, thread):
-    if thread.weight == 1:
+def pin_paper_locally(request, paper):
+    if paper.weight == 1:
         return False
 
-    thread.weight = 1
-    record_event(request, thread, "pinned_locally")
+    paper.weight = 1
+    record_event(request, paper, "pinned_locally")
     return True
 
 
 @transaction.atomic
-def unpin_thread(request, thread):
-    if thread.weight == 0:
+def unpin_paper(request, paper):
+    if paper.weight == 0:
         return False
 
-    thread.weight = 0
-    record_event(request, thread, "unpinned")
+    paper.weight = 0
+    record_event(request, paper, "unpinned")
     return True
 
 
 @transaction.atomic
-def move_thread(request, thread, new_category):
-    if thread.category_id == new_category.pk:
+def move_paper(request, paper, new_category):
+    if paper.category_id == new_category.pk:
         return False
 
-    from_category = thread.category
-    thread.move(new_category)
+    from_category = paper.category
+    paper.move(new_category)
 
     record_event(
         request,
-        thread,
+        paper,
         "moved",
         {
             "from_category": {
@@ -91,80 +91,80 @@ def move_thread(request, thread, new_category):
 
 
 @transaction.atomic
-def merge_thread(request, thread, other_thread):
-    thread.merge(other_thread)
-    other_thread.delete()
+def merge_paper(request, paper, other_paper):
+    paper.merge(other_paper)
+    other_paper.delete()
 
-    record_event(request, thread, "merged", {"merged_thread": other_thread.title})
+    record_event(request, paper, "merged", {"merged_paper": other_paper.title})
     return True
 
 
 @transaction.atomic
-def approve_thread(request, thread):
-    if not thread.is_unapproved:
+def approve_paper(request, paper):
+    if not paper.is_unapproved:
         return False
 
-    thread.first_post.is_unapproved = False
-    thread.first_post.save(update_fields=["is_unapproved"])
+    paper.first_post.is_unapproved = False
+    paper.first_post.save(update_fields=["is_unapproved"])
 
-    thread.is_unapproved = False
+    paper.is_unapproved = False
 
-    unapproved_post_qs = thread.post_set.filter(is_unapproved=True)
-    thread.has_unapproved_posts = unapproved_post_qs.exists()
+    unapproved_post_qs = paper.post_set.filter(is_unapproved=True)
+    paper.has_unapproved_posts = unapproved_post_qs.exists()
 
-    record_event(request, thread, "approved")
+    record_event(request, paper, "approved")
     return True
 
 
 @transaction.atomic
-def open_thread(request, thread):
-    if not thread.is_closed:
+def open_paper(request, paper):
+    if not paper.is_closed:
         return False
 
-    thread.is_closed = False
-    record_event(request, thread, "opened")
+    paper.is_closed = False
+    record_event(request, paper, "opened")
     return True
 
 
 @transaction.atomic
-def close_thread(request, thread):
-    if thread.is_closed:
+def close_paper(request, paper):
+    if paper.is_closed:
         return False
 
-    thread.is_closed = True
-    record_event(request, thread, "closed")
+    paper.is_closed = True
+    record_event(request, paper, "closed")
     return True
 
 
 @transaction.atomic
-def unhide_thread(request, thread):
-    if not thread.is_hidden:
+def unhide_paper(request, paper):
+    if not paper.is_hidden:
         return False
 
-    thread.first_post.is_hidden = False
-    thread.first_post.save(update_fields=["is_hidden"])
-    thread.is_hidden = False
+    paper.first_post.is_hidden = False
+    paper.first_post.save(update_fields=["is_hidden"])
+    paper.is_hidden = False
 
-    record_event(request, thread, "unhid")
+    record_event(request, paper, "unhid")
 
-    if thread.pk == thread.category.last_thread_id:
-        thread.category.synchronize()
-        thread.category.save()
+    if paper.pk == paper.category.last_paper_id:
+        paper.category.synchronize()
+        paper.category.save()
 
     return True
 
 
 @transaction.atomic
-def hide_thread(request, thread):
-    if thread.is_hidden:
+def hide_paper(request, paper):
+    if paper.is_hidden:
         return False
 
-    thread.first_post.is_hidden = True
-    thread.first_post.hidden_by = request.user
-    thread.first_post.hidden_by_name = request.user.username
-    thread.first_post.hidden_by_slug = request.user.slug
-    thread.first_post.hidden_on = timezone.now()
-    thread.first_post.save(
+    paper.first_post.is_hidden = True
+    paper.first_post.hidden_by = request.user
+    paper.first_post.hidden_by_name = request.user.username
+    paper.first_post.hidden_by_slug = request.user.slug
+    paper.first_post.hidden_on = timezone.now()
+    paper.first_post.save(
         update_fields=[
             "is_hidden",
             "hidden_by",
@@ -173,22 +173,22 @@ def hide_thread(request, thread):
             "hidden_on",
         ]
     )
-    thread.is_hidden = True
+    paper.is_hidden = True
 
-    record_event(request, thread, "hid")
+    record_event(request, paper, "hid")
 
-    if thread.pk == thread.category.last_thread_id:
-        thread.category.synchronize()
-        thread.category.save()
+    if paper.pk == paper.category.last_paper_id:
+        paper.category.synchronize()
+        paper.category.save()
 
     return True
 
 
 @transaction.atomic
-def delete_thread(request, thread):
-    thread.delete()
+def delete_paper(request, paper):
+    paper.delete()
 
-    thread.category.synchronize()
-    thread.category.save()
+    paper.category.synchronize()
+    paper.category.save()
 
     return True

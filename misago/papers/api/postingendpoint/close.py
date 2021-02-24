@@ -12,9 +12,9 @@ class CloseMiddleware(PostingMiddleware):
         return CloseSerializer(data=self.request.data)
 
     def post_save(self, serializer):
-        if self.thread.category.acl["can_close_threads"]:
+        if self.paper.category.acl["can_close_papers"]:
             if serializer.validated_data.get("close"):
-                moderation.close_thread(self.request, self.thread)
+                moderation.close_paper(self.request, self.paper)
 
 
 class CloseSerializer(serializers.Serializer):

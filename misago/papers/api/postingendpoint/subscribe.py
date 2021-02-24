@@ -11,44 +11,44 @@ class SubscribeMiddleware(PostingMiddleware):
         return self.mode != PostingEndpoint.EDIT
 
     def post_save(self, serializer):
-        self.subscribe_new_thread()
-        self.subscribe_replied_thread()
+        self.subscribe_new_paper()
+        self.subscribe_replied_paper()
 
-    def subscribe_new_thread(self):
+    def subscribe_new_paper(self):
         if self.mode != PostingEndpoint.START:
             return
 
-        if self.user.subscribe_to_started_threads == User.SUBSCRIPTION_NONE:
+        if self.user.subscribe_to_started_papers == User.SUBSCRIPTION_NONE:
             return
 
         self.user.subscription_set.create(
-            category=self.thread.category,
-            thread=self.thread,
-            send_email=self.user.subscribe_to_started_threads == User.SUBSCRIPTION_ALL,
+            category=self.paper.category,
+            paper=self.paper,
+            send_email=self.user.subscribe_to_started_papers == User.SUBSCRIPTION_ALL,
         )
 
-    def subscribe_replied_thread(self):
+    def subscribe_replied_paper(self):
         if self.mode != PostingEndpoint.REPLY:
             return
 
-        if self.user.subscribe_to_replied_threads == User.SUBSCRIPTION_NONE:
+        if self.user.subscribe_to_replied_papers == User.SUBSCRIPTION_NONE:
             return
 
         try:
-            return self.user.subscription_set.get(thread=self.thread)
+            return self.user.subscription_set.get(paper=self.paper)
         except Subscription.DoesNotExist:
             pass
 
-        # posts user's posts in this thread, minus events and current post
+        # posts user's posts in this paper, minus events and current post
         posts_queryset = self.user.post_set.filter(
-            thread=self.thread, is_event=False
+            paper=self.paper, is_event=False
         ).exclude(pk=self.post.pk)
 
         if posts_queryset.exists():
             return
 
         self.user.subscription_set.create(
-            category=self.thread.category,
-            thread=self.thread,
-            send_email=self.user.subscribe_to_replied_threads == User.SUBSCRIPTION_ALL,
+            category=self.paper.category,
+            paper=self.paper,
+            send_email=self.user.subscribe_to_replied_papers == User.SUBSCRIPTION_ALL,
         )

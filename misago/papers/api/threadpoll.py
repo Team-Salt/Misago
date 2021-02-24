@@ -28,42 +28,42 @@ from .pollvotecreateendpoint import poll_vote_create
 
 
 class ViewSet(viewsets.ViewSet):
-    thread = None
+    paper = None
 
-    def get_thread(self, request, thread_pk):
-        return self.thread(  # pylint: disable=not-callable
-            request, get_int_or_404(thread_pk)
+    def get_paper(self, request, paper_pk):
+        return self.paper(  # pylint: disable=not-callable
+            request, get_int_or_404(paper_pk)
         ).unwrap()
 
-    def get_poll(self, thread, pk):
+    def get_poll(self, paper, pk):
         try:
             poll_id = get_int_or_404(pk)
-            if thread.poll.pk != poll_id:
+            if paper.poll.pk != poll_id:
                 raise Http404()
 
-            poll = Poll.objects.get(pk=thread.poll.pk)
+            poll = Poll.objects.get(pk=paper.poll.pk)
 
-            poll.thread = thread
-            poll.category = thread.category
+            poll.paper = paper
+            poll.category = paper.category
 
             return poll
         except Poll.DoesNotExist:
             raise Http404()
 
     @transaction.atomic
-    def create(self, request, thread_pk):
-        thread = self.get_thread(request, thread_pk)
-        allow_start_poll(request.user_acl, thread)
+    def create(self, request, paper_pk):
+        paper = self.get_paper(request, paper_pk)
+        allow_start_poll(request.user_acl, paper)
 
         try:
-            if thread.poll and thread.poll.pk:
-                raise PermissionDenied(_("There's already a poll in this thread."))
+            if paper.poll and paper.poll.pk:
+                raise PermissionDenied(_("There's already a poll in this paper."))
         except Poll.DoesNotExist:
             pass
 
         instance = Poll(
-            thread=thread,
-            category=thread.category,
+            paper=paper,
+            category=paper.category,
             poster=request.user,
             poster_name=request.user.username,
             poster_slug=request.user.slug,
@@ -78,17 +78,17 @@ class ViewSet(viewsets.ViewSet):
         for choice in instance.choices:
             choice["selected"] = False
 
-        thread.has_poll = True
-        thread.save()
+        paper.has_poll = True
+        paper.save()
 
         create_audit_trail(request, instance)
 
         return Response(PollSerializer(instance).data)
 
     @transaction.atomic
-    def update(self, request, thread_pk, pk=None):
-        thread = self.get_thread(request, thread_pk)
-        instance = self.get_poll(thread, pk)
+    def update(self, request, paper_pk, pk=None):
+        paper = self.get_paper(request, paper_pk)
+        instance = self.get_poll(paper, pk)
 
         allow_edit_poll(request.user_acl, instance)
 
@@ -105,54 +105,54 @@ class ViewSet(viewsets.ViewSet):
         return Response(PollSerializer(instance).data)
 
     @transaction.atomic
-    def delete(self, request, thread_pk, pk=None):
-        thread = self.get_thread(request, thread_pk)
-        instance = self.get_poll(thread, pk)
+    def delete(self, request, paper_pk, pk=None):
+        paper = self.get_paper(request, paper_pk)
+        instance = self.get_poll(paper, pk)
 
         allow_delete_poll(request.user_acl, instance)
 
-        thread.poll.delete()
+        paper.poll.delete()
 
-        thread.has_poll = False
-        thread.save()
+        paper.has_poll = False
+        paper.save()
 
-        return Response({"can_start_poll": can_start_poll(request.user_acl, thread)})
+        return Response({"can_start_poll": can_start_poll(request.user_acl, paper)})
 
     @action(detail=True, methods=["get", "post"])
-    def votes(self, request, thread_pk, pk=None):
+    def votes(self, request, paper_pk, pk=None):
         if request.method == "POST":
-            return self.post_votes(request, thread_pk, pk)
-        return self.get_votes(request, thread_pk, pk)
+            return self.post_votes(request, paper_pk, pk)
+        return self.get_votes(request, paper_pk, pk)
 
     @transaction.atomic
-    def post_votes(self, request, thread_pk, pk=None):
-        thread = self.get_thread(request, thread_pk)
-        instance = self.get_poll(thread, pk)
+    def post_votes(self, request, paper_pk, pk=None):
+        paper = self.get_paper(request, paper_pk)
+        instance = self.get_poll(paper, pk)
 
-        return poll_vote_create(request, thread, instance)
+        return poll_vote_create(request, paper, instance)
 
-    def get_votes(self, request, thread_pk, pk=None):
+    def get_votes(self, request, paper_pk, pk=None):
         poll_pk = get_int_or_404(pk)
 
         try:
-            thread = self.get_thread(request, thread_pk)
-            if thread.poll.pk != poll_pk:
+            paper = self.get_paper(request, paper_pk)
+            if paper.poll.pk != poll_pk:
                 raise Http404()
         except Poll.DoesNotExist:
             raise Http404()
 
-        allow_see_poll_votes(request.user_acl, thread.poll)
+        allow_see_poll_votes(request.user_acl, paper.poll)
 
         choices = []
         voters = {}
 
-        for choice in thread.poll.choices:
+        for choice in paper.poll.choices:
             choice["voters"] = []
             voters[choice["hash"]] = choice["voters"]
 
             choices.append(choice)
 
-        queryset = thread.poll.pollvote_set.values(
+        queryset = paper.poll.pollvote_set.values(
             "voter_id", "voter_name", "voter_slug", "voted_on", "choice_hash"
         )
 
@@ -163,4 +163,4 @@ class ViewSet(viewsets.ViewSet):
 
 
 class ThreadPollViewSet(ViewSet):
-    thread = ForumThread
+    paper = ForumThread

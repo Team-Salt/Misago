@@ -41,7 +41,7 @@ def revert_post_endpoint(request, post):
 
     post.edits_record.create(
         category=post.category,
-        thread=post.thread,
+        paper=post.paper,
         edited_on=datetime,
         editor=request.user,
         editor_name=request.user.username,

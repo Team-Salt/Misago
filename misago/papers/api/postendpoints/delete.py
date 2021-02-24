@@ -9,7 +9,7 @@ from ...permissions import (
 from ...serializers import DeletePostsSerializer
 
 
-def delete_post(request, thread, post):
+def delete_post(request, paper, post):
     if post.is_event:
         allow_delete_event(request.user_acl, post)
     else:
@@ -18,16 +18,16 @@ def delete_post(request, thread, post):
 
     moderation.delete_post(request.user, post)
 
-    sync_related(thread)
+    sync_related(paper)
     return Response({})
 
 
-def delete_bulk(request, thread):
+def delete_bulk(request, paper):
     serializer = DeletePostsSerializer(
         data={"posts": request.data},
         context={
             "settings": request.settings,
-            "thread": thread,
+            "paper": paper,
             "user_acl": request.user_acl,
         },
     )
@@ -48,14 +48,14 @@ def delete_bulk(request, thread):
     for post in serializer.validated_data["posts"]:
         post.delete()
 
-    sync_related(thread)
+    sync_related(paper)
 
     return Response({})
 
 
-def sync_related(thread):
-    thread.synchronize()
-    thread.save()
+def sync_related(paper):
+    paper.synchronize()
+    paper.save()
 
-    thread.category.synchronize()
-    thread.category.save()
+    paper.category.synchronize()
+    paper.category.save()

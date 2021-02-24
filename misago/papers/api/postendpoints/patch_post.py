@@ -56,7 +56,7 @@ def patch_is_liked(request, post, value):
     if value:
         post.postlike_set.create(
             category=post.category,
-            thread=post.thread,
+            paper=post.paper,
             liker=request.user,
             liker_name=request.user.username,
             liker_slug=request.user.slug,
@@ -126,10 +126,10 @@ def post_patch_endpoint(request, post):
 
     response = post_patch_dispatcher.dispatch(request, post)
 
-    # diff posts's state against pre-patch and resync thread/category if necessarys
+    # diff posts's state against pre-patch and resync paper/category if necessarys
     if old_is_unapproved != post.is_unapproved:
-        post.thread.synchronize()
-        post.thread.save()
+        post.paper.synchronize()
+        post.paper.save()
 
         post.category.synchronize()
         post.category.save()
@@ -137,14 +137,14 @@ def post_patch_endpoint(request, post):
     return response
 
 
-def bulk_patch_endpoint(request, thread):
+def bulk_patch_endpoint(request, paper):
     serializer = BulkPatchSerializer(
         data=request.data, context={"settings": request.settings}
     )
     if not serializer.is_valid():
         return Response(serializer.errors, status=400)
 
-    posts = clean_posts_for_patch(request, thread, serializer.data["ids"])
+    posts = clean_posts_for_patch(request, paper, serializer.data["ids"])
 
     old_unapproved_posts = [p.is_unapproved for p in posts].count(True)
 
@@ -153,18 +153,18 @@ def bulk_patch_endpoint(request, thread):
     new_unapproved_posts = [p.is_unapproved for p in posts].count(True)
 
     if old_unapproved_posts != new_unapproved_posts:
-        thread.synchronize()
-        thread.save()
+        paper.synchronize()
+        paper.save()
 
-        thread.category.synchronize()
-        thread.category.save()
+        paper.category.synchronize()
+        paper.category.save()
 
     return response
 
 
-def clean_posts_for_patch(request, thread, posts_ids):
+def clean_posts_for_patch(request, paper, posts_ids):
     posts_queryset = exclude_invisible_posts(
-        request.user_acl, thread.category, thread.post_set
+        request.user_acl, paper.category, paper.post_set
     )
     posts_queryset = posts_queryset.filter(id__in=posts_ids, is_event=False).order_by(
         "id"
@@ -172,8 +172,8 @@ def clean_posts_for_patch(request, thread, posts_ids):
 
     posts = []
     for post in posts_queryset:
-        post.category = thread.category
-        post.thread = thread
+        post.category = paper.category
+        post.paper = paper
         posts.append(post)
 
     if len(posts) != len(posts_ids):

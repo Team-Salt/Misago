@@ -43,7 +43,7 @@ class ThreadBase(View):
 
         context.update(
             {
-                "THREAD": thread.get_frontend_context(),
+                "PAPER": thread.get_frontend_context(),
                 "POSTS": posts.get_frontend_context(),
             }
         )
@@ -65,12 +65,12 @@ class ThreadBase(View):
 
 class ThreadView(ThreadBase):
     thread = ForumThread
-    template_name = "misago/thread/thread.html"
+    template_name = "misago/paper/paper.html"
 
     def get_default_frontend_context(self):
-        return {"THREADS_API": reverse("misago:api:thread-list")}
+        return {"PAPERS_API": reverse("misago:api:paper-list")}
 
 
 class PrivateThreadView(ThreadBase):
     thread = PrivateThread
-    template_name = "misago/thread/private_thread.html"
+    template_name = "misago/paper/private_paper.html"

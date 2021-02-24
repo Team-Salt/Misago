@@ -8,13 +8,13 @@ from ....acl.objectacl import add_acl_to_obj
 from ....categories import THREADS_ROOT_NAME
 from ....categories.models import Category
 from ....categories.permissions import can_browse_category, can_see_category
-from ...permissions import allow_start_thread
-from ...threadtypes import trees_map
+from ...permissions import allow_start_paper
+from ...papertypes import trees_map
 
 
 class CategoryMiddleware(PostingMiddleware):
     """
-    middleware that validates category id and sets category on thread and post instances
+    middleware that validates category id and sets category on paper and post instances
     """
 
     def use_this_middleware(self):
@@ -34,15 +34,15 @@ class CategoryMiddleware(PostingMiddleware):
         category.update_all = False
         category.update_fields = []
 
-        # assign category to thread and post
-        self.thread.category = category
+        # assign category to paper and post
+        self.paper.category = category
         self.post.category = category
 
 
 class CategorySerializer(serializers.Serializer):
     category = serializers.IntegerField(
         error_messages={
-            "required": gettext_lazy("You have to select category to post thread in."),
+            "required": gettext_lazy("You have to select category to post paper in."),
             "invalid": gettext_lazy("Selected category is invalid."),
         }
     )
@@ -64,7 +64,7 @@ class CategorySerializer(serializers.Serializer):
             if not (self.category_cache.level and can_see and can_browse):
                 raise PermissionDenied(_("Selected category is invalid."))
 
-            allow_start_thread(self.user_acl, self.category_cache)
+            allow_start_paper(self.user_acl, self.category_cache)
         except Category.DoesNotExist:
             raise serializers.ValidationError(
                 _(

@@ -7,7 +7,7 @@ from ..permissions import allow_vote_poll
 from ..serializers import NewVoteSerializer, PollSerializer
 
 
-def poll_vote_create(request, thread, poll):
+def poll_vote_create(request, paper, poll):
     poll.make_choices_votes_aware(request.user)
 
     allow_vote_poll(request.user_acl, poll)
@@ -60,7 +60,7 @@ def set_new_votes(request, poll, final_votes):
             choice["selected"] = True
             poll.pollvote_set.create(
                 category=poll.category,
-                thread=poll.thread,
+                paper=poll.paper,
                 voter=request.user,
                 voter_name=request.user.username,
                 voter_slug=request.user.slug,

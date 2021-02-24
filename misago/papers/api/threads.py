@@ -16,11 +16,11 @@ from ..viewmodels import (
     ThreadsRootCategory,
 )
 from .postingendpoint import PostingEndpoint
-from .threadendpoints.delete import delete_bulk, delete_thread
-from .threadendpoints.editor import thread_start_editor
-from .threadendpoints.list import private_threads_list_endpoint, threads_list_endpoint
-from .threadendpoints.merge import thread_merge_endpoint, threads_merge_endpoint
-from .threadendpoints.patch import bulk_patch_endpoint, thread_patch_endpoint
+from .paperendpoints.delete import delete_bulk, delete_thread
+from .paperendpoints.editor import thread_start_editor
+from .paperendpoints.list import private_threads_list_endpoint, threads_list_endpoint
+from .paperendpoints.merge import thread_merge_endpoint, threads_merge_endpoint
+from .paperendpoints.patch import bulk_patch_endpoint, thread_patch_endpoint
 
 
 class ViewSet(viewsets.ViewSet):

@@ -35,7 +35,7 @@ class Thread(models.Model):
     last_post_on = models.DateTimeField(db_index=True)
 
     first_post = models.ForeignKey(
-        "misago_threads.Post",
+        "misago_papers.Post",
         related_name="+",
         null=True,
         blank=True,
@@ -48,7 +48,7 @@ class Thread(models.Model):
     starter_slug = models.CharField(max_length=255)
 
     last_post = models.ForeignKey(
-        "misago_threads.Post",
+        "misago_papers.Post",
         related_name="+",
         null=True,
         blank=True,
@@ -72,7 +72,7 @@ class Thread(models.Model):
     is_closed = models.BooleanField(default=False)
 
     best_answer = models.ForeignKey(
-        "misago_threads.Post",
+        "misago_papers.Post",
         related_name="+",
         null=True,
         blank=True,
@@ -92,45 +92,45 @@ class Thread(models.Model):
 
     participants = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        related_name="privatethread_set",
+        related_name="privatepaper_set",
         through="ThreadParticipant",
-        through_fields=("thread", "user"),
+        through_fields=("paper", "user"),
     )
 
     class Meta:
         indexes = [
             models.Index(
-                name="misago_thread_pinned_glob_part",
+                name="misago_paper_pinned_glob_part",
                 fields=["weight"],
                 condition=Q(weight=2),
             ),
             models.Index(
-                name="misago_thread_pinned_loca_part",
+                name="misago_paper_pinned_loca_part",
                 fields=["weight"],
                 condition=Q(weight=1),
             ),
             models.Index(
-                name="misago_thread_not_pinned_part",
+                name="misago_paper_not_pinned_part",
                 fields=["weight"],
                 condition=Q(weight=0),
             ),
             models.Index(
-                name="misago_thread_not_global_part",
+                name="misago_paper_not_global_part",
                 fields=["weight"],
                 condition=Q(weight__lt=2),
             ),
             models.Index(
-                name="misago_thread_has_reporte_part",
+                name="misago_paper_has_reporte_part",
                 fields=["has_reported_posts"],
                 condition=Q(has_reported_posts=True),
             ),
             models.Index(
-                name="misago_thread_has_unappro_part",
+                name="misago_paper_has_unappro_part",
                 fields=["has_unapproved_posts"],
                 condition=Q(has_unapproved_posts=True),
             ),
             models.Index(
-                name="misago_thread_is_visible_part",
+                name="misago_paper_is_visible_part",
                 fields=["is_hidden"],
                 condition=Q(is_hidden=False),
             ),

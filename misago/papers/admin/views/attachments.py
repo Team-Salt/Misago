@@ -16,7 +16,7 @@ class AttachmentAdmin(generic.AdminBaseMixin):
     def get_queryset(self):
         qs = super().get_queryset()
         return qs.select_related(
-            "filetype", "uploader", "post", "post__thread", "post__category"
+            "filetype", "uploader", "post", "post__paper", "post__category"
         )
 
 

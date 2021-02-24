@@ -40,21 +40,21 @@ def threads_list_patterns(prefix, view, patterns):
 
 if settings.MISAGO_THREADS_ON_INDEX:
     urlpatterns = threads_list_patterns(
-        "threads",
+        "papers",
         ForumThreadsList,
         (r"^$", r"^my/$", r"^new/$", r"^unread/$", r"^subscribed/$", r"^unapproved/$"),
     )
 else:
     urlpatterns = threads_list_patterns(
-        "threads",
+        "papers",
         ForumThreadsList,
         (
-            r"^threads/$",
-            r"^threads/my/$",
-            r"^threads/new/$",
-            r"^threads/unread/$",
-            r"^threads/subscribed/$",
-            r"^threads/unapproved/$",
+            r"^papers/$",
+            r"^papers/my/$",
+            r"^papers/new/$",
+            r"^papers/unread/$",
+            r"^papers/subscribed/$",
+            r"^papers/unapproved/$",
         ),
     )
 
@@ -72,14 +72,14 @@ urlpatterns += threads_list_patterns(
 )
 
 urlpatterns += threads_list_patterns(
-    "private-threads",
+    "private-papers",
     PrivateThreadsList,
     (
-        r"^private-threads/$",
-        r"^private-threads/my/$",
-        r"^private-threads/new/$",
-        r"^private-threads/unread/$",
-        r"^private-threads/subscribed/$",
+        r"^private-papers/$",
+        r"^private-papers/my/$",
+        r"^private-papers/new/$",
+        r"^private-papers/unread/$",
+        r"^private-papers/subscribed/$",
     ),
 )
 
@@ -100,8 +100,8 @@ def thread_view_patterns(prefix, view):
     return urls
 
 
-urlpatterns += thread_view_patterns("thread", ThreadView)
-urlpatterns += thread_view_patterns("private-thread", PrivateThreadView)
+urlpatterns += thread_view_patterns("paper", ThreadView)
+urlpatterns += thread_view_patterns("private-paper", PrivateThreadView)
 
 
 def goto_patterns(prefix, **views):
@@ -128,7 +128,7 @@ def goto_patterns(prefix, **views):
 
 
 urlpatterns += goto_patterns(
-    "thread",
+    "paper",
     post=ThreadGotoPostView,
     last=ThreadGotoLastView,
     new=ThreadGotoNewView,
@@ -137,7 +137,7 @@ urlpatterns += goto_patterns(
 )
 
 urlpatterns += goto_patterns(
-    "private-thread",
+    "private-paper",
     post=PrivateThreadGotoPostView,
     last=PrivateThreadGotoLastView,
     new=PrivateThreadGotoNewView,

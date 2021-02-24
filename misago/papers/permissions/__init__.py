@@ -1,4 +1,4 @@
 from .bestanswers import *
-from .privatethreads import *
-from .threads import *
+from .privatepapers import *
+from .paper import *
 from .polls import *

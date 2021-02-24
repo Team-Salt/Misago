@@ -9,7 +9,7 @@ from ...acl.objectacl import add_acl_to_obj
 from ...core.shortcuts import get_int_or_404
 from ...users.online.utils import make_users_status_aware
 from ..models import Post
-from ..permissions import allow_edit_post, allow_reply_thread
+from ..permissions import allow_edit_post, allow_reply_paper
 from ..serializers import AttachmentSerializer, PostSerializer
 from ..viewmodels import ForumThread, PrivateThread, ThreadPost, ThreadPosts
 from .postendpoints.delete import delete_bulk, delete_post
@@ -25,14 +25,14 @@ from .postingendpoint import PostingEndpoint
 
 
 class ViewSet(viewsets.ViewSet):
-    thread = None
+    paper = None
     posts = ThreadPosts
     post_ = ThreadPost
 
-    def get_thread(
+    def get_paper(
         self, request, pk, path_aware=False, read_aware=False, subscription_aware=False
     ):
-        return self.thread(  # pylint: disable=not-callable
+        return self.paper(  # pylint: disable=not-callable
             request,
             get_int_or_404(pk),
             path_aware=path_aware,
@@ -40,59 +40,59 @@ class ViewSet(viewsets.ViewSet):
             subscription_aware=subscription_aware,
         )
 
-    def get_posts(self, request, thread, page):
-        return self.posts(request, thread, page)
+    def get_posts(self, request, paper, page):
+        return self.posts(request, paper, page)
 
-    def get_post(self, request, thread, pk):
-        return self.post_(request, thread, get_int_or_404(pk))
+    def get_post(self, request, paper, pk):
+        return self.post_(request, paper, get_int_or_404(pk))
 
-    def list(self, request, thread_pk):
+    def list(self, request, paper_pk):
         page = get_int_or_404(request.query_params.get("page", 0))
         if page == 1:
             page = 0  # api allows explicit first page
 
-        thread = self.get_thread(
+        paper = self.get_paper(
             request,
-            thread_pk,
+            paper_pk,
             path_aware=True,
             read_aware=True,
             subscription_aware=True,
         )
-        posts = self.get_posts(request, thread, page)
+        posts = self.get_posts(request, paper, page)
 
-        data = thread.get_frontend_context()
+        data = paper.get_frontend_context()
         data["post_set"] = posts.get_frontend_context()
 
         return Response(data)
 
     @action(detail=False, methods=["post"])
     @transaction.atomic
-    def merge(self, request, thread_pk):
-        thread = self.get_thread(request, thread_pk).unwrap()
-        return posts_merge_endpoint(request, thread)
+    def merge(self, request, paper_pk):
+        paper = self.get_paper(request, paper_pk).unwrap()
+        return posts_merge_endpoint(request, paper)
 
     @action(detail=False, methods=["post"])
     @transaction.atomic
-    def move(self, request, thread_pk):
-        thread = self.get_thread(request, thread_pk).unwrap()
-        return posts_move_endpoint(request, thread, self.thread)
+    def move(self, request, paper_pk):
+        paper = self.get_paper(request, paper_pk).unwrap()
+        return posts_move_endpoint(request, paper, self.paper)
 
     @action(detail=False, methods=["post"])
     @transaction.atomic
-    def split(self, request, thread_pk):
-        thread = self.get_thread(request, thread_pk).unwrap()
-        return posts_split_endpoint(request, thread)
+    def split(self, request, paper_pk):
+        paper = self.get_paper(request, paper_pk).unwrap()
+        return posts_split_endpoint(request, paper)
 
     @transaction.atomic
-    def create(self, request, thread_pk):
-        thread = self.get_thread(request, thread_pk).unwrap()
-        allow_reply_thread(request.user_acl, thread)
+    def create(self, request, paper_pk):
+        paper = self.get_paper(request, paper_pk).unwrap()
+        allow_reply_paper(request.user_acl, paper)
 
-        post = Post(thread=thread, category=thread.category)
+        post = Post(paper=paper, category=paper.category)
 
         # Put them through posting pipeline
         posting = PostingEndpoint(
-            request, PostingEndpoint.REPLY, thread=thread, post=post
+            request, PostingEndpoint.REPLY, paper=paper, post=post
         )
 
         if not posting.is_valid():
@@ -112,14 +112,14 @@ class ViewSet(viewsets.ViewSet):
         return Response(PostSerializer(post, context={"user": request.user}).data)
 
     @transaction.atomic
-    def update(self, request, thread_pk, pk=None):
-        thread = self.get_thread(request, thread_pk).unwrap()
-        post = self.get_post(request, thread, pk).unwrap()
+    def update(self, request, paper_pk, pk=None):
+        paper = self.get_paper(request, paper_pk).unwrap()
+        post = self.get_post(request, paper, pk).unwrap()
 
         allow_edit_post(request.user_acl, post)
 
         posting = PostingEndpoint(
-            request, PostingEndpoint.EDIT, thread=thread, post=post
+            request, PostingEndpoint.EDIT, paper=paper, post=post
         )
 
         if not posting.is_valid():
@@ -138,39 +138,39 @@ class ViewSet(viewsets.ViewSet):
 
         return Response(PostSerializer(post, context={"user": request.user}).data)
 
-    def patch(self, request, thread_pk):
-        thread = self.get_thread(request, thread_pk)
-        return bulk_patch_endpoint(request, thread.unwrap())
+    def patch(self, request, paper_pk):
+        paper = self.get_paper(request, paper_pk)
+        return bulk_patch_endpoint(request, paper.unwrap())
 
     @transaction.atomic
-    def partial_update(self, request, thread_pk, pk):
-        thread = self.get_thread(request, thread_pk)
-        post = self.get_post(request, thread, pk).unwrap()
+    def partial_update(self, request, paper_pk, pk):
+        paper = self.get_paper(request, paper_pk)
+        post = self.get_post(request, paper, pk).unwrap()
 
         if post.is_event:
             return event_patch_endpoint(request, post)
         return post_patch_endpoint(request, post)
 
     @transaction.atomic
-    def delete(self, request, thread_pk, pk=None):
-        thread = self.get_thread(request, thread_pk)
+    def delete(self, request, paper_pk, pk=None):
+        paper = self.get_paper(request, paper_pk)
 
         if pk:
-            post = self.get_post(request, thread, pk).unwrap()
-            return delete_post(request, thread.unwrap(), post)
+            post = self.get_post(request, paper, pk).unwrap()
+            return delete_post(request, paper.unwrap(), post)
 
-        return delete_bulk(request, thread.unwrap())
+        return delete_bulk(request, paper.unwrap())
 
     @action(detail=True, methods=["post"])
-    def read(self, request, thread_pk, pk=None):
-        thread = self.get_thread(request, thread_pk, subscription_aware=True).unwrap()
-        post = self.get_post(request, thread, pk).unwrap()
-        return post_read_endpoint(request, thread, post)
+    def read(self, request, paper_pk, pk=None):
+        paper = self.get_paper(request, paper_pk, subscription_aware=True).unwrap()
+        post = self.get_post(request, paper, pk).unwrap()
+        return post_read_endpoint(request, paper, post)
 
     @action(detail=True, methods=["get"], url_name="editor")
-    def post_editor(self, request, thread_pk, pk=None):
-        thread = self.get_thread(request, thread_pk)
-        post = self.get_post(request, thread, pk).unwrap()
+    def post_editor(self, request, paper_pk, pk=None):
+        paper = self.get_paper(request, paper_pk)
+        post = self.get_post(request, paper, pk).unwrap()
 
         allow_edit_post(request.user_acl, post)
 
@@ -188,22 +188,22 @@ class ViewSet(viewsets.ViewSet):
                 "api": post.get_api_url(),
                 "post": post.original,
                 "attachments": attachments_json,
-                "can_protect": bool(thread.category.acl["can_protect_posts"]),
+                "can_protect": bool(paper.category.acl["can_protect_posts"]),
                 "is_protected": post.is_protected,
                 "poster": post.poster_name,
             }
         )
 
     @action(detail=False, methods=["get"], url_name="editor")
-    def reply_editor(self, request, thread_pk):
-        thread = self.get_thread(request, thread_pk).unwrap()
-        allow_reply_thread(request.user_acl, thread)
+    def reply_editor(self, request, paper_pk):
+        paper = self.get_paper(request, paper_pk).unwrap()
+        allow_reply_paper(request.user_acl, paper)
 
         if "reply" not in request.query_params:
             return Response({})
 
         reply_to = self.get_post(
-            request, thread, request.query_params["reply"]
+            request, paper, request.query_params["reply"]
         ).unwrap()
 
         if reply_to.is_event:
@@ -220,26 +220,26 @@ class ViewSet(viewsets.ViewSet):
         )
 
     @action(detail=True, methods=["get", "post"])
-    def edits(self, request, thread_pk, pk=None):
+    def edits(self, request, paper_pk, pk=None):
         if request.method == "GET":
-            thread = self.get_thread(request, thread_pk)
-            post = self.get_post(request, thread, pk).unwrap()
+            paper = self.get_paper(request, paper_pk)
+            post = self.get_post(request, paper, pk).unwrap()
 
             return get_edit_endpoint(request, post)
 
         if request.method == "POST":
             with transaction.atomic():
-                thread = self.get_thread(request, thread_pk)
-                post = self.get_post(request, thread, pk).unwrap()
+                paper = self.get_paper(request, paper_pk)
+                post = self.get_post(request, paper, pk).unwrap()
 
                 allow_edit_post(request.user_acl, post)
 
                 return revert_post_endpoint(request, post)
 
     @action(detail=True, methods=["get"])
-    def likes(self, request, thread_pk, pk=None):
-        thread = self.get_thread(request, thread_pk)
-        post = self.get_post(request, thread, pk).unwrap()
+    def likes(self, request, paper_pk, pk=None):
+        paper = self.get_paper(request, paper_pk)
+        post = self.get_post(request, paper, pk).unwrap()
 
         if post.acl["can_see_likes"] < 2:
             raise PermissionDenied(_("You can't see who liked this post."))
@@ -248,8 +248,8 @@ class ViewSet(viewsets.ViewSet):
 
 
 class ThreadPostsViewSet(ViewSet):
-    thread = ForumThread
+    paper = ForumThread
 
 
 class PrivateThreadPostsViewSet(ViewSet):
-    thread = PrivateThread
+    paper = PrivateThread

@@ -6,15 +6,15 @@ from ....acl.objectacl import add_acl_to_obj
 from ...serializers import MergePostsSerializer, PostSerializer
 
 
-def posts_merge_endpoint(request, thread):
-    if not thread.acl["can_merge_posts"]:
-        raise PermissionDenied(_("You can't merge posts in this thread."))
+def posts_merge_endpoint(request, paper):
+    if not paper.acl["can_merge_posts"]:
+        raise PermissionDenied(_("You can't merge posts in this paper."))
 
     serializer = MergePostsSerializer(
         data=request.data,
         context={
             "settings": request.settings,
-            "thread": thread,
+            "paper": paper,
             "user_acl": request.user_acl,
         },
     )
@@ -34,8 +34,8 @@ def posts_merge_endpoint(request, thread):
         post.merge(first_post)
         post.delete()
 
-    if first_post.pk == thread.first_post_id:
-        first_post.set_search_document(thread.title)
+    if first_post.pk == paper.first_post_id:
+        first_post.set_search_document(paper.title)
     else:
         first_post.set_search_document()
 
@@ -46,14 +46,14 @@ def posts_merge_endpoint(request, thread):
 
     first_post.postread_set.all().delete()
 
-    thread.synchronize()
-    thread.save()
+    paper.synchronize()
+    paper.save()
 
-    thread.category.synchronize()
-    thread.category.save()
+    paper.category.synchronize()
+    paper.category.save()
 
-    first_post.thread = thread
-    first_post.category = thread.category
+    first_post.paper = paper
+    first_post.category = paper.category
 
     add_acl_to_obj(request.user_acl, first_post)
 

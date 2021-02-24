@@ -5,7 +5,7 @@ from ....categories.models import Category
 
 
 class PrivateThreadMiddleware(PostingMiddleware):
-    """middleware that sets private threads category for thread and post"""
+    """middleware that sets private papers category for paper and post"""
 
     def use_this_middleware(self):
         if self.mode == PostingEndpoint.START:
@@ -13,7 +13,7 @@ class PrivateThreadMiddleware(PostingMiddleware):
         return False
 
     def pre_save(self, serializer):
-        category = Category.objects.private_threads()
+        category = Category.objects.private_papers()
 
         add_acl_to_obj(self.user_acl, category)
 
@@ -21,6 +21,6 @@ class PrivateThreadMiddleware(PostingMiddleware):
         category.update_all = False
         category.update_fields = []
 
-        # assign category to thread and post
-        self.thread.category = category
+        # assign category to paper and post
+        self.paper.category = category
         self.post.category = category

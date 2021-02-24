@@ -11,7 +11,7 @@ class ProtectMiddleware(PostingMiddleware):
         return ProtectSerializer(data=self.request.data)
 
     def post_save(self, serializer):
-        if self.thread.category.acl["can_protect_posts"]:
+        if self.paper.category.acl["can_protect_posts"]:
             try:
                 self.post.is_protected = serializer.validated_data.get("protect", False)
                 self.post.update_fields.append("is_protected")

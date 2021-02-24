@@ -8,19 +8,19 @@ router = MisagoApiRouter()
 
 router.register(r"attachments", AttachmentViewSet, basename="attachment")
 
-router.register(r"threads", ThreadViewSet, basename="thread")
+router.register(r"papers", ThreadViewSet, basename="paper")
 router.register(
-    r"threads/(?P<thread_pk>[^/.]+)/posts", ThreadPostsViewSet, basename="thread-post"
+    r"papers/(?P<paper_pk>[^/.]+)/posts", ThreadPostsViewSet, basename="paper-post"
 )
 router.register(
-    r"threads/(?P<thread_pk>[^/.]+)/poll", ThreadPollViewSet, basename="thread-poll"
+    r"papers/(?P<paper_pk>[^/.]+)/poll", ThreadPollViewSet, basename="paper-poll"
 )
 
-router.register(r"private-threads", PrivateThreadViewSet, basename="private-thread")
+router.register(r"private-papers", PrivateThreadViewSet, basename="private-paper")
 router.register(
-    r"private-threads/(?P<thread_pk>[^/.]+)/posts",
+    r"private-papers/(?P<paper_pk>[^/.]+)/posts",
     PrivateThreadPostsViewSet,
-    basename="private-thread-post",
+    basename="private-paper-post",
 )
 
 urlpatterns = router.urls

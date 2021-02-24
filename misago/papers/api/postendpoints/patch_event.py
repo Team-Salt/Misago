@@ -37,8 +37,8 @@ def event_patch_endpoint(request, event):
     response = event_patch_dispatcher.dispatch(request, event)
 
     if old_is_hidden != event.is_hidden:
-        event.thread.synchronize()
-        event.thread.save()
+        event.paper.synchronize()
+        event.paper.save()
 
         event.category.synchronize()
         event.category.save()

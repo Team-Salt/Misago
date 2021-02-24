@@ -12,14 +12,14 @@ class HideMiddleware(PostingMiddleware):
         return HideSerializer(data=self.request.data)
 
     def post_save(self, serializer):
-        if self.thread.category.acl["can_hide_threads"]:
+        if self.paper.category.acl["can_hide_papers"]:
             if serializer.validated_data.get("hide"):
-                moderation.hide_thread(self.request, self.thread)
-                self.thread.update_all = True
-                self.thread.save(update_fields=["is_hidden"])
+                moderation.hide_paper(self.request, self.paper)
+                self.paper.update_all = True
+                self.paper.save(update_fields=["is_hidden"])
 
-                self.thread.category.synchronize()
-                self.thread.category.update_all = True
+                self.paper.category.synchronize()
+                self.paper.category.update_all = True
 
 
 class HideSerializer(serializers.Serializer):

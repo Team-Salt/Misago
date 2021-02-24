@@ -30,8 +30,8 @@ class ParticipantsMiddleware(PostingMiddleware):
         )
 
     def save(self, serializer):
-        set_owner(self.thread, self.user)
-        add_participants(self.request, self.thread, serializer.users_cache)
+        set_owner(self.paper, self.user)
+        add_participants(self.request, self.paper, serializer.users_cache)
 
 
 class ParticipantsSerializer(serializers.Serializer):
@@ -50,7 +50,7 @@ class ParticipantsSerializer(serializers.Serializer):
                 raise serializers.ValidationError(
                     _(
                         "You can't include yourself on the "
-                        "list of users to invite to new thread."
+                        "list of users to invite to new paper."
                     )
                 )
 
@@ -60,12 +60,12 @@ class ParticipantsSerializer(serializers.Serializer):
         if not clean_usernames:
             raise serializers.ValidationError(_("You have to enter user names."))
 
-        max_participants = self.context["user_acl"]["max_private_thread_participants"]
+        max_participants = self.context["user_acl"]["max_private_paper_participants"]
         if max_participants and len(clean_usernames) > max_participants:
             # pylint: disable=line-too-long
             message = ngettext(
-                "You can't add more than %(users)s user to private thread (you've added %(added)s).",
-                "You can't add more than %(users)s users to private thread (you've added %(added)s).",
+                "You can't add more than %(users)s user to private paper (you've added %(added)s).",
+                "You can't add more than %(users)s users to private paper (you've added %(added)s).",
                 max_participants,
             )
             raise serializers.ValidationError(

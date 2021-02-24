@@ -5,7 +5,7 @@ from . import PostingEndpoint, PostingMiddleware
 from ....markup import common_flavour
 from ....users.audittrail import create_audit_trail
 from ...checksums import update_post_checksum
-from ...validators import validate_post, validate_post_length, validate_thread_title
+from ...validators import validate_post, validate_post_length, validate_paper_title
 
 
 class ReplyMiddleware(PostingMiddleware):
@@ -19,7 +19,7 @@ class ReplyMiddleware(PostingMiddleware):
 
     def save(self, serializer):
         if self.mode == PostingEndpoint.START:
-            self.new_thread(serializer.validated_data)
+            self.new_paper(serializer.validated_data)
 
         parsing_result = serializer.validated_data["parsing_result"]
 
@@ -29,7 +29,7 @@ class ReplyMiddleware(PostingMiddleware):
             self.new_post(serializer.validated_data, parsing_result)
 
         if self.mode == PostingEndpoint.START:
-            self.post.set_search_document(self.thread.title)
+            self.post.set_search_document(self.paper.title)
         else:
             self.post.set_search_document()
 
@@ -42,32 +42,32 @@ class ReplyMiddleware(PostingMiddleware):
         self.post.update_fields += ["checksum", "search_vector"]
 
         if self.mode == PostingEndpoint.START:
-            self.thread.set_first_post(self.post)
-            self.thread.set_last_post(self.post)
+            self.paper.set_first_post(self.post)
+            self.paper.set_last_post(self.post)
 
-        self.thread.save()
+        self.paper.save()
 
         create_audit_trail(self.request, self.post)
 
         # annotate post for future middlewares
         self.post.parsing_result = parsing_result
 
-    def new_thread(self, validated_data):
-        self.thread.set_title(validated_data["title"])
-        self.thread.starter_name = self.user.username
-        self.thread.starter_slug = self.user.slug
-        self.thread.last_poster_name = self.user.username
-        self.thread.last_poster_slug = self.user.slug
-        self.thread.started_on = self.datetime
-        self.thread.last_post_on = self.datetime
-        self.thread.save()
+    def new_paper(self, validated_data):
+        self.paper.set_title(validated_data["title"])
+        self.paper.starter_name = self.user.username
+        self.paper.starter_slug = self.user.slug
+        self.paper.last_poster_name = self.user.username
+        self.paper.last_poster_slug = self.user.slug
+        self.paper.started_on = self.datetime
+        self.paper.last_post_on = self.datetime
+        self.paper.save()
 
     def edit_post(self, validated_data, parsing_result):
         self.post.original = parsing_result["original_text"]
         self.post.parsed = parsing_result["parsed_text"]
 
     def new_post(self, validated_data, parsing_result):
-        self.post.thread = self.thread
+        self.post.paper = self.paper
         self.post.poster = self.user
         self.post.poster_name = self.user.username
         self.post.posted_on = self.datetime
@@ -103,9 +103,9 @@ class ReplySerializer(serializers.Serializer):
 
 class ThreadSerializer(ReplySerializer):
     title = serializers.CharField(
-        error_messages={"required": gettext_lazy("You have to enter thread title.")}
+        error_messages={"required": gettext_lazy("You have to enter paper title.")}
     )
 
     def validate_title(self, data):
-        validate_thread_title(self.context["settings"], data)
+        validate_paper_title(self.context["settings"], data)
         return data
