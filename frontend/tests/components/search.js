@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import Search from 'misago/components/search'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import Search from 'limitless/components/search'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Search Input", function() {
   afterEach(function() {

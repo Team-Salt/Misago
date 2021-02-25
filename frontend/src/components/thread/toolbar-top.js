@@ -1,7 +1,7 @@
 import React from "react"
 import ReplyButton from "./reply-button"
 import Subscription from "./subscription"
-import posting from "misago/services/posting"
+import posting from "limitless/services/posting"
 
 export default function(props) {
   const hiddenSpecialOption =

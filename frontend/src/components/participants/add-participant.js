@@ -1,6 +1,6 @@
 import React from "react"
-import AddParticipantModal from "misago/components/add-participant"
-import modal from "misago/services/modal"
+import AddParticipantModal from "limitless/components/add-participant"
+import modal from "limitless/services/modal"
 
 export default class extends React.Component {
   onClick = () => {

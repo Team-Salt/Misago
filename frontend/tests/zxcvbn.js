@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { Zxcvbn } from 'misago/services/zxcvbn';
+import { Zxcvbn } from 'limitless/services/zxcvbn';
 
 let zxcvbn = null;
 
@@ -12,7 +12,7 @@ describe("Zxcvbn", function() {
     zxcvbn = new Zxcvbn();
     zxcvbn.init({
       include: function(lib) {
-        assert.equal(lib, "misago/js/zxcvbn.js", "library is requested");
+        assert.equal(lib, "limitless/js/zxcvbn.js", "library is requested");
       }
     });
 
@@ -30,7 +30,7 @@ describe("Zxcvbn", function() {
     zxcvbn = new Zxcvbn();
     zxcvbn.init({
       include: function(lib) {
-        assert.equal(lib, 'misago/js/zxcvbn.js', "library is requested");
+        assert.equal(lib, 'limitless/js/zxcvbn.js', "library is requested");
       }
     });
 

@@ -1,6 +1,6 @@
 import React from "react"
-import * as posts from "misago/reducers/posts"
-import store from "misago/services/store"
+import * as posts from "limitless/reducers/posts"
+import store from "limitless/services/store"
 
 export default class extends React.Component {
   onClick = () => {

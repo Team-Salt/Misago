@@ -1,8 +1,8 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import store from 'misago/services/store';
-import { MobileNavbarDropdown } from 'misago/services/mobile-navbar-dropdown';
-import * as testUtils from 'misago/utils/test-utils';
+import store from 'limitless/services/store';
+import { MobileNavbarDropdown } from 'limitless/services/mobile-navbar-dropdown';
+import * as testUtils from 'limitless/utils/test-utils';
 
 var dropdown = null;
 

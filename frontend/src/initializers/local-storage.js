@@ -1,5 +1,5 @@
-import misago from "misago/index"
-import storage from "misago/services/local-storage"
+import misago from "limitless/index"
+import storage from "limitless/services/local-storage"
 
 export default function initializer() {
   storage.init("misago_")

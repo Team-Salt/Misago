@@ -1,5 +1,5 @@
 import moment from "moment"
-import concatUnique from "misago/utils/concat-unique"
+import concatUnique from "limitless/utils/concat-unique"
 
 export const APPEND_THREADS = "APPEND_THREADS"
 export const DELETE_THREAD = "DELETE_THREAD"

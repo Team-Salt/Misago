@@ -1,5 +1,5 @@
 import React from "react"
-import misago from "misago"
+import misago from "limitless"
 
 export default class extends React.Component {
   onClick = () => {

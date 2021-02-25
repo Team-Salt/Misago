@@ -1,5 +1,5 @@
 import React from "react"
-import UserStatus, { StatusLabel } from "misago/components/user-status"
+import UserStatus, { StatusLabel } from "limitless/components/user-status"
 
 export default function({ showStatus, user }) {
   return (

@@ -1,4 +1,4 @@
-import misago from "misago/index"
+import misago from "limitless/index"
 
 export function getPageTitle(route) {
   if (route.category.level) {

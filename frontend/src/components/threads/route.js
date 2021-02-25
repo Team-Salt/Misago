@@ -1,29 +1,29 @@
 import React from "react"
-import Button from "misago/components/button"
+import Button from "limitless/components/button"
 import {
   compareGlobalWeight,
   compareWeight
-} from "misago/components/threads/compare"
-import Container from "misago/components/threads/container"
-import Header from "misago/components/threads/header"
+} from "limitless/components/threads/compare"
+import Container from "limitless/components/threads/container"
+import Header from "limitless/components/threads/header"
 import {
   diffThreads,
   getModerationActions,
   getPageTitle,
   getTitle
-} from "misago/components/threads/utils"
-import ThreadsList from "misago/components/threads-list"
-import ThreadsListEmpty from "misago/components/threads/list-empty"
-import WithDropdown from "misago/components/with-dropdown"
-import misago from "misago/index"
-import * as select from "misago/reducers/selection"
-import { append, deleteThread, hydrate, patch } from "misago/reducers/threads"
-import ajax from "misago/services/ajax"
-import polls from "misago/services/polls"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
-import title from "misago/services/page-title"
-import * as sets from "misago/utils/sets"
+} from "limitless/components/threads/utils"
+import ThreadsList from "limitless/components/threads-list"
+import ThreadsListEmpty from "limitless/components/threads/list-empty"
+import WithDropdown from "limitless/components/with-dropdown"
+import misago from "limitless/index"
+import * as select from "limitless/reducers/selection"
+import { append, deleteThread, hydrate, patch } from "limitless/reducers/threads"
+import ajax from "limitless/services/ajax"
+import polls from "limitless/services/polls"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
+import title from "limitless/services/page-title"
+import * as sets from "limitless/utils/sets"
 
 export default class extends WithDropdown {
   constructor(props) {

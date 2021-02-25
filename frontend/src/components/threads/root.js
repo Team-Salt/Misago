@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import Route from "misago/components/threads/route"
-import misago from "misago/index"
+import Route from "limitless/components/threads/route"
+import misago from "limitless/index"
 
 export function getSelect(options) {
   return function(store) {

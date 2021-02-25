@@ -1,6 +1,6 @@
 import assert from 'assert';
-import { StoreWrapper } from 'misago/services/store';
-import reducer, { initialState, showSnackbar, hideSnackbar } from 'misago/reducers/snackbar';
+import { StoreWrapper } from 'limitless/services/store';
+import reducer, { initialState, showSnackbar, hideSnackbar } from 'limitless/reducers/snackbar';
 
 let store = null;
 

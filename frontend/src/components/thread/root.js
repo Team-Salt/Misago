@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import Route from "misago/components/thread/route"
-import misago from "misago/index"
+import Route from "limitless/components/thread/route"
+import misago from "limitless/index"
 
 export function select(store) {
   return {

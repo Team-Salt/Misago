@@ -1,6 +1,6 @@
 import React from "react"
-import PageLead from "misago/components/page-lead"
-import Toolbar from "misago/components/threads/toolbar"
+import PageLead from "limitless/components/page-lead"
+import Toolbar from "limitless/components/threads/toolbar"
 
 export default class extends React.Component {
   getCategoryDescription() {

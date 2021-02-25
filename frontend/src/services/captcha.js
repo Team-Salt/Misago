@@ -1,6 +1,6 @@
 /* global grecaptcha */
 import React from "react"
-import FormGroup from "misago/components/form-group"
+import FormGroup from "limitless/components/form-group"
 
 export class BaseCaptcha {
   init(context, ajax, include, snackbar) {

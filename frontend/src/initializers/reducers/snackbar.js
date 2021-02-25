@@ -1,6 +1,6 @@
-import misago from "misago/index"
-import reducer, { initialState } from "misago/reducers/snackbar"
-import store from "misago/services/store"
+import misago from "limitless/index"
+import reducer, { initialState } from "limitless/reducers/snackbar"
+import store from "limitless/services/store"
 
 export default function initializer() {
   store.addReducer("snackbar", reducer, initialState)

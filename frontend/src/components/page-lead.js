@@ -1,5 +1,5 @@
 import React from "react"
-import stringCount from "misago/utils/string-count"
+import stringCount from "limitless/utils/string-count"
 
 export default class extends React.Component {
   getClassName() {

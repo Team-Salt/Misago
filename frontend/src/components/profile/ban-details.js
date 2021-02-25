@@ -1,10 +1,10 @@
 import moment from "moment"
 import React from "react"
-import PanelLoader from "misago/components/panel-loader"
-import PanelMessage from "misago/components/panel-message"
-import misago from "misago/index"
-import polls from "misago/services/polls"
-import title from "misago/services/page-title"
+import PanelLoader from "limitless/components/panel-loader"
+import PanelMessage from "limitless/components/panel-message"
+import misago from "limitless/index"
+import polls from "limitless/services/polls"
+import title from "limitless/services/page-title"
 
 export default class extends React.Component {
   constructor(props) {

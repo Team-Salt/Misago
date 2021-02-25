@@ -1,9 +1,9 @@
-import paths from "misago/components/search"
-import misago from "misago"
-import mount from "misago/utils/routed-component"
+import paths from "limitless/components/search"
+import misago from "limitless"
+import mount from "limitless/utils/routed-component"
 
 export default function initializer(context) {
-  if (context.get("CURRENT_LINK") === "misago:search") {
+  if (context.get("CURRENT_LINK") === "limitless:search") {
     mount({
       paths: paths(misago.get("SEARCH_PROVIDERS"))
     })

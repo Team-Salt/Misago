@@ -1,5 +1,5 @@
 import React from "react"
-import PanelLoader from "misago/components/panel-loader"
+import PanelLoader from "limitless/components/panel-loader"
 
 export default function() {
   return (

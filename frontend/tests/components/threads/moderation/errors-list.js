@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import ErrorsList from 'misago/components/threads/moderation/errors-list'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import ErrorsList from 'limitless/components/threads/moderation/errors-list'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Threads List Moderation Errors List", function() {
   afterEach(function() {

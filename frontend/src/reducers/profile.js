@@ -3,7 +3,7 @@ import {
   UPDATE_AVATAR,
   UPDATE_USERNAME,
   hydrateStatus
-} from "misago/reducers/users"
+} from "limitless/reducers/users"
 
 export const HYDRATE_PROFILE = "HYDRATE_PROFILE"
 export const PATCH_PROFILE = "PATCH_PROFILE"

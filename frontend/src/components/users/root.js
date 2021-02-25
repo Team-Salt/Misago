@@ -1,11 +1,11 @@
 import React from "react"
 import { connect } from "react-redux"
-import DropdownToggle from "misago/components/dropdown-toggle"
-import Nav from "misago/components/users/nav"
-import ActivePosters from "misago/components/users/active-posters/root"
-import Rank from "misago/components/users/rank/root"
-import WithDropdown from "misago/components/with-dropdown"
-import misago from "misago/index"
+import DropdownToggle from "limitless/components/dropdown-toggle"
+import Nav from "limitless/components/users/nav"
+import ActivePosters from "limitless/components/users/active-posters/root"
+import Rank from "limitless/components/users/rank/root"
+import WithDropdown from "limitless/components/with-dropdown"
+import misago from "limitless/index"
 
 export default class extends WithDropdown {
   render() {

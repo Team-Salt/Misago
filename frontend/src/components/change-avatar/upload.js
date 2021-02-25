@@ -1,9 +1,9 @@
 import React from "react"
-import AvatarCrop from "misago/components/change-avatar/crop"
-import Button from "misago/components/button"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import fileSize from "misago/utils/file-size"
+import AvatarCrop from "limitless/components/change-avatar/crop"
+import Button from "limitless/components/button"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import fileSize from "limitless/utils/file-size"
 
 export default class extends React.Component {
   constructor(props) {

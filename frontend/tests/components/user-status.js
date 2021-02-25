@@ -1,8 +1,8 @@
 import assert from 'assert';
 import moment from 'moment'; // jshint ignore:line
 import React from 'react'; // jshint ignore:line
-import UserStatus, { StatusIcon, StatusLabel } from 'misago/components/user-status'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import UserStatus, { StatusIcon, StatusLabel } from 'limitless/components/user-status'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 let status = {
   is_hidden: false,

@@ -1,8 +1,8 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import UploadAvatar from 'misago/components/change-avatar/upload'; // jshint ignore:line
-import misago from 'misago/index';
-import * as testUtils from 'misago/utils/test-utils';
+import UploadAvatar from 'limitless/components/change-avatar/upload'; // jshint ignore:line
+import misago from 'limitless/index';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let component = null;
 

@@ -1,0 +1,52 @@
+{% extends "limitless/admin/layout.html" %}
+{% load i18n limitless_capture %}
+
+
+{% block title %}{% trans "Dashboard" %} | {{ block.super }}{% endblock %}
+
+
+{% block content %}
+<div class="page-header row align-items-center">
+  <div class="col">
+    <h1>{% trans "Dashboard" %}</h1>
+  </div>
+</div>
+
+{% include "limitless/admin/dashboard/checks.html" %}
+{% include "limitless/admin/dashboard/analytics.html" %}
+{% include "limitless/admin/dashboard/totals.html" %}
+{% endblock content %}
+
+
+{% block javascripts %}
+<script type="text/javascript">
+  window.limitless.initVersionCheck({
+    elementId: "admin-version-check",
+    uri: "{% url 'limitless:admin:graphql:index' %}",
+
+    errorMessage: {
+      message: "{% trans 'Version check is currently unavailable due to an error.' %}",
+      description: "{% trans 'LimitLess admin API did not answer or answered with an error.' %}"
+    },
+    loadingMessage: {
+      message: "{% trans 'Checking LimitLess version used by the site...' %}",
+      description: "{% trans 'Version check feature relies on the API operated by the Python Package Index (pypi.org) API to retrieve latest LimitLess release version.' %}"
+    }
+  })
+  window.limitless.initAnalytics({
+    elementId: "admin-analytics",
+    uri: "{% url 'limitless:admin:graphql:index' %}",
+
+    title: "{% trans 'Analytics' %}",
+    labels: {
+      users: "{% trans 'User registrations' %}",
+      userDeletions: "{% trans 'User deletions' %}",
+      threads: "{% trans 'Threads started' %}",
+      posts: "{% trans 'Posts' %}",
+      attachments: "{% trans 'Attachments uploaded' %}",
+      dataDownloads: "{% trans 'Data download requests' %}"
+    },
+    errorMessage: "{% trans 'Site analytics are currently unavailable due to an error.' %}"
+  })
+</script>
+{% endblock javascripts %}

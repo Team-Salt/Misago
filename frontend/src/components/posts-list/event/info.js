@@ -1,5 +1,5 @@
 import React from "react"
-import escapeHtml from "misago/utils/escape-html"
+import escapeHtml from "limitless/utils/escape-html"
 import Controls from "./controls"
 
 const DATE_ABBR = '<abbr title="%(absolute)s">%(relative)s</abbr>'

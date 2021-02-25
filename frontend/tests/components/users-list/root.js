@@ -1,8 +1,8 @@
 import assert from 'assert';
 import moment from 'moment'; // jshint ignore:line
 import React from 'react'; // jshint ignore:line
-import UsersList from 'misago/components/users-list/root'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import UsersList from 'limitless/components/users-list/root'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 /* jshint ignore:start */
 let users = [

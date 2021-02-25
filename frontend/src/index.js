@@ -1,6 +1,6 @@
-import OrderedList from "misago/utils/ordered-list"
+import OrderedList from "limitless/utils/ordered-list"
 
-export class Misago {
+export class LimitLess {
   constructor() {
     this._initializers = []
     this._context = {}
@@ -51,10 +51,10 @@ export class Misago {
 }
 
 // create  singleton
-var misago = new Misago()
+var limitless = new LimitLess()
 
 // expose it globally
-global.misago = misago
+global.limitless = limitless
 
 // and export it for tests and stuff
-export default misago
+export default limitless

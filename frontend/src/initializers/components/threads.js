@@ -1,8 +1,8 @@
-import { paths } from "misago/components/threads/root"
-import misago from "misago/index"
-import mount from "misago/utils/routed-component"
+import { paths } from "limitless/components/threads/root"
+import misago from "limitless/index"
+import mount from "limitless/utils/routed-component"
 
-const PRIVATE_THREADS_LIST = "misago:private-threads"
+const PRIVATE_THREADS_LIST = "limitless:private-threads"
 
 export default function initializer(context) {
   if (context.has("THREADS") && context.has("CATEGORIES")) {

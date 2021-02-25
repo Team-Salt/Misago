@@ -1,7 +1,7 @@
 import React from "react"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import misago from "misago"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import misago from "limitless"
 import cleanResults from "./clean-results"
 import Dropdown from "./dropdown"
 

@@ -2,7 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
 import { Router, browserHistory } from "react-router"
-import store from "misago/services/store"
+import store from "limitless/services/store"
 
 const rootElement = document.getElementById("page-mount")
 

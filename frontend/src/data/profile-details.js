@@ -1,7 +1,7 @@
 import React from "react"
-import { load } from "misago/reducers/profile-details"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
+import { load } from "limitless/reducers/profile-details"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
 
 export default class extends React.Component {
   componentDidMount() {

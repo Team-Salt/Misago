@@ -2,8 +2,8 @@ import React from "react"
 import Blankslate from "./blankslate"
 import Loader from "./loader"
 import Form from "./form"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
 
 export default class extends React.Component {
   constructor(props) {

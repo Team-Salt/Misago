@@ -1,6 +1,6 @@
-import { paths } from "misago/components/thread/root"
-import misago from "misago/index"
-import mount from "misago/utils/routed-component"
+import { paths } from "limitless/components/thread/root"
+import misago from "limitless/index"
+import mount from "limitless/utils/routed-component"
 
 export default function initializer(context) {
   if (context.has("THREAD") && context.has("POSTS")) {

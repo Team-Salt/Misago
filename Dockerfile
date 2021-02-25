@@ -1,6 +1,6 @@
-# This dockerfile is only meant for local development of Misago
-# If you are looking for a proper docker setup for running Misago in production,
-# please use misago-docker instead
+# This dockerfile is only meant for local development of LimitLess
+# If you are looking for a proper docker setup for running LimitLess in production,
+# please use limitless-docker instead
 FROM python:3.7
 
 ENV PYTHONUNBUFFERED 1

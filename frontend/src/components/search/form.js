@@ -1,12 +1,12 @@
 import React from "react"
-import misago from "misago"
-import Form from "misago/components/form"
-import { load as updatePosts } from "misago/reducers/posts"
-import { update as updateSearch } from "misago/reducers/search"
-import { hydrate as updateUsers } from "misago/reducers/users"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import misago from "limitless"
+import Form from "limitless/components/form"
+import { load as updatePosts } from "limitless/reducers/posts"
+import { update as updateSearch } from "limitless/reducers/search"
+import { hydrate as updateUsers } from "limitless/reducers/users"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 export default class extends Form {
   constructor(props) {

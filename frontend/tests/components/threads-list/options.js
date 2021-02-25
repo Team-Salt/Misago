@@ -1,9 +1,9 @@
 import assert from 'assert';
 import moment from 'moment'; // jshint ignore:line
 import React from 'react'; // jshint ignore:line
-import ThreadOptions from 'misago/components/threads-list/thread/options'; // jshint ignore:line
-import Store from 'misago/services/store';
-import * as testUtils from 'misago/utils/test-utils';
+import ThreadOptions from 'limitless/components/threads-list/thread/options'; // jshint ignore:line
+import Store from 'limitless/services/store';
+import * as testUtils from 'limitless/utils/test-utils';
 
 /* jshint ignore:start */
 const thread = {

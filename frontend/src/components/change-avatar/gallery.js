@@ -1,10 +1,10 @@
 import React from "react"
-import Avatar from "misago/components/avatar"
-import Button from "misago/components/button"
-import misago from "misago/index"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import batch from "misago/utils/batch"
+import Avatar from "limitless/components/avatar"
+import Button from "limitless/components/button"
+import misago from "limitless/index"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import batch from "limitless/utils/batch"
 
 export class GalleryItem extends React.Component {
   select = () => {

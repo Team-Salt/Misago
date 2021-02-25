@@ -1,5 +1,5 @@
 import React from "react"
-import Change from "misago/components/username-history/change"
+import Change from "limitless/components/username-history/change"
 
 export default class extends React.Component {
   render() {

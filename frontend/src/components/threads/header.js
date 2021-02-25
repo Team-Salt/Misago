@@ -1,13 +1,13 @@
 import React from "react"
 import { Link } from "react-router"
-import Button from "misago/components/button"
-import DropdownToggle from "misago/components/dropdown-toggle"
-import Nav from "misago/components/threads/nav"
-import ajax from "misago/services/ajax"
-import posting from "misago/services/posting"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
-import misago from "misago"
+import Button from "limitless/components/button"
+import DropdownToggle from "limitless/components/dropdown-toggle"
+import Nav from "limitless/components/threads/nav"
+import ajax from "limitless/services/ajax"
+import posting from "limitless/services/posting"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
+import misago from "limitless"
 
 export default class extends React.Component {
   constructor(props) {

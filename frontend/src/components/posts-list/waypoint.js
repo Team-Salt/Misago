@@ -1,9 +1,9 @@
 import React from "react"
-import * as post from "misago/reducers/post"
-import * as thread from "misago/reducers/thread"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import * as post from "limitless/reducers/post"
+import * as thread from "limitless/reducers/thread"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 export default class extends React.Component {
   /*

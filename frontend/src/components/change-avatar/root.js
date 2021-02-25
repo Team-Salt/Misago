@@ -1,12 +1,12 @@
 import React from "react"
-import AvatarIndex from "misago/components/change-avatar/index"
-import AvatarCrop from "misago/components/change-avatar/crop"
-import AvatarUpload from "misago/components/change-avatar/upload"
-import AvatarGallery from "misago/components/change-avatar/gallery"
-import Loader from "misago/components/modal-loader"
-import { updateAvatar } from "misago/reducers/users"
-import ajax from "misago/services/ajax"
-import store from "misago/services/store"
+import AvatarIndex from "limitless/components/change-avatar/index"
+import AvatarCrop from "limitless/components/change-avatar/crop"
+import AvatarUpload from "limitless/components/change-avatar/upload"
+import AvatarGallery from "limitless/components/change-avatar/gallery"
+import Loader from "limitless/components/modal-loader"
+import { updateAvatar } from "limitless/reducers/users"
+import ajax from "limitless/services/ajax"
+import store from "limitless/services/store"
 
 export class ChangeAvatarError extends React.Component {
   getErrorReason() {

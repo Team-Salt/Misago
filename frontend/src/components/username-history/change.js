@@ -1,5 +1,5 @@
 import React from "react"
-import Avatar from "misago/components/avatar"
+import Avatar from "limitless/components/avatar"
 
 export default class extends React.Component {
   renderUserAvatar() {

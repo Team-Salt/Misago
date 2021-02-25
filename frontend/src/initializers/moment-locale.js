@@ -1,5 +1,5 @@
 import moment from "moment"
-import misago from "misago/index"
+import misago from "limitless/index"
 
 export default function initializer() {
   moment.locale($("html").attr("lang"))

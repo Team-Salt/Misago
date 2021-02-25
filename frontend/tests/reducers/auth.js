@@ -1,6 +1,6 @@
 import assert from 'assert';
-import { updateAvatar, updateUsername } from 'misago/reducers/users';
-import reducer, { signIn, signOut, patch } from 'misago/reducers/auth';
+import { updateAvatar, updateUsername } from 'limitless/reducers/users';
+import reducer, { signIn, signOut, patch } from 'limitless/reducers/auth';
 
 describe("Auth Reducer", function() {
   it("patches auth user", function() {

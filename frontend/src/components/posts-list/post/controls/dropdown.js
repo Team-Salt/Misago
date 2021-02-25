@@ -1,9 +1,9 @@
 import React from "react"
-import modal from "misago/services/modal"
-import posting from "misago/services/posting"
+import modal from "limitless/services/modal"
+import posting from "limitless/services/posting"
 import * as moderation from "./actions"
 import MoveModal from "./move"
-import PostChangelog from "misago/components/post-changelog"
+import PostChangelog from "limitless/components/post-changelog"
 import SplitModal from "./split"
 
 export default function(props) {

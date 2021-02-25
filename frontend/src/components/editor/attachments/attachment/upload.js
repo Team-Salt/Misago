@@ -1,5 +1,5 @@
 import React from "react"
-import escapeHtml from "misago/utils/escape-html"
+import escapeHtml from "limitless/utils/escape-html"
 
 const STRONG = "<strong>%(name)s</strong>"
 

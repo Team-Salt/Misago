@@ -9,12 +9,12 @@ import UsernameHistory from "./username-history"
 import Header from "./header"
 import ModerationNav from "./moderation/nav"
 import { SideNav, CompactNav } from "./navs"
-import Avatar from "misago/components/avatar"
-import WithDropdown from "misago/components/with-dropdown"
-import misago from "misago"
-import { hydrate } from "misago/reducers/profile"
-import polls from "misago/services/polls"
-import store from "misago/services/store"
+import Avatar from "limitless/components/avatar"
+import WithDropdown from "limitless/components/with-dropdown"
+import misago from "limitless"
+import { hydrate } from "limitless/reducers/profile"
+import polls from "limitless/services/polls"
+import store from "limitless/services/store"
 
 export default class extends WithDropdown {
   constructor(props) {

@@ -2,8 +2,8 @@ import React from "react"
 import AttachmentComplete from "./complete"
 import AttachmentError from "./error"
 import AttachmentUpload from "./upload"
-import misago from "misago"
-import escapeHtml from "misago/utils/escape-html"
+import misago from "limitless"
+import escapeHtml from "limitless/utils/escape-html"
 
 export default function(props) {
   if (props.item.id) {

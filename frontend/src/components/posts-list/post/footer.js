@@ -1,8 +1,8 @@
 import React from "react"
 import * as actions from "./controls/actions"
-import LikesModal from "misago/components/post-likes"
-import modal from "misago/services/modal"
-import posting from "misago/services/posting"
+import LikesModal from "limitless/components/post-likes"
+import modal from "limitless/services/modal"
+import posting from "limitless/services/posting"
 
 export default function(props) {
   if (!isVisible(props.post)) return null

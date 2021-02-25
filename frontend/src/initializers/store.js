@@ -1,5 +1,5 @@
-import misago from "misago/index"
-import store from "misago/services/store"
+import misago from "limitless/index"
+import store from "limitless/services/store"
 
 export default function initializer() {
   store.init()

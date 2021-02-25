@@ -1,5 +1,5 @@
 import assert from 'assert';
-import concatUnique from 'misago/utils/concat-unique';
+import concatUnique from 'limitless/utils/concat-unique';
 
 describe('Concat Unique', function() {
   it("concats two different lists", function() {

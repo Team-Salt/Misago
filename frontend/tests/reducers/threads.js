@@ -1,6 +1,6 @@
 import assert from 'assert';
 import moment from 'moment';
-import reducer, { append, hydrate, patch, read, hydrateThread } from 'misago/reducers/threads';
+import reducer, { append, hydrate, patch, read, hydrateThread } from 'limitless/reducers/threads';
 
 describe("Threads Reducer", function() {
   it("hydrates thread", function() {

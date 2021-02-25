@@ -1,5 +1,5 @@
 import React from "react"
-import escapeHtml from "misago/utils/escape-html"
+import escapeHtml from "limitless/utils/escape-html"
 
 const LAST_POSTER_URL = '<a href="%(url)s" class="poster-title">%(user)s</a>'
 const LAST_POSTER_SPAN = '<span class="poster-title">%(user)s</span>'

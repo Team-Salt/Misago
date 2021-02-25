@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
-import misago from "misago/index"
-import { Snackbar, select } from "misago/components/snackbar"
-import mount from "misago/utils/mount-component"
+import misago from "limitless/index"
+import { Snackbar, select } from "limitless/components/snackbar"
+import mount from "limitless/utils/mount-component"
 
 export default function initializer() {
   mount(connect(select)(Snackbar), "snackbar-mount")

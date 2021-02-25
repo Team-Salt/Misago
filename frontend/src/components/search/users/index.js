@@ -1,6 +1,6 @@
 import React from "react"
 import SearchPage from "../page"
-import UsersList from "misago/components/users-list"
+import UsersList from "limitless/components/users-list"
 
 export default function(props) {
   return (

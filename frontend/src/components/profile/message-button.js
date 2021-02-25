@@ -1,6 +1,6 @@
 import React from "react"
-import posting from "misago/services/posting"
-import misago from "misago"
+import posting from "limitless/services/posting"
+import misago from "limitless"
 
 export default class extends React.Component {
   onClick = () => {

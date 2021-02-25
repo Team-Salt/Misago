@@ -1,4 +1,4 @@
-import { UPDATE_AVATAR, UPDATE_USERNAME } from "misago/reducers/users"
+import { UPDATE_AVATAR, UPDATE_USERNAME } from "limitless/reducers/users"
 
 export var initialState = {
   signedIn: false,

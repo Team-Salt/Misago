@@ -1,5 +1,5 @@
 import React from "react"
-import misago from "misago/index"
+import misago from "limitless/index"
 
 const UnusablePasswordMessage = () => {
   return (

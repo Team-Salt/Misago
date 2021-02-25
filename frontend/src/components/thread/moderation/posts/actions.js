@@ -1,11 +1,11 @@
 import moment from "moment"
 import React from "react"
-import * as post from "misago/reducers/post"
-import * as posts from "misago/reducers/posts"
-import ajax from "misago/services/ajax"
-import modal from "misago/services/modal"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import * as post from "limitless/reducers/post"
+import * as posts from "limitless/reducers/posts"
+import ajax from "limitless/services/ajax"
+import modal from "limitless/services/modal"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 import ErrorsList from "./errors-list"
 
 export function approve(props) {

@@ -1,5 +1,5 @@
-import misago from "misago/index"
-import include from "misago/services/include"
+import misago from "limitless/index"
+import include from "limitless/services/include"
 
 export default function initializer(context) {
   include.init(context.get("STATIC_URL"))

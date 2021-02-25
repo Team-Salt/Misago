@@ -1,5 +1,5 @@
 import React from "react"
-import escapeHtml from "misago/utils/escape-html"
+import escapeHtml from "limitless/utils/escape-html"
 
 const DATE_ABBR = '<abbr title="%(absolute)s">%(relative)s</abbr>'
 const USER_SPAN = '<span class="item-title">%(user)s</span>'

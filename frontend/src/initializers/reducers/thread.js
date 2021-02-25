@@ -1,6 +1,6 @@
-import misago from "misago/index"
-import reducer, { hydrate } from "misago/reducers/thread"
-import store from "misago/services/store"
+import misago from "limitless/index"
+import reducer, { hydrate } from "limitless/reducers/thread"
+import store from "limitless/services/store"
 
 export default function initializer() {
   let initialState = null

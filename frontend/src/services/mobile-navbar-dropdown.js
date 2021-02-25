@@ -1,4 +1,4 @@
-import mount from "misago/utils/mount-component"
+import mount from "limitless/utils/mount-component"
 
 export class MobileNavbarDropdown {
   init(element) {

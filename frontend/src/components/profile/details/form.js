@@ -1,5 +1,5 @@
 import React from "react"
-import Form from "misago/components/edit-details"
+import Form from "limitless/components/edit-details"
 
 export default function({ api, display, onCancel, onSuccess }) {
   if (!display) return null

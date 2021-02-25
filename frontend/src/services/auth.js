@@ -1,4 +1,4 @@
-import { signIn, signOut } from "misago/reducers/auth"
+import { signIn, signOut } from "limitless/reducers/auth"
 
 export class Auth {
   init(store, local, modal) {

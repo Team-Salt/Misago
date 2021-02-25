@@ -1,5 +1,5 @@
 import assert from 'assert';
-import Countdown from 'misago/utils/countdown';
+import Countdown from 'limitless/utils/countdown';
 
 describe('Countdown', function() {
   it("counts down and then executes callback", function(done) {

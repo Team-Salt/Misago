@@ -1,15 +1,15 @@
 import React from "react"
-import PostFeed from "misago/components/post-feed"
-import Button from "misago/components/button"
-import MisagoMarkup from "misago/components/misago-markup"
+import PostFeed from "limitless/components/post-feed"
+import Button from "limitless/components/button"
+import MisagoMarkup from "limitless/components/limitless-markup"
 import {
   update as updatePosts,
   append as appendPosts
-} from "misago/reducers/posts"
-import { updateProvider } from "misago/reducers/search"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+} from "limitless/reducers/posts"
+import { updateProvider } from "limitless/reducers/search"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 export default function(props) {
   return (

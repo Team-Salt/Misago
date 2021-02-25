@@ -5,9 +5,9 @@ import {
   StatusIcon,
   getStatusClassName,
   getStatusDescription
-} from "misago/components/user-status"
-import PostChangelog from "misago/components/post-changelog"
-import modal from "misago/services/modal"
+} from "limitless/components/user-status"
+import PostChangelog from "limitless/components/post-changelog"
+import modal from "limitless/services/modal"
 
 export default function(props) {
   return (

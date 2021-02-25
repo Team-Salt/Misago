@@ -1,11 +1,11 @@
 import React from "react"
-import PostFeed from "misago/components/post-feed"
-import Button from "misago/components/button"
-import * as posts from "misago/reducers/posts"
-import title from "misago/services/page-title"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import PostFeed from "limitless/components/post-feed"
+import Button from "limitless/components/button"
+import * as posts from "limitless/reducers/posts"
+import title from "limitless/services/page-title"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 export default class extends React.Component {
   constructor(props) {

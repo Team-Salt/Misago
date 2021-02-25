@@ -1,7 +1,7 @@
 import React from "react"
-import Form from "misago/components/edit-details"
-import title from "misago/services/page-title"
-import snackbar from "misago/services/snackbar"
+import Form from "limitless/components/edit-details"
+import title from "limitless/services/page-title"
+import snackbar from "limitless/services/snackbar"
 
 export default class extends React.Component {
   componentDidMount() {

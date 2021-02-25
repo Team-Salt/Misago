@@ -1,7 +1,7 @@
 import React from "react"
 import EmptyMessage from "./empty-message"
 import Group from "./group"
-import Loader from "misago/components/loader"
+import Loader from "limitless/components/loader"
 
 export default function({
   display,

@@ -1,5 +1,5 @@
 import React from "react"
-import Followers from "misago/components/profile/followers"
+import Followers from "limitless/components/profile/followers"
 
 export default class extends Followers {
   setSpecialProps() {

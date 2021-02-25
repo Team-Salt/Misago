@@ -1,9 +1,9 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import DeleteAccount from 'misago/components/profile/moderation/delete-account'; // jshint ignore:line
-import polls from 'misago/services/polls';
-import snackbar from 'misago/services/snackbar';
-import * as testUtils from 'misago/utils/test-utils';
+import DeleteAccount from 'limitless/components/profile/moderation/delete-account'; // jshint ignore:line
+import polls from 'limitless/services/polls';
+import snackbar from 'limitless/services/snackbar';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let component = null;
 let snackbarStore = null;

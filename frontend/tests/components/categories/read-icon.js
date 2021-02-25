@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import ReadIcon from 'misago/components/categories/read-icon'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import ReadIcon from 'limitless/components/categories/read-icon'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Categories List Category Read Icon", function() {
   afterEach(function() {

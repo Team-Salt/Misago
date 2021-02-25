@@ -1,7 +1,7 @@
 import React from "react"
-import ListEmpty from "misago/components/username-history/list-empty"
-import ListReady from "misago/components/username-history/list-ready"
-import ListPreview from "misago/components/username-history/list-preview"
+import ListEmpty from "limitless/components/username-history/list-empty"
+import ListReady from "limitless/components/username-history/list-ready"
+import ListPreview from "limitless/components/username-history/list-preview"
 
 export default class extends React.Component {
   render() {

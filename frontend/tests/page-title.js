@@ -1,5 +1,5 @@
 import assert from 'assert';
-import title from 'misago/services/page-title';
+import title from 'limitless/services/page-title';
 
 describe('Page Title', function() {
   beforeEach(function() {

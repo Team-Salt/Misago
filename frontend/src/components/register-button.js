@@ -1,10 +1,10 @@
 import React from "react"
-import Loader from "misago/components/loader"
-import RegisterForm from "misago/components/register.js"
-import ajax from "misago/services/ajax"
-import captcha from "misago/services/captcha"
-import modal from "misago/services/modal"
-import snackbar from "misago/services/snackbar"
+import Loader from "limitless/components/loader"
+import RegisterForm from "limitless/components/register.js"
+import ajax from "limitless/services/ajax"
+import captcha from "limitless/services/captcha"
+import modal from "limitless/services/modal"
+import snackbar from "limitless/services/snackbar"
 
 export default class extends React.Component {
   constructor(props) {

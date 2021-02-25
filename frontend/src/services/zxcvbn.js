@@ -16,7 +16,7 @@ export class Zxcvbn {
 
   load() {
     if (!this._isLoaded) {
-      this._include.include("misago/js/zxcvbn.js")
+      this._include.include("limitless/js/zxcvbn.js")
       return this._loadingPromise()
     } else {
       return this._loadedPromise()

@@ -1,5 +1,5 @@
 import assert from 'assert';
-import fileSize from 'misago/utils/file-size';
+import fileSize from 'limitless/utils/file-size';
 
 describe('File Size', function() {
   it("formats bytes size", function() {

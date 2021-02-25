@@ -1,6 +1,6 @@
-import misago from "misago/index"
-import RequestPasswordReset from "misago/components/request-password-reset"
-import mount from "misago/utils/mount-component"
+import misago from "limitless/index"
+import RequestPasswordReset from "limitless/components/request-password-reset"
+import mount from "limitless/utils/mount-component"
 
 export default function initializer() {
   if (document.getElementById("request-password-reset-mount")) {

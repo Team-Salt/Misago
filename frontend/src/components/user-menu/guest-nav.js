@@ -1,11 +1,11 @@
 import React from "react"
-import Avatar from "misago/components/avatar"
-import NavbarSearch from "misago/components/navbar-search"
-import RegisterButton from "misago/components/register-button"
-import SignInModal from "misago/components/sign-in.js"
-import misago from "misago"
-import dropdown from "misago/services/mobile-navbar-dropdown"
-import modal from "misago/services/modal"
+import Avatar from "limitless/components/avatar"
+import NavbarSearch from "limitless/components/navbar-search"
+import RegisterButton from "limitless/components/register-button"
+import SignInModal from "limitless/components/sign-in.js"
+import misago from "limitless"
+import dropdown from "limitless/services/mobile-navbar-dropdown"
+import modal from "limitless/services/modal"
 
 export class GuestMenu extends React.Component {
   showSignInModal() {

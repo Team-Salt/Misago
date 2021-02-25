@@ -1,10 +1,10 @@
 import React from "react"
-import Button from "misago/components/button"
-import { patch } from "misago/reducers/threads"
-import ajax from "misago/services/ajax"
-import modal from "misago/services/modal"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import Button from "limitless/components/button"
+import { patch } from "limitless/reducers/threads"
+import ajax from "limitless/services/ajax"
+import modal from "limitless/services/modal"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 const STATE_UPDATES = {
   unsubscribe: null,

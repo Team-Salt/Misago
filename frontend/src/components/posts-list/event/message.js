@@ -1,5 +1,5 @@
 import React from "react"
-import escapeHtml from "misago/utils/escape-html"
+import escapeHtml from "limitless/utils/escape-html"
 
 const MESSAGE = {
   pinned_globally: gettext("Thread has been pinned globally."),

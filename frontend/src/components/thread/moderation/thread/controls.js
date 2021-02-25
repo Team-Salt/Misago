@@ -1,11 +1,11 @@
 import React from "react"
 import MergeModal from "./merge"
 import MoveModal from "./move"
-import * as thread from "misago/reducers/thread"
-import ajax from "misago/services/ajax"
-import modal from "misago/services/modal"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import * as thread from "limitless/reducers/thread"
+import ajax from "limitless/services/ajax"
+import modal from "limitless/services/modal"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 export default class extends React.Component {
   callApi = (ops, successMessage) => {

@@ -1,8 +1,8 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import PasswordStrength from 'misago/components/password-strength'; // jshint ignore:line
-import zxcvbn from 'misago/services/zxcvbn';
-import * as testUtils from 'misago/utils/test-utils';
+import PasswordStrength from 'limitless/components/password-strength'; // jshint ignore:line
+import zxcvbn from 'limitless/services/zxcvbn';
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Password Strength", function() {
   afterEach(function() {

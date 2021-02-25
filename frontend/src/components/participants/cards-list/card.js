@@ -1,7 +1,7 @@
 import React from "react"
 import MakeOwner from "./make-owner"
 import Remove from "./remove"
-import Avatar from "misago/components/avatar"
+import Avatar from "limitless/components/avatar"
 
 export default function(props) {
   const participant = props.participant

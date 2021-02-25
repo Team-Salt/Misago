@@ -1,6 +1,6 @@
-import misago from "misago/index"
-import include from "misago/services/include"
-import zxcvbn from "misago/services/zxcvbn"
+import misago from "limitless/index"
+import include from "limitless/services/include"
+import zxcvbn from "limitless/services/zxcvbn"
 
 export default function initializer() {
   zxcvbn.init(include)

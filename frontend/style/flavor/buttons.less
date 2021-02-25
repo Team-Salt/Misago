@@ -4,7 +4,7 @@
 
 
 // mixins
-.misago-btn(@color, @bg, @color-hover, @bg-hover, @color-active, @bg-active) {
+.limitless-btn(@color, @bg, @color-hover, @bg-hover, @color-active, @bg-active) {
   &,
   &:disabled, &:disabled:hover,
   &.disabled, &.disabled:hover, &.disabled:active {
@@ -52,7 +52,7 @@
   }
 }
 
-.misago-btn-outline(@color, @bg, @border,
+.limitless-btn-outline(@color, @bg, @border,
                     @color-hover, @bg-hover, @border-hover,
                     @color-active, @bg-active, @border-active) {
   &, &:disabled, &:disabled:hover,
@@ -109,7 +109,7 @@
 
 // button styles
 .btn-default {
-  .misago-btn(
+  .limitless-btn(
     @btn-default-color,
     @btn-default-bg,
 
@@ -122,7 +122,7 @@
 }
 
 .btn-primary {
-  .misago-btn(
+  .limitless-btn(
     @btn-primary-color,
     @btn-primary-bg,
 
@@ -135,7 +135,7 @@
 }
 
 .btn-success {
-  .misago-btn(
+  .limitless-btn(
     @btn-success-color,
     @btn-success-bg,
 
@@ -148,7 +148,7 @@
 }
 
 .btn-danger {
-  .misago-btn(
+  .limitless-btn(
     @btn-danger-color,
     @btn-danger-bg,
 
@@ -163,7 +163,7 @@
 
 // outlined button styles
 .btn-default.btn-outline {
-  .misago-btn-outline(
+  .limitless-btn-outline(
     @btn-default-outline-color,
     @btn-default-outline-bg,
     @btn-default-outline-border,
@@ -179,7 +179,7 @@
 }
 
 .btn-primary.btn-outline {
-  .misago-btn-outline(
+  .limitless-btn-outline(
     @btn-primary-outline-color,
     @btn-primary-outline-bg,
     @btn-primary-outline-border,
@@ -196,11 +196,11 @@
 
 
 // sign in and register buttons in navbar
-.navbar-misago {
+.navbar-limitless {
   .btn-sign-in {
     border-radius: @navbar-btn-sign-in-radius;
 
-    .misago-btn-outline(
+    .limitless-btn-outline(
       @navbar-btn-sign-in-color,
       @navbar-btn-sign-in-bg,
       @navbar-btn-sign-in-border,
@@ -218,7 +218,7 @@
   .btn-register {
     border-radius: @navbar-btn-register-radius;
 
-    .misago-btn-outline(
+    .limitless-btn-outline(
       @navbar-btn-register-color,
       @navbar-btn-register-bg,
       @navbar-btn-register-border,

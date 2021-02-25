@@ -1,12 +1,12 @@
 import React from "react"
 import Form from "./form"
-import FormGroup from "misago/components/form-group"
-import * as participants from "misago/reducers/participants"
-import { updateAcl } from "misago/reducers/thread"
-import ajax from "misago/services/ajax"
-import modal from "misago/services/modal"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import FormGroup from "limitless/components/form-group"
+import * as participants from "limitless/reducers/participants"
+import { updateAcl } from "limitless/reducers/thread"
+import ajax from "limitless/services/ajax"
+import modal from "limitless/services/modal"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 export default class extends Form {
   constructor(props) {

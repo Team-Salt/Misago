@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import Header from 'misago/components/threads/header'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import Header from 'limitless/components/threads/header'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 let route = null;
 

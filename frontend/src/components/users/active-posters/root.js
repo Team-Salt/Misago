@@ -1,12 +1,12 @@
 import React from "react"
-import ListEmpty from "misago/components/users/active-posters/list-empty"
-import ListPreview from "misago/components/users/active-posters/list-preview"
-import ListReady from "misago/components/users/active-posters/list-ready"
-import misago from "misago/index"
-import { hydrate } from "misago/reducers/users"
-import polls from "misago/services/polls"
-import store from "misago/services/store"
-import title from "misago/services/page-title"
+import ListEmpty from "limitless/components/users/active-posters/list-empty"
+import ListPreview from "limitless/components/users/active-posters/list-preview"
+import ListReady from "limitless/components/users/active-posters/list-ready"
+import misago from "limitless/index"
+import { hydrate } from "limitless/reducers/users"
+import polls from "limitless/services/polls"
+import store from "limitless/services/store"
+import title from "limitless/services/page-title"
 
 export default class extends React.Component {
   constructor(props) {

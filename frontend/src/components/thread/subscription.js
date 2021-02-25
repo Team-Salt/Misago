@@ -1,8 +1,8 @@
 import React from "react"
-import * as actions from "misago/reducers/thread"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import * as actions from "limitless/reducers/thread"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 export default function(props) {
   if (!props.user.id) return null

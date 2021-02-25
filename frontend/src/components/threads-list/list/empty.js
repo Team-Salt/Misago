@@ -1,5 +1,5 @@
 import React from "react"
-import DiffMessage from "misago/components/threads-list/list/diff-message"
+import DiffMessage from "limitless/components/threads-list/list/diff-message"
 
 export default class extends React.Component {
   getDiffMessage() {

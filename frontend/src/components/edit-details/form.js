@@ -1,9 +1,9 @@
 import React from "react"
 import Fieldset from "./fieldset"
-import Button from "misago/components/button"
-import Form from "misago/components/form"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
+import Button from "limitless/components/button"
+import Form from "limitless/components/form"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
 
 export default class extends Form {
   constructor(props) {

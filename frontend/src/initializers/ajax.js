@@ -1,5 +1,5 @@
-import misago from "misago/index"
-import ajax from "misago/services/ajax"
+import misago from "limitless/index"
+import ajax from "limitless/services/ajax"
 
 export default function initializer() {
   ajax.init(misago.get("CSRF_COOKIE_NAME"))

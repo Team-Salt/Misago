@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import ListEmpty from 'misago/components/threads-list/list/empty'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import ListEmpty from 'limitless/components/threads-list/list/empty'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Empty Threads List", function() {
   afterEach(function() {

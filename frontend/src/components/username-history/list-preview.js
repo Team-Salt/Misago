@@ -1,5 +1,5 @@
 import React from "react"
-import ChangePreview from "misago/components/username-history/change-preview"
+import ChangePreview from "limitless/components/username-history/change-preview"
 
 export default class extends React.Component {
   shouldComponentUpdate() {

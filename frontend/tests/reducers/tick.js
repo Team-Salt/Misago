@@ -1,6 +1,6 @@
 import assert from 'assert';
-import { StoreWrapper } from 'misago/services/store';
-import reducer, { initialState, doTick } from 'misago/reducers/tick';
+import { StoreWrapper } from 'limitless/services/store';
+import reducer, { initialState, doTick } from 'limitless/reducers/tick';
 
 let store = null;
 

@@ -1,7 +1,7 @@
 import React from "react"
-import CategoryPicker from "misago/components/threads/category-picker"
-import ModerationControls from "misago/components/threads/moderation/controls"
-import SelectionControls from "misago/components/threads/moderation/selection"
+import CategoryPicker from "limitless/components/threads/category-picker"
+import ModerationControls from "limitless/components/threads/moderation/controls"
+import SelectionControls from "limitless/components/threads/moderation/selection"
 
 export default class extends React.Component {
   getCategoryPicker() {

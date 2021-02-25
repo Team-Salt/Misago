@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import ModalMessage from 'misago/components/modal-message'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import ModalMessage from 'limitless/components/modal-message'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Modal Message", function() {
   afterEach(function() {

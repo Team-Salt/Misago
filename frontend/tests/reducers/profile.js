@@ -1,8 +1,8 @@
 import assert from 'assert';
 import moment from 'moment';
-import { StoreWrapper } from 'misago/services/store';
-import { updateAvatar, updateUsername } from 'misago/reducers/users';
-import reducer, { hydrate, patch } from 'misago/reducers/profile';
+import { StoreWrapper } from 'limitless/services/store';
+import { updateAvatar, updateUsername } from 'limitless/reducers/users';
+import reducer, { hydrate, patch } from 'limitless/reducers/profile';
 
 let profileMock = null;
 let store = null;

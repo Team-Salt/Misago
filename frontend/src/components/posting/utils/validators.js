@@ -1,5 +1,5 @@
-import { maxLength, minLength } from "misago/utils/validators"
-import misago from "misago"
+import { maxLength, minLength } from "limitless/utils/validators"
+import misago from "limitless"
 
 export function getTitleValidators() {
   return [getTitleLengthMin(), getTitleLengthMax()]

@@ -1,8 +1,8 @@
 import assert from 'assert';
 import moment from 'moment';
 import React from 'react'; // jshint ignore:line
-import Header from 'misago/components/profile/header'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import Header from 'limitless/components/profile/header'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 let profileMock = null;
 

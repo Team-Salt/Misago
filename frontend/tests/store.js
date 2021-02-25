@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { StoreWrapper } from 'misago/services/store';
+import { StoreWrapper } from 'limitless/services/store';
 
 var store = null;
 

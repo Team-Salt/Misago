@@ -244,12 +244,12 @@ run_bash() {
     docker exec -it misago_misago_1 bash
 }
 
-# Shortcut for docker-compose run --rm misago python manage.py
+# Shortcut for docker-compose run --rm limitless python manage.py
 run_managepy() {
     docker-compose run --rm misago python manage.py "${@:2}"
 }
 
-# Shortcut for docker-compose run --rm misago...
+# Shortcut for docker-compose run --rm limitless...
 docker_run() {
     docker-compose run --rm misago "${@:2}"
 }

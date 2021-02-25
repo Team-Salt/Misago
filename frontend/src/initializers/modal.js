@@ -1,5 +1,5 @@
-import misago from "misago/index"
-import modal from "misago/services/modal"
+import misago from "limitless/index"
+import modal from "limitless/services/modal"
 
 export default function initializer() {
   let element = document.getElementById("modal-mount")

@@ -2,12 +2,12 @@ import React from "react"
 import Breadcrumbs from "./breadcrumbs"
 import { isModerationVisible, ModerationControls } from "../moderation/thread"
 import Stats from "./stats"
-import Form from "misago/components/form"
-import { getTitleValidators } from "misago/components/posting/utils/validators"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
-import * as thread from "misago/reducers/thread"
+import Form from "limitless/components/form"
+import { getTitleValidators } from "limitless/components/posting/utils/validators"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
+import * as thread from "limitless/reducers/thread"
 
 export default class extends Form {
   constructor(props) {

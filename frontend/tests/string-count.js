@@ -1,5 +1,5 @@
 import assert from 'assert';
-import stringCount from 'misago/utils/string-count';
+import stringCount from 'limitless/utils/string-count';
 
 describe('String Count', function() {
   it("counts number of occurences of needle in haystack", function() {

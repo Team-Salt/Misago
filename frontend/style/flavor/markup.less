@@ -4,14 +4,14 @@
 
 
 // Round images
-.misago-markup img {
+.limitless-markup img {
   border-radius: @border-radius-base;
 }
 
 
 // Quote block
-.misago-markup .quote-block,
-.misago-markup blockquote {
+.limitless-markup .quote-block,
+.limitless-markup blockquote {
   background-color: #ffecb3;
   border-color: #b3e5fc;
   overflow: hidden;
@@ -38,8 +38,8 @@
   }
 }
 
-.misago-markup>.quote-block,
-.misago-markup>blockquote {
+.limitless-markup>.quote-block,
+.limitless-markup>blockquote {
   background: #ffecb3;
   border: none;
   border-radius: @border-radius-base;
@@ -49,7 +49,7 @@
   }
 }
 
-.misago-markup .quote-body {
+.limitless-markup .quote-body {
   background: #ffecb3;
 
   &>.quote-block, &>blockquote {
@@ -60,7 +60,7 @@
 
 
 // Spoiler block
-.misago-markup .spoiler-block {
+.limitless-markup .spoiler-block {
   background: repeating-linear-gradient(
     45deg,
     fadeout(@gray-lighter, 50%),
@@ -71,7 +71,7 @@
   border: none;
 }
 
-.misago-markup .spoiler-body {
+.limitless-markup .spoiler-body {
   background: transparent;
   -webkit-filter: blur(5px);
   -moz-filter: blur(5px);
@@ -81,7 +81,7 @@
   color: @text-color;
 }
 
-  .misago-markup .spoiler-block.revealed .spoiler-body {
+  .limitless-markup .spoiler-block.revealed .spoiler-body {
     -webkit-filter: none;
     -moz-filter: none;
     -o-filter: none;
@@ -89,7 +89,7 @@
     filter: none;
   }
 
-.misago-markup .spoiler-overlay {
+.limitless-markup .spoiler-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -101,13 +101,13 @@
   background: fadeout(@post-bg, 90%);
 }
 
-.misago-markup .spoiler-reveal {
+.limitless-markup .spoiler-reveal {
   .btn-default();
 }
 
-.misago-markup .spoiler-reveal,
-.misago-markup .spoiler-reveal:active,
-.misago-markup .spoiler-reveal:hover {
+.limitless-markup .spoiler-reveal,
+.limitless-markup .spoiler-reveal:active,
+.limitless-markup .spoiler-reveal:hover {
   border-radius: 4px;
   box-shadow: 0px 0px 0px 4px @post-bg;
   padding: @padding-base-vertical @padding-base-horizontal;

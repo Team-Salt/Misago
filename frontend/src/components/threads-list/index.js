@@ -1,7 +1,7 @@
 import React from "react"
-import ListEmpty from "misago/components/threads-list/list/empty"
-import ListReady from "misago/components/threads-list/list/ready"
-import ListPreview from "misago/components/threads-list/list/preview"
+import ListEmpty from "limitless/components/threads-list/list/empty"
+import ListReady from "limitless/components/threads-list/list/ready"
+import ListPreview from "limitless/components/threads-list/list/preview"
 
 export default function(props) {
   if (!props.isLoaded) {

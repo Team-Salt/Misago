@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import Loader from 'misago/components/loader'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import Loader from 'limitless/components/loader'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Loader", function() {
   afterEach(function() {

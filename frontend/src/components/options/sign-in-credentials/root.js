@@ -1,8 +1,8 @@
 import React from "react"
-import ChangeEmail from "misago/components/options/sign-in-credentials/change-email"
-import ChangePassword from "misago/components/options/sign-in-credentials/change-password"
-import misago from "misago/index"
-import title from "misago/services/page-title"
+import ChangeEmail from "limitless/components/options/sign-in-credentials/change-email"
+import ChangePassword from "limitless/components/options/sign-in-credentials/change-password"
+import misago from "limitless/index"
+import title from "limitless/services/page-title"
 import UnusablePasswordMessage from "./UnusablePasswordMessage"
 
 export default class extends React.Component {

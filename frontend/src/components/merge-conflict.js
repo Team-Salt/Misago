@@ -2,8 +2,8 @@ import React from "react"
 import Button from "./button"
 import Form from "./form"
 import FormGroup from "./form-group"
-import ajax from "misago/services/ajax"
-import modal from "misago/services/modal"
+import ajax from "limitless/services/ajax"
+import modal from "limitless/services/modal"
 
 export default class extends Form {
   constructor(props) {

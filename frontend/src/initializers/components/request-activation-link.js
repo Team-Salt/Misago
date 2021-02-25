@@ -1,6 +1,6 @@
-import misago from "misago/index"
-import RequestActivationLink from "misago/components/request-activation-link"
-import mount from "misago/utils/mount-component"
+import misago from "limitless/index"
+import RequestActivationLink from "limitless/components/request-activation-link"
+import mount from "limitless/utils/mount-component"
 
 export default function initializer() {
   if (document.getElementById("request-activation-link-mount")) {

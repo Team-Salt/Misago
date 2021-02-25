@@ -1,11 +1,11 @@
 import { connect } from "react-redux"
-import misago from "misago/index"
+import misago from "limitless/index"
 import {
   UserMenu,
   CompactUserMenu,
   select
-} from "misago/components/user-menu/root"
-import mount from "misago/utils/mount-component"
+} from "limitless/components/user-menu/root"
+import mount from "limitless/utils/mount-component"
 
 export default function initializer() {
   mount(connect(select)(UserMenu), "user-menu-mount")

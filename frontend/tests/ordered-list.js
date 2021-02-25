@@ -1,5 +1,5 @@
 import assert from 'assert';
-import OrderedList from 'misago/utils/ordered-list';
+import OrderedList from 'limitless/utils/ordered-list';
 
 var list = null;
 

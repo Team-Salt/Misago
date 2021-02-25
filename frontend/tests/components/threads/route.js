@@ -1,15 +1,15 @@
 import assert from 'assert';
 import moment from 'moment'; // jshint ignore:line
 import React from 'react'; // jshint ignore:line
-import Route from 'misago/components/threads/route'; // jshint ignore:line
-import misago from 'misago/index';
-import reducer, { hydrateThread } from 'misago/reducers/threads'; // jshint ignore:line
-import ajax from 'misago/services/ajax';
-import title from 'misago/services/page-title';
-import polls from 'misago/services/polls';
-import snackbar from 'misago/services/snackbar';
-import store from 'misago/services/store';
-import * as testUtils from 'misago/utils/test-utils';
+import Route from 'limitless/components/threads/route'; // jshint ignore:line
+import misago from 'limitless/index';
+import reducer, { hydrateThread } from 'limitless/reducers/threads'; // jshint ignore:line
+import ajax from 'limitless/services/ajax';
+import title from 'limitless/services/page-title';
+import polls from 'limitless/services/polls';
+import snackbar from 'limitless/services/snackbar';
+import store from 'limitless/services/store';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let snackbarStore = null;
 /* jshint ignore:start */

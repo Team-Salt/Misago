@@ -1,11 +1,11 @@
 import React from "react"
-import Avatar from "misago/components/avatar"
-import DropdownToggle from "misago/components/dropdown-toggle"
+import Avatar from "limitless/components/avatar"
+import DropdownToggle from "limitless/components/dropdown-toggle"
 import FollowButton from "./follow-button"
 import MessageButton from "./message-button"
 import ModerationNav from "./moderation/nav"
 import { CompactNav } from "./navs"
-import Status, { StatusIcon, StatusLabel } from "misago/components/user-status"
+import Status, { StatusIcon, StatusLabel } from "limitless/components/user-status"
 
 export default class extends React.Component {
   getUserStatus() {

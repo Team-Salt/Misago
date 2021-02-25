@@ -20,7 +20,7 @@ var fs = require('fs');
 var glob = require('glob');
 var del = require('del');
 
-var misago = '../misago/static/misago/';
+var limitless = '../limitless/static/limitless/';
 
 // Source tasks
 
@@ -62,7 +62,7 @@ function lintjsapp() {
           "gettext",
           "ngettext",
           "interpolate",
-          "misago",
+          "limitless",
           "hljs"
         ],
         envs: [
@@ -91,9 +91,9 @@ function fastsource() {
     .external('react-redux')
     .transform(babelify)
     .bundle()
-    .pipe(source('misago.js'))
+    .pipe(source('limitless.js'))
     .pipe(buffer())
-    .pipe(gulp.dest(misago + 'js'));
+    .pipe(gulp.dest(limitless + 'js'));
 };
 
 function watchifybuild() {
@@ -128,7 +128,7 @@ function watchifybuild() {
           gutil.log(gutil.colors.red(err.toString() + '\n' + err.codeFrame));
           this.emit('end');
         })
-        .pipe(fs.createWriteStream(misago + 'js/misago.js'));
+        .pipe(fs.createWriteStream(limitless + 'js/limitless.js'));
     }
 
     b.on('update', bundle);
@@ -155,18 +155,18 @@ function jsapp() {
     .external('react-redux')
     .transform(babelify, { sourceMaps: true })
     .bundle()
-    .pipe(source('misago.js'))
+    .pipe(source('limitless.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(misago + 'js'));
+    .pipe(gulp.dest(limitless + 'js'));
 };
 
 // Styles tasks
 
 function cleanstyle() {
-  return del(misago + 'css', {force: true});
+  return del(limitless + 'css', {force: true});
 };
 
 function faststyle() {
@@ -175,29 +175,29 @@ function faststyle() {
         gutil.log(gutil.colors.red(err.toString()));
         this.emit('end');
       }))
-    .pipe(rename('misago.css'))
-    .pipe(gulp.dest(misago + 'css'));
+    .pipe(rename('limitless.css'))
+    .pipe(gulp.dest(limitless + 'css'));
 };
 
 function style() {
   return gulp.src('style/index.less')
     .pipe(less())
     .pipe(cleanCss({compatibility: 'ie11'}))
-    .pipe(rename('misago.css'))
-    .pipe(gulp.dest(misago + 'css'));
+    .pipe(rename('limitless.css'))
+    .pipe(gulp.dest(limitless + 'css'));
 };
 
 // Static tasks
 
 function copyfonts() {
   return gulp.src('static/fonts/**/*')
-    .pipe(gulp.dest(misago + 'fonts'));
+    .pipe(gulp.dest(limitless + 'fonts'));
 };
 
 function copyimages() {
   return gulp.src('static/img/**/*')
     .pipe(image())
-    .pipe(gulp.dest(misago + 'img'));
+    .pipe(gulp.dest(limitless + 'img'));
 };
 
 const statics = gulp.parallel(copyfonts, copyimages);
@@ -225,12 +225,12 @@ function vendors() {
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(misago + 'js'));
+    .pipe(gulp.dest(limitless + 'js'));
 };
 
 function copyzxcvbn() {
   return gulp.src('node_modules/zxcvbn/dist/*')
-    .pipe(gulp.dest(misago + 'js'));
+    .pipe(gulp.dest(limitless + 'js'));
 };
 
 // Watchers

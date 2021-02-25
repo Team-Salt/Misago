@@ -1,8 +1,8 @@
 import assert from 'assert';
 import moment from 'moment'; // jshint ignore:line
 import React from 'react'; // jshint ignore:line
-import UsernameHistory from 'misago/components/username-history/root'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import UsernameHistory from 'limitless/components/username-history/root'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Username History", function() {
   afterEach(function() {

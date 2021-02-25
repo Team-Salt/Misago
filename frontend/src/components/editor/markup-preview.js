@@ -1,5 +1,5 @@
 import React from "react"
-import MisagoMarkup from "misago/components/misago-markup"
+import MisagoMarkup from "limitless/components/limitless-markup"
 
 export default function(props) {
   return (

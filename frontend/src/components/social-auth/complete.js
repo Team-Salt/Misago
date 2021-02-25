@@ -1,6 +1,6 @@
 import React from "react"
 import Header from "./header"
-import misago from "misago"
+import misago from "limitless"
 
 const Complete = ({ activation, backend_name, username }) => {
   let icon = ""

@@ -1,6 +1,6 @@
-import misago from "misago/index"
-import reducer from "misago/reducers/threads"
-import store from "misago/services/store"
+import misago from "limitless/index"
+import reducer from "limitless/reducers/threads"
+import store from "limitless/services/store"
 
 export default function initializer() {
   store.addReducer("threads", reducer, [])

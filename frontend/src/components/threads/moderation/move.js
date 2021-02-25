@@ -1,11 +1,11 @@
 import React from "react"
-import Form from "misago/components/form"
-import FormGroup from "misago/components/form-group"
-import CategorySelect from "misago/components/category-select"
-import * as select from "misago/reducers/selection"
-import { filterThreads } from "misago/reducers/threads"
-import modal from "misago/services/modal"
-import store from "misago/services/store"
+import Form from "limitless/components/form"
+import FormGroup from "limitless/components/form-group"
+import CategorySelect from "limitless/components/category-select"
+import * as select from "limitless/reducers/selection"
+import { filterThreads } from "limitless/reducers/threads"
+import modal from "limitless/services/modal"
+import store from "limitless/services/store"
 
 export default class extends Form {
   constructor(props) {

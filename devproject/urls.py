@@ -22,7 +22,7 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.http import last_modified
 from django.views.i18n import JavaScriptCatalog
 
-from misago.users.forms.auth import AdminAuthenticationForm
+from limitless.users.forms.auth import AdminAuthenticationForm
 
 
 admin.autodiscover()
@@ -30,13 +30,13 @@ admin.site.login_form = AdminAuthenticationForm
 
 
 urlpatterns = [
-    url(r"^", include("misago.urls", namespace="misago")),
+    url(r"^", include("limitless.urls", namespace="limitless")),
     # Javascript translations
     url(
         r"^django-i18n.js$",
         last_modified(lambda req, **kw: timezone.now())(
-            cache_page(86400 * 2, key_prefix="misagojsi18n")(
-                JavaScriptCatalog.as_view(packages=["misago"])
+            cache_page(86400 * 2, key_prefix="limitlessjsi18n")(
+                JavaScriptCatalog.as_view(packages=["limitless"])
             )
         ),
         name="django-i18n",
@@ -44,7 +44,7 @@ urlpatterns = [
     # Uncomment next line if you plan to use Django admin for 3rd party apps
     url(r"^django-admin/", admin.site.urls),
     # django-simple-sso doesn't have namespaces, we can't use namespace here
-    url(r"^sso/", include("misago.sso.urls")),
+    url(r"^sso/", include("limitless.sso.urls")),
 ]
 
 
@@ -61,9 +61,9 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 # Error Handlers
-# Misago needs those handlers to deal with errors raised by it's middlewares
+# LimitLess needs those handlers to deal with errors raised by it's middlewares
 # If you replace those handlers with custom ones, make sure you decorate them
 # with shared_403_exception_handler or shared_404_exception_handler
-# decorators that are defined in misago.views.errorpages module!
-handler403 = "misago.core.errorpages.permission_denied"
-handler404 = "misago.core.errorpages.page_not_found"
+# decorators that are defined in limitless.views.errorpages module!
+handler403 = "limitless.core.errorpages.permission_denied"
+handler404 = "limitless.core.errorpages.page_not_found"

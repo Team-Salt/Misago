@@ -1,6 +1,6 @@
-import misago from "misago"
-import ResetPasswordForm from "misago/components/reset-password-form"
-import mount from "misago/utils/mount-component"
+import misago from "limitless"
+import ResetPasswordForm from "limitless/components/reset-password-form"
+import mount from "limitless/utils/mount-component"
 
 export default function initializer() {
   if (document.getElementById("reset-password-form-mount")) {

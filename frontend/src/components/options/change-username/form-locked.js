@@ -1,5 +1,5 @@
 import React from "react"
-import PanelMessage from "misago/components/panel-message"
+import PanelMessage from "limitless/components/panel-message"
 
 export default class extends React.Component {
   getHelpText() {

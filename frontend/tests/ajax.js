@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { Ajax } from 'misago/services/ajax';
+import { Ajax } from 'limitless/services/ajax';
 
 var ajax = null;
 

@@ -1,5 +1,5 @@
-import misago from "misago/index"
-import title from "misago/services/page-title"
+import misago from "limitless/index"
+import title from "limitless/services/page-title"
 
 export default function initializer(context) {
   title.init(

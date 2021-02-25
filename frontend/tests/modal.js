@@ -1,8 +1,8 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import store from 'misago/services/store';
-import { Modal } from 'misago/services/modal';
-import * as testUtils from 'misago/utils/test-utils';
+import store from 'limitless/services/store';
+import { Modal } from 'limitless/services/modal';
+import * as testUtils from 'limitless/utils/test-utils';
 
 var modal = null;
 

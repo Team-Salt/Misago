@@ -1,5 +1,5 @@
 import React from "react"
-import ajax from "misago/services/ajax"
+import ajax from "limitless/services/ajax"
 
 export default class AcceptAgreement extends React.Component {
   constructor(props) {

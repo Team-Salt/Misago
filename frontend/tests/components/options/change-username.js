@@ -1,14 +1,14 @@
 import assert from 'assert';
 import moment from 'moment'; // jshint ignore:line
 import React from 'react'; // jshint ignore:line
-import FormLoading from 'misago/components/options/change-username/form-loading'; // jshint ignore:line
-import FormLocked from 'misago/components/options/change-username/form-locked'; // jshint ignore:line
-import Form from 'misago/components/options/change-username/form'; // jshint ignore:line
-import Root from 'misago/components/options/change-username/root'; // jshint ignore:line
-import misago from 'misago/index';
-import snackbar from 'misago/services/snackbar';
-import store from 'misago/services/store';
-import * as testUtils from 'misago/utils/test-utils';
+import FormLoading from 'limitless/components/options/change-username/form-loading'; // jshint ignore:line
+import FormLocked from 'limitless/components/options/change-username/form-locked'; // jshint ignore:line
+import Form from 'limitless/components/options/change-username/form'; // jshint ignore:line
+import Root from 'limitless/components/options/change-username/root'; // jshint ignore:line
+import misago from 'limitless/index';
+import snackbar from 'limitless/services/snackbar';
+import store from 'limitless/services/store';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let snackbarStore = null;
 let user = testUtils.mockUser();

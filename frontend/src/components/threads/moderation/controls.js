@@ -1,13 +1,13 @@
 import React from "react"
-import ErrorsModal from "misago/components/threads/moderation/errors-list"
-import MergeThreads from "misago/components/threads/moderation/merge"
-import MoveThreads from "misago/components/threads/moderation/move"
-import * as select from "misago/reducers/selection"
-import ajax from "misago/services/ajax"
-import modal from "misago/services/modal"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
-import Countdown from "misago/utils/countdown"
+import ErrorsModal from "limitless/components/threads/moderation/errors-list"
+import MergeThreads from "limitless/components/threads/moderation/merge"
+import MoveThreads from "limitless/components/threads/moderation/move"
+import * as select from "limitless/reducers/selection"
+import ajax from "limitless/services/ajax"
+import modal from "limitless/services/modal"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
+import Countdown from "limitless/utils/countdown"
 
 export default class extends React.Component {
   callApi = (ops, successMessage, onSuccess = null) => {

@@ -1,8 +1,8 @@
-import misago from "misago/index"
-import { patch } from "misago/reducers/auth"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import misago from "limitless/index"
+import { patch } from "limitless/reducers/auth"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 const AUTH_SYNC_RATE = 45 // sync user with backend every 45 seconds
 

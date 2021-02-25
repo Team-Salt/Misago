@@ -1,10 +1,10 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import misago from 'misago/index';
-import { RequestResetForm, LinkSent, AccountInactivePage } from 'misago/components/request-password-reset'; // jshint ignore:line
-import snackbar from 'misago/services/snackbar';
-import store from 'misago/services/store';
-import * as testUtils from 'misago/utils/test-utils';
+import misago from 'limitless/index';
+import { RequestResetForm, LinkSent, AccountInactivePage } from 'limitless/components/request-password-reset'; // jshint ignore:line
+import snackbar from 'limitless/services/snackbar';
+import store from 'limitless/services/store';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let snackbarStore = null;
 

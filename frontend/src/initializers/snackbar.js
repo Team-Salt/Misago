@@ -1,6 +1,6 @@
-import misago from "misago/index"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import misago from "limitless/index"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 export default function initializer() {
   snackbar.init(store)

@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import ModalLoader from 'misago/components/modal-loader'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import ModalLoader from 'limitless/components/modal-loader'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Modal Loader", function() {
   afterEach(function() {

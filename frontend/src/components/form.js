@@ -1,6 +1,6 @@
 import React from "react"
-import { required } from "misago/utils/validators"
-import snackbar from "misago/services/snackbar"
+import { required } from "limitless/utils/validators"
+import snackbar from "limitless/services/snackbar"
 
 let validateRequired = required()
 

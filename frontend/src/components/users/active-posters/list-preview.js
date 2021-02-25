@@ -1,6 +1,6 @@
 import React from "react"
-import ItemPreview from "misago/components/users/active-posters/list-item-preview"
-import * as random from "misago/utils/random"
+import ItemPreview from "limitless/components/users/active-posters/list-item-preview"
+import * as random from "limitless/utils/random"
 
 export default class extends React.Component {
   shouldComponentUpdate() {

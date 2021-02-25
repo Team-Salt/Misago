@@ -1,6 +1,6 @@
 import moment from "moment"
-import { UPDATE_AVATAR, UPDATE_USERNAME } from "misago/reducers/users"
-import concatUnique from "misago/utils/concat-unique"
+import { UPDATE_AVATAR, UPDATE_USERNAME } from "limitless/reducers/users"
+import concatUnique from "limitless/utils/concat-unique"
 
 export const ADD_NAME_CHANGE = "ADD_NAME_CHANGE"
 export const APPEND_HISTORY = "APPEND_HISTORY"

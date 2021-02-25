@@ -1,13 +1,13 @@
 import React from "react"
-import Button from "misago/components/button"
-import Form from "misago/components/form"
-import FormGroup from "misago/components/form-group"
-import Loader from "misago/components/modal-loader"
-import ModalMessage from "misago/components/modal-message"
-import YesNoSwitch from "misago/components/yes-no-switch"
-import misago from "misago/index"
-import ajax from "misago/services/ajax"
-import polls from "misago/services/polls"
+import Button from "limitless/components/button"
+import Form from "limitless/components/form"
+import FormGroup from "limitless/components/form-group"
+import Loader from "limitless/components/modal-loader"
+import ModalMessage from "limitless/components/modal-message"
+import YesNoSwitch from "limitless/components/yes-no-switch"
+import misago from "limitless/index"
+import ajax from "limitless/services/ajax"
+import polls from "limitless/services/polls"
 
 export default class extends Form {
   constructor(props) {

@@ -1,9 +1,9 @@
 import React from "react"
-import Avatar from "misago/components/avatar"
-import Button from "misago/components/button"
-import Loader from "misago/components/loader"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
+import Avatar from "limitless/components/avatar"
+import Button from "limitless/components/button"
+import Loader from "limitless/components/loader"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
 
 export default class extends React.Component {
   constructor(props) {

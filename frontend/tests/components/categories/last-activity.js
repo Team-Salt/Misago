@@ -1,8 +1,8 @@
 import assert from 'assert';
 import moment from 'moment';
 import React from 'react'; // jshint ignore:line
-import LastActivity from 'misago/components/categories/last-activity'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import LastActivity from 'limitless/components/categories/last-activity'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Categories List Category Last Activity", function() {
   afterEach(function() {
@@ -72,7 +72,7 @@ describe("Categories List Category Last Activity", function() {
 
   it("renders guest-posted thread", function() {
     let category = {
-      last_thread_title: "Misago Test Thread",
+      last_thread_title: "LimitLess Test Thread",
       last_thread_url: '/test-thread/url-123/',
       last_post_url: '/test-thread/url-123/last/',
 
@@ -114,7 +114,7 @@ describe("Categories List Category Last Activity", function() {
 
   it("renders thread", function() {
     let category = {
-      last_thread_title: "Misago Test Thread",
+      last_thread_title: "LimitLess Test Thread",
       last_thread_url: '/test-thread/url-123/',
       last_post_url: '/test-thread/url-123/last/',
 

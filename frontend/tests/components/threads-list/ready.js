@@ -1,8 +1,8 @@
 import assert from 'assert';
 import moment from 'moment'; // jshint ignore:line
 import React from 'react'; // jshint ignore:line
-import ListReady from 'misago/components/threads-list/list/ready'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import ListReady from 'limitless/components/threads-list/list/ready'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 /* jshint ignore:start */
 const props = {

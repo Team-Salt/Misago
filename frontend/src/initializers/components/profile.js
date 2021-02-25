@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
-import Profile, { paths, select } from "misago/components/profile/root"
-import misago from "misago/index"
-import mount from "misago/utils/routed-component"
+import Profile, { paths, select } from "limitless/components/profile/root"
+import misago from "limitless/index"
+import mount from "limitless/utils/routed-component"
 
 export default function initializer(context) {
   if (context.has("PROFILE") && context.has("PROFILE_PAGES")) {

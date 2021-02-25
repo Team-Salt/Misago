@@ -2,8 +2,8 @@ import moment from "moment"
 import React from "react"
 import Blankslate from "./blankslate"
 import CategoriesList from "./categories-list"
-import misago from "misago/index"
-import polls from "misago/services/polls"
+import misago from "limitless/index"
+import polls from "limitless/services/polls"
 
 const hydrate = function(category) {
   return Object.assign({}, category, {

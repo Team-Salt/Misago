@@ -1,7 +1,7 @@
 import React from "react"
-import SubscriptionFull from "misago/components/threads-list/thread/subscription/full"
-import OptionsModal from "misago/components/threads-list/thread/subscription/modal"
-import modal from "misago/services/modal"
+import SubscriptionFull from "limitless/components/threads-list/thread/subscription/full"
+import OptionsModal from "limitless/components/threads-list/thread/subscription/modal"
+import modal from "limitless/services/modal"
 
 export default class extends SubscriptionFull {
   showOptions = () => {

@@ -1,0 +1,14 @@
+# Forbid crawlers from indexing parts of site
+User-agent: *
+Disallow: {% url 'limitless:index' %}api/
+Disallow: {% url 'limitless:index' %}activation/
+Disallow: {% url 'limitless:blank-avatar' %}
+Disallow: {% url 'limitless:banned' %}
+Disallow: {% url 'limitless:forgotten-password' %}
+Disallow: {% url 'limitless:login' %}
+Disallow: {% url 'limitless:options' %}
+Disallow: {% url 'limitless:index' %}p/
+Disallow: {% url 'limitless:private-threads' %}
+Disallow: {% url 'limitless:request-activation' %}
+Disallow: {% url 'limitless:search' %}
+Disallow: {% url 'limitless:index' %}u/

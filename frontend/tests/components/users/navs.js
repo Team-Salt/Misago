@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import { TabsNav, CompactNav } from 'misago/components/users/navs'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import { TabsNav, CompactNav } from 'limitless/components/users/navs'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 let lists = {
   baseUrl: '/users/',

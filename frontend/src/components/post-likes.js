@@ -1,9 +1,9 @@
 import React from "react"
 import moment from "moment"
-import Avatar from "misago/components/avatar"
-import Message from "misago/components/modal-message"
-import Loader from "misago/components/modal-loader"
-import ajax from "misago/services/ajax"
+import Avatar from "limitless/components/avatar"
+import Message from "limitless/components/modal-message"
+import Loader from "limitless/components/modal-loader"
+import ajax from "limitless/services/ajax"
 
 export default class extends React.Component {
   constructor(props) {

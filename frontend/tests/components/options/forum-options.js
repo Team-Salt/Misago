@@ -1,9 +1,9 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import ForumOptions from 'misago/components/options/forum-options'; // jshint ignore:line
-import snackbar from 'misago/services/snackbar';
-import store from 'misago/services/store';
-import * as testUtils from 'misago/utils/test-utils';
+import ForumOptions from 'limitless/components/options/forum-options'; // jshint ignore:line
+import snackbar from 'limitless/services/snackbar';
+import store from 'limitless/services/store';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let snackbarStore = null;
 let user = testUtils.mockUser();

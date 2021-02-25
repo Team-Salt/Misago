@@ -1,17 +1,17 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import ListEmpty from 'misago/components/users/active-posters/list-empty'; // jshint ignore:line
-import ListItem from 'misago/components/users/active-posters/list-item'; // jshint ignore:line
-import ListPreview from 'misago/components/users/active-posters/list-preview'; // jshint ignore:line
-import ListReady from 'misago/components/users/active-posters/list-ready'; // jshint ignore:line
-import Root from 'misago/components/users/active-posters/root'; // jshint ignore:line
-import misago from 'misago/index';
-import reducer from 'misago/reducers/users';
-import ajax from 'misago/services/ajax';
-import polls from 'misago/services/polls';
-import snackbar from 'misago/services/snackbar';
-import store from 'misago/services/store';
-import * as testUtils from 'misago/utils/test-utils';
+import ListEmpty from 'limitless/components/users/active-posters/list-empty'; // jshint ignore:line
+import ListItem from 'limitless/components/users/active-posters/list-item'; // jshint ignore:line
+import ListPreview from 'limitless/components/users/active-posters/list-preview'; // jshint ignore:line
+import ListReady from 'limitless/components/users/active-posters/list-ready'; // jshint ignore:line
+import Root from 'limitless/components/users/active-posters/root'; // jshint ignore:line
+import misago from 'limitless/index';
+import reducer from 'limitless/reducers/users';
+import ajax from 'limitless/services/ajax';
+import polls from 'limitless/services/polls';
+import snackbar from 'limitless/services/snackbar';
+import store from 'limitless/services/store';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let snackbarStore = null;
 

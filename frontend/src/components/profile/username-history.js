@@ -1,13 +1,13 @@
 import React from "react"
-import Button from "misago/components/button"
-import Search from "misago/components/quick-search"
-import UsernameHistory from "misago/components/username-history/root"
-import misago from "misago/index"
-import { hydrate, append } from "misago/reducers/username-history"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
-import title from "misago/services/page-title"
+import Button from "limitless/components/button"
+import Search from "limitless/components/quick-search"
+import UsernameHistory from "limitless/components/username-history/root"
+import misago from "limitless/index"
+import { hydrate, append } from "limitless/reducers/username-history"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
+import title from "limitless/services/page-title"
 
 export default class extends React.Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React from "react"
 import Container from "./container"
-import posting from "misago/services/posting"
+import posting from "limitless/services/posting"
 
 export default function(props) {
   return (

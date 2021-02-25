@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import { SideNav, CompactNav } from 'misago/components/profile/navs'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import { SideNav, CompactNav } from 'limitless/components/profile/navs'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 let pages = [
   {

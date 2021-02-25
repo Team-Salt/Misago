@@ -1,5 +1,5 @@
 import React from "react"
-import Select from "misago/components/select"
+import Select from "limitless/components/select"
 
 export default class extends React.Component {
   onChange = ev => {

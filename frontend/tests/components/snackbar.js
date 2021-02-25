@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import { Snackbar } from 'misago/components/snackbar'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import { Snackbar } from 'limitless/components/snackbar'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Snackbar", function() {
   afterEach(function() {

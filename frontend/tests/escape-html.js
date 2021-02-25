@@ -1,5 +1,5 @@
 import assert from 'assert';
-import escapeHtml from 'misago/utils/escape-html';
+import escapeHtml from 'limitless/utils/escape-html';
 
 describe('Escape HTML', function() {
   it("escapes html", function() {

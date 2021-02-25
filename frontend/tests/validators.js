@@ -1,5 +1,5 @@
 import assert from 'assert';
-import * as validators from 'misago/utils/validators';
+import * as validators from 'limitless/utils/validators';
 
 describe("Validator", function() {
   it("required validator", function() {

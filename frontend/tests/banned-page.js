@@ -1,9 +1,9 @@
 import assert from 'assert';
 import moment from 'moment';
-import misago from 'misago/index';
-import store from 'misago/services/store'; // jshint ignore:line
-import showBannedPage from 'misago/utils/banned-page';
-import * as testUtils from 'misago/utils/test-utils';
+import misago from 'limitless/index';
+import store from 'limitless/services/store'; // jshint ignore:line
+import showBannedPage from 'limitless/utils/banned-page';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let ban = {
   message: {

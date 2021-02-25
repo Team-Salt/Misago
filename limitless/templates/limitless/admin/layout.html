@@ -1,0 +1,31 @@
+{% extends "limitless/admin/base.html" %}
+{% load static %}
+
+
+{% block body %}
+<body>
+  {% include "limitless/admin/navbar.html" %}
+
+  <div class="container-fluid my-3 pb-3">
+    <div class="row">
+      <div class="col col-nav-side">
+        {% include "limitless/admin/sidenav.html" %}
+      </div>
+      <div class="col">
+        {% include "limitless/admin/messages.html" %}
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </div>
+
+  {# We include JavaScript at the end of page body so it renders faster #}
+  <script type="text/javascript" src="{% static 'limitless/admin/index.js' %}"></script>
+  {% if ADMIN_MOMENTJS_LOCALE_URL %}
+    <script type="text/javascript" src="{% static ADMIN_MOMENTJS_LOCALE_URL %}"></script>
+  {% endif %}
+  <script type="text/javascript">
+    window.limitless.init()
+  </script>
+  {% block javascripts %}{% endblock javascripts %}
+</body>
+{% endblock body %}

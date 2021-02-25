@@ -1,5 +1,5 @@
 import React from "react"
-import zxcvbn from "misago/services/zxcvbn"
+import zxcvbn from "limitless/services/zxcvbn"
 
 export const STYLES = [
   "progress-bar-danger",

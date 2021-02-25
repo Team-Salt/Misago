@@ -1,6 +1,6 @@
 import assert from 'assert';
-import { SIGN_IN, SIGN_OUT } from 'misago/reducers/auth';
-import { Auth } from 'misago/services/auth';
+import { SIGN_IN, SIGN_OUT } from 'limitless/reducers/auth';
+import { Auth } from 'limitless/services/auth';
 
 let auth = null;
 

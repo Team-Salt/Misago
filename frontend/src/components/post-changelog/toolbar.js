@@ -1,6 +1,6 @@
 import React from "react"
-import Button from "misago/components/button"
-import escapeHtml from "misago/utils/escape-html"
+import Button from "limitless/components/button"
+import escapeHtml from "limitless/utils/escape-html"
 
 const DATE_ABBR = '<abbr title="%(absolute)s">%(relative)s</abbr>'
 const USER_SPAN = '<span class="item-title">%(user)s</span>'

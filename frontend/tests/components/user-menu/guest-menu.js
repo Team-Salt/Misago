@@ -1,11 +1,11 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import { GuestMenu, GuestNav, CompactGuestNav } from 'misago/components/user-menu/guest-nav'; // jshint ignore:line
-import misago from 'misago/index';
-import dropdown from 'misago/services/mobile-navbar-dropdown';
-import modal from 'misago/services/modal';
-import store from 'misago/services/store';
-import * as testUtils from 'misago/utils/test-utils';
+import { GuestMenu, GuestNav, CompactGuestNav } from 'limitless/components/user-menu/guest-nav'; // jshint ignore:line
+import misago from 'limitless/index';
+import dropdown from 'limitless/services/mobile-navbar-dropdown';
+import modal from 'limitless/services/modal';
+import store from 'limitless/services/store';
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Guest Menu", function() {
   beforeEach(function() {

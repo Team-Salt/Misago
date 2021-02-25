@@ -1,11 +1,11 @@
 import React from "react"
-import misago from "misago/index"
-import Button from "misago/components/button"
-import Form from "misago/components/form"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import * as validators from "misago/utils/validators"
-import showBannedPage from "misago/utils/banned-page"
+import misago from "limitless/index"
+import Button from "limitless/components/button"
+import Form from "limitless/components/form"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import * as validators from "limitless/utils/validators"
+import showBannedPage from "limitless/utils/banned-page"
 
 export class RequestLinkForm extends Form {
   constructor(props) {

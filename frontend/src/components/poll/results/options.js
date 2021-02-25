@@ -1,12 +1,12 @@
 import React from "react"
 import Modal from "./modal"
-import * as poll from "misago/reducers/poll"
-import * as thread from "misago/reducers/thread"
-import ajax from "misago/services/ajax"
-import modal from "misago/services/modal"
-import posting from "misago/services/posting"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import * as poll from "limitless/reducers/poll"
+import * as thread from "limitless/reducers/thread"
+import ajax from "limitless/services/ajax"
+import modal from "limitless/services/modal"
+import posting from "limitless/services/posting"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 export default function(props) {
   const { isPollOver, poll, showVoting, thread } = props

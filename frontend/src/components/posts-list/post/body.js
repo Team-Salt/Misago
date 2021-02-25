@@ -1,7 +1,7 @@
 import React from "react"
 import Waypoint from "../waypoint"
-import MisagoMarkup from "misago/components/misago-markup"
-import escapeHtml from "misago/utils/escape-html"
+import MisagoMarkup from "limitless/components/limitless-markup"
+import escapeHtml from "limitless/utils/escape-html"
 
 const HIDDEN_BY_URL = '<a href="%(url)s" class="item-title">%(user)s</a>'
 const HIDDEN_BY_SPAN = '<span class="item-title">%(user)s</span>'

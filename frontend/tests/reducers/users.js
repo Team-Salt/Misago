@@ -1,6 +1,6 @@
 import moment from 'moment';
 import assert from 'assert';
-import reducer, { updateAvatar, append, hydrate, hydrateStatus } from 'misago/reducers/users';
+import reducer, { updateAvatar, append, hydrate, hydrateStatus } from 'limitless/reducers/users';
 
 describe("Users Reducer", function() {
   it("hydrates result", function() {

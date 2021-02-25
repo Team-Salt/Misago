@@ -2,10 +2,10 @@ import React from "react"
 import Form from "./form"
 import GroupsList from "./groups-list"
 import Header from "./header"
-import ProfileDetailsData from "misago/data/profile-details"
-import { load as loadDetails } from "misago/reducers/profile-details"
-import title from "misago/services/page-title"
-import snackbar from "misago/services/snackbar"
+import ProfileDetailsData from "limitless/data/profile-details"
+import { load as loadDetails } from "limitless/reducers/profile-details"
+import title from "limitless/services/page-title"
+import snackbar from "limitless/services/snackbar"
 
 export default class extends React.Component {
   constructor(props) {

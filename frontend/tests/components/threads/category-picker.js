@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import CategoryPicker from 'misago/components/threads/category-picker'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import CategoryPicker from 'limitless/components/threads/category-picker'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 /* jshint ignore:start */
 let list = {

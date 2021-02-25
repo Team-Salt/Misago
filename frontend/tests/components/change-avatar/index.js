@@ -1,9 +1,9 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import ChangeAvatarIndex from 'misago/components/change-avatar/index'; // jshint ignore:line
-import misago from 'misago/index';
-import snackbar from 'misago/services/snackbar';
-import * as testUtils from 'misago/utils/test-utils';
+import ChangeAvatarIndex from 'limitless/components/change-avatar/index'; // jshint ignore:line
+import misago from 'limitless/index';
+import snackbar from 'limitless/services/snackbar';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let snackbarStore = null;
 let apiResponse = {

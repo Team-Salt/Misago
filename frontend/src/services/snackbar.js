@@ -1,4 +1,4 @@
-import { showSnackbar, hideSnackbar } from "misago/reducers/snackbar"
+import { showSnackbar, hideSnackbar } from "limitless/reducers/snackbar"
 
 const HIDE_ANIMATION_LENGTH = 300
 const MESSAGE_SHOW_LENGTH = 5000

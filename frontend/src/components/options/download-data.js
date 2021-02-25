@@ -1,9 +1,9 @@
 import React from "react"
 import moment from "moment"
-import Button from "misago/components/button"
-import ajax from "misago/services/ajax"
-import title from "misago/services/page-title"
-import snackbar from "misago/services/snackbar"
+import Button from "limitless/components/button"
+import ajax from "limitless/services/ajax"
+import title from "limitless/services/page-title"
+import snackbar from "limitless/services/snackbar"
 
 export default class DownloadData extends React.Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import Nav from 'misago/components/profile/moderation/nav'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import Nav from 'limitless/components/profile/moderation/nav'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 let profileMock = null;
 

@@ -1,5 +1,5 @@
 import React from "react"
-import Options from "misago/components/threads-list/thread/subscription/options"
+import Options from "limitless/components/threads-list/thread/subscription/options"
 
 export default class extends React.Component {
   getIcon() {

@@ -1,6 +1,6 @@
-import misago from "misago/index"
-import reducer from "misago/reducers/profile-details"
-import store from "misago/services/store"
+import misago from "limitless/index"
+import reducer from "limitless/reducers/profile-details"
+import store from "limitless/services/store"
 
 export default function initializer() {
   let initialState = null

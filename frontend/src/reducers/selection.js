@@ -1,4 +1,4 @@
-import { toggle } from "misago/utils/sets"
+import { toggle } from "limitless/utils/sets"
 
 export const SELECT_ALL = "SELECT_ALL"
 export const SELECT_NONE = "SELECT_NONE"

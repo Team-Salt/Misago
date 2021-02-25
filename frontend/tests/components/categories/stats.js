@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import Stats from 'misago/components/categories/stats'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import Stats from 'limitless/components/categories/stats'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Categories List Category Stats", function() {
   afterEach(function() {

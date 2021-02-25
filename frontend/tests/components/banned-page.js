@@ -1,8 +1,8 @@
 import assert from 'assert';
 import moment from 'moment'; // jshint ignore:line
 import React from 'react'; // jshint ignore:line
-import BannedPage from 'misago/components/banned-page'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import BannedPage from 'limitless/components/banned-page'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Banned page", function() {
   afterEach(function() {

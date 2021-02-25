@@ -1,5 +1,5 @@
 import React from "react"
-import misago from "misago"
+import misago from "limitless"
 
 export default function(props) {
   const size = props.size || 100

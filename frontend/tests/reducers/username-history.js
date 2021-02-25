@@ -1,7 +1,7 @@
 import moment from 'moment';
 import assert from 'assert';
-import { updateAvatar, updateUsername } from 'misago/reducers/users';
-import reducer, { addNameChange, hydrate, append } from 'misago/reducers/username-history';
+import { updateAvatar, updateUsername } from 'limitless/reducers/users';
+import reducer, { addNameChange, hydrate, append } from 'limitless/reducers/username-history';
 
 describe("Username History Reducer", function() {
   it("hydrates result", function() {

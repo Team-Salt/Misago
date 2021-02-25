@@ -1,17 +1,17 @@
 import assert from 'assert';
 import moment from 'moment'; // jshint ignore:line
 import React from 'react'; // jshint ignore:line
-import ListLoading from 'misago/components/users/rank/list-loading' // jshint ignore:line
-import List from 'misago/components/users/rank/list' // jshint ignore:line
-import Pager from 'misago/components/users/rank/pager' // jshint ignore:line
-import Root from 'misago/components/users/rank/root'; // jshint ignore:line
-import misago from 'misago/index';
-import reducer from 'misago/reducers/users';
-import ajax from 'misago/services/ajax';
-import polls from 'misago/services/polls';
-import snackbar from 'misago/services/snackbar';
-import store from 'misago/services/store';
-import * as testUtils from 'misago/utils/test-utils';
+import ListLoading from 'limitless/components/users/rank/list-loading' // jshint ignore:line
+import List from 'limitless/components/users/rank/list' // jshint ignore:line
+import Pager from 'limitless/components/users/rank/pager' // jshint ignore:line
+import Root from 'limitless/components/users/rank/root'; // jshint ignore:line
+import misago from 'limitless/index';
+import reducer from 'limitless/reducers/users';
+import ajax from 'limitless/services/ajax';
+import polls from 'limitless/services/polls';
+import snackbar from 'limitless/services/snackbar';
+import store from 'limitless/services/store';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let snackbarStore = null;
 

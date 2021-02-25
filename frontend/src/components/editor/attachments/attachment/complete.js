@@ -1,7 +1,7 @@
 import React from "react"
-import misago from "misago"
-import escapeHtml from "misago/utils/escape-html"
-import formatFilesize from "misago/utils/file-size"
+import misago from "limitless"
+import escapeHtml from "limitless/utils/escape-html"
+import formatFilesize from "limitless/utils/file-size"
 
 const DATE_ABBR = '<abbr title="%(absolute)s">%(relative)s</abbr>'
 const USER_SPAN = '<span class="item-title">%(user)s</span>'

@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import Controls from 'misago/components/threads/moderation/controls'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import Controls from 'limitless/components/threads/moderation/controls'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Threads List Moderation Controls Display", function() {
   afterEach(function() {

@@ -1,11 +1,11 @@
 import assert from 'assert';
 import moment from 'moment';
 import React from 'react'; // jshint ignore:line
-import BanDetails from 'misago/components/profile/ban-details'; // jshint ignore:line
-import misago from 'misago/index';
-import ajax from 'misago/services/ajax';
-import polls from 'misago/services/polls';
-import * as testUtils from 'misago/utils/test-utils';
+import BanDetails from 'limitless/components/profile/ban-details'; // jshint ignore:line
+import misago from 'limitless/index';
+import ajax from 'limitless/services/ajax';
+import polls from 'limitless/services/polls';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let profileMock = {
   username: 'BobBoberson',

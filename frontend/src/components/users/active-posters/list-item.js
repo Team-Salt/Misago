@@ -1,9 +1,9 @@
 import React from "react"
 import { Link } from "react-router"
-import Avatar from "misago/components/avatar"
-import Status, { StatusIcon, StatusLabel } from "misago/components/user-status"
-import misago from "misago/index"
-import * as random from "misago/utils/random"
+import Avatar from "limitless/components/avatar"
+import Status, { StatusIcon, StatusLabel } from "limitless/components/user-status"
+import misago from "limitless/index"
+import * as random from "limitless/utils/random"
 
 export default class extends React.Component {
   getClassName() {

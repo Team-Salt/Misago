@@ -1,6 +1,6 @@
 import assert from 'assert';
-import { StoreWrapper } from 'misago/services/store';
-import reducer, { all, none, item } from 'misago/reducers/selection';
+import { StoreWrapper } from 'limitless/services/store';
+import reducer, { all, none, item } from 'limitless/reducers/selection';
 
 let store = null;
 

@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { LocalStorage } from 'misago/services/local-storage';
+import { LocalStorage } from 'limitless/services/local-storage';
 
 describe("LocalStorage", function() {
   it("changes state", function() {

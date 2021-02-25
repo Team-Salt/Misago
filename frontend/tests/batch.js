@@ -1,5 +1,5 @@
 import assert from 'assert';
-import batch from 'misago/utils/batch';
+import batch from 'limitless/utils/batch';
 
 describe('Batch', function() {
   it("splits list into batches", function() {

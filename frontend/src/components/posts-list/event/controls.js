@@ -1,9 +1,9 @@
 import React from "react"
 import moment from "moment"
-import * as post from "misago/reducers/post"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import * as post from "limitless/reducers/post"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 export default function(props) {
   if (isVisible(props.post.acl)) {

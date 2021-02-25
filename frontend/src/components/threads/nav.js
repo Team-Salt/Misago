@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router"
-import Li from "misago/components/li"
+import Li from "limitless/components/li"
 
 export default function({ baseUrl, list, lists }) {
   if (lists.length < 2) return null

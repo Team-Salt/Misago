@@ -1,12 +1,12 @@
 import React from "react"
-import PageLead from "misago/components/page-lead"
-import List from "misago/components/users/rank/list"
-import ListLoading from "misago/components/users/rank/list-loading"
-import misago from "misago/index"
-import { hydrate } from "misago/reducers/users"
-import polls from "misago/services/polls"
-import store from "misago/services/store"
-import title from "misago/services/page-title"
+import PageLead from "limitless/components/page-lead"
+import List from "limitless/components/users/rank/list"
+import ListLoading from "limitless/components/users/rank/list-loading"
+import misago from "limitless/index"
+import { hydrate } from "limitless/reducers/users"
+import polls from "limitless/services/polls"
+import store from "limitless/services/store"
+import title from "limitless/services/page-title"
 
 export default class extends React.Component {
   constructor(props) {

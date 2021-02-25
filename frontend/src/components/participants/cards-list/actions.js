@@ -1,9 +1,9 @@
-import * as participants from "misago/reducers/participants"
-import { updateAcl } from "misago/reducers/thread"
-import misago from "misago"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import * as participants from "limitless/reducers/participants"
+import { updateAcl } from "limitless/reducers/thread"
+import misago from "limitless"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 export function leave(thread, participant) {
   ajax

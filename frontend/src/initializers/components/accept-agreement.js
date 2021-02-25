@@ -1,7 +1,7 @@
 import React from "react"
-import misago from "misago/index"
-import AcceptAgreement from "misago/components/accept-agreement"
-import mount from "misago/utils/mount-component"
+import misago from "limitless/index"
+import AcceptAgreement from "limitless/components/accept-agreement"
+import mount from "limitless/utils/mount-component"
 
 export default function initializer(context) {
   if (document.getElementById("required-agreement-mount")) {

@@ -1,5 +1,5 @@
 import React from "react"
-import ListItem from "misago/components/users/active-posters/list-item"
+import ListItem from "limitless/components/users/active-posters/list-item"
 
 export default class extends React.Component {
   getLeadMessage() {

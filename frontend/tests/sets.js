@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { push, remove, toggle } from 'misago/utils/sets';
+import { push, remove, toggle } from 'limitless/utils/sets';
 
 describe("Sets Utils", function() {
   it("push", function() {

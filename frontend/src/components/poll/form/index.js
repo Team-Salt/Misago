@@ -1,14 +1,14 @@
 import React from "react"
 import ChoicesControl from "./choices-control"
-import Button from "misago/components/button"
-import Form from "misago/components/form"
-import FormGroup from "misago/components/form-group"
-import YesNoSwitch from "misago/components/yes-no-switch"
-import * as poll from "misago/reducers/poll"
-import ajax from "misago/services/ajax"
-import posting from "misago/services/posting"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import Button from "limitless/components/button"
+import Form from "limitless/components/form"
+import FormGroup from "limitless/components/form-group"
+import YesNoSwitch from "limitless/components/yes-no-switch"
+import * as poll from "limitless/reducers/poll"
+import ajax from "limitless/services/ajax"
+import posting from "limitless/services/posting"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 export default class extends Form {
   constructor(props) {

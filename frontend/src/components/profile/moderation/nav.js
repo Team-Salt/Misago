@@ -1,9 +1,9 @@
 import React from "react"
 import { connect } from "react-redux"
-import AvatarControls from "misago/components/profile/moderation/avatar-controls"
-import ChangeUsername from "misago/components/profile/moderation/change-username"
-import DeleteAccount from "misago/components/profile/moderation/delete-account"
-import modal from "misago/services/modal"
+import AvatarControls from "limitless/components/profile/moderation/avatar-controls"
+import ChangeUsername from "limitless/components/profile/moderation/change-username"
+import DeleteAccount from "limitless/components/profile/moderation/delete-account"
+import modal from "limitless/services/modal"
 
 let select = function(store) {
   return {

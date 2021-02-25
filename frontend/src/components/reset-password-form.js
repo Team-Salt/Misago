@@ -1,14 +1,14 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import misago from "misago/index"
-import Button from "misago/components/button"
-import Form from "misago/components/form"
-import SignInModal from "misago/components/sign-in.js"
-import ajax from "misago/services/ajax"
-import auth from "misago/services/auth"
-import modal from "misago/services/modal"
-import snackbar from "misago/services/snackbar"
-import showBannedPage from "misago/utils/banned-page"
+import misago from "limitless/index"
+import Button from "limitless/components/button"
+import Form from "limitless/components/form"
+import SignInModal from "limitless/components/sign-in.js"
+import ajax from "limitless/services/ajax"
+import auth from "limitless/services/auth"
+import modal from "limitless/services/modal"
+import snackbar from "limitless/services/snackbar"
+import showBannedPage from "limitless/utils/banned-page"
 
 export class ResetPasswordForm extends Form {
   constructor(props) {

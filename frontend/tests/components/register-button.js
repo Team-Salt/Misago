@@ -1,12 +1,12 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import RegisterButton from 'misago/components/register-button'; // jshint ignore:line
-import misago from 'misago/index';
-import captcha from 'misago/services/captcha';
-import modal from 'misago/services/modal';
-import snackbar from 'misago/services/snackbar';
-import zxcvbn from 'misago/services/zxcvbn';
-import * as testUtils from 'misago/utils/test-utils';
+import RegisterButton from 'limitless/components/register-button'; // jshint ignore:line
+import misago from 'limitless/index';
+import captcha from 'limitless/services/captcha';
+import modal from 'limitless/services/modal';
+import snackbar from 'limitless/services/snackbar';
+import zxcvbn from 'limitless/services/zxcvbn';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let snackbarStore = null;
 
@@ -61,7 +61,7 @@ describe("RegisterButton", function() {
     captcha.init(misago, {}, {}, {});
     zxcvbn.init({
       include: function(file) {
-        assert.equal(file, 'misago/js/zxcvbn.js', "zxcvbn.js is requested");
+        assert.equal(file, 'limitless/js/zxcvbn.js', "zxcvbn.js is requested");
         window.setTimeout(function() {
           window.zxcvbn = function() {
             return 0;

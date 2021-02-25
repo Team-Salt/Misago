@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
-from misago import load_plugin_list_if_exists
+from limitless import load_plugin_list_if_exists
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -47,7 +47,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
 
 DATABASES = {
     "default": {
-        # Misago requires PostgreSQL to run
+        # LimitLess requires PostgreSQL to run
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.environ.get("POSTGRES_DB"),
         "USER": os.environ.get("POSTGRES_USER"),
@@ -63,7 +63,7 @@ DATABASES = {
 
 CACHES = {
     "default": {
-        # Misago doesn't run well with LocMemCache in production environments
+        # LimitLess doesn't run well with LocMemCache in production environments
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache"
     }
 }
@@ -151,20 +151,20 @@ DEFAULT_FROM_EMAIL = "Forums <%s>" % EMAIL_HOST_USER
 
 # Application definition
 
-AUTH_USER_MODEL = "misago_users.User"
+AUTH_USER_MODEL = "limitless_users.User"
 
-AUTHENTICATION_BACKENDS = ["misago.users.authbackends.MisagoBackend"]
+AUTHENTICATION_BACKENDS = ["limitless.users.authbackends.LimitLessBackend"]
 
-CSRF_FAILURE_VIEW = "misago.core.errorpages.csrf_failure"
+CSRF_FAILURE_VIEW = "limitless.core.errorpages.csrf_failure"
 
 PLUGINS_LIST_PATH = os.path.join(os.path.dirname(BASE_DIR), "plugins.txt")
 
 INSTALLED_PLUGINS = load_plugin_list_if_exists(PLUGINS_LIST_PATH) or []
 
 INSTALLED_APPS = INSTALLED_PLUGINS + [
-    # Misago overrides for Django core feature
-    "misago",
-    "misago.users",
+    # LimitLess overrides for Django core feature
+    "limitless",
+    "limitless.users",
     # Django apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -174,48 +174,48 @@ INSTALLED_APPS = INSTALLED_PLUGINS + [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # 3rd party apps used by Misago
+    # 3rd party apps used by LimitLess
     "ariadne.contrib.django",
     "celery",
     "debug_toolbar",
     "mptt",
     "rest_framework",
     "social_django",
-    # Misago apps
-    "misago.admin",
-    "misago.acl",
-    "misago.analytics",
-    "misago.cache",
-    "misago.core",
-    "misago.conf",
-    "misago.icons",
-    "misago.themes",
-    "misago.markup",
-    "misago.legal",
-    "misago.categories",
-    "misago.threads",
-    "misago.readtracker",
-    "misago.search",
-    "misago.socialauth",
-    "misago.graphql",
-    "misago.faker",
-    "misago.menus",
-    "misago.sso",
-    "misago.plugins",
+    # LimitLess apps
+    "limitless.admin",
+    "limitless.acl",
+    "limitless.analytics",
+    "limitless.cache",
+    "limitless.core",
+    "limitless.conf",
+    "limitless.icons",
+    "limitless.themes",
+    "limitless.markup",
+    "limitless.legal",
+    "limitless.categories",
+    "limitless.threads",
+    "limitless.readtracker",
+    "limitless.search",
+    "limitless.socialauth",
+    "limitless.graphql",
+    "limitless.faker",
+    "limitless.menus",
+    "limitless.sso",
+    "limitless.plugins",
 ]
 
 INTERNAL_IPS = ["127.0.0.1"]
 
-LOGIN_REDIRECT_URL = "misago:index"
+LOGIN_REDIRECT_URL = "limitless:index"
 
-LOGIN_URL = "misago:login"
+LOGIN_URL = "limitless:login"
 
-LOGOUT_URL = "misago:logout"
+LOGOUT_URL = "limitless:logout"
 
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    "misago.users.middleware.RealIPMiddleware",
-    "misago.core.middleware.FrontendContextMiddleware",
+    "limitless.users.middleware.RealIPMiddleware",
+    "limitless.core.middleware.FrontendContextMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -223,20 +223,20 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "misago.cache.middleware.cache_versions_middleware",
-    "misago.conf.middleware.dynamic_settings_middleware",
-    "misago.socialauth.middleware.socialauth_providers_middleware",
-    "misago.users.middleware.UserMiddleware",
-    "misago.acl.middleware.user_acl_middleware",
-    "misago.core.middleware.ExceptionHandlerMiddleware",
-    "misago.users.middleware.OnlineTrackerMiddleware",
-    "misago.admin.middleware.AdminAuthMiddleware",
-    "misago.threads.middleware.UnreadThreadsCountMiddleware",
+    "limitless.cache.middleware.cache_versions_middleware",
+    "limitless.conf.middleware.dynamic_settings_middleware",
+    "limitless.socialauth.middleware.socialauth_providers_middleware",
+    "limitless.users.middleware.UserMiddleware",
+    "limitless.acl.middleware.user_acl_middleware",
+    "limitless.core.middleware.ExceptionHandlerMiddleware",
+    "limitless.users.middleware.OnlineTrackerMiddleware",
+    "limitless.admin.middleware.AdminAuthMiddleware",
+    "limitless.threads.middleware.UnreadThreadsCountMiddleware",
 ]
 
 ROOT_URLCONF = "devproject.urls"
 
-SOCIAL_AUTH_STRATEGY = "misago.socialauth.strategy.MisagoStrategy"
+SOCIAL_AUTH_STRATEGY = "limitless.socialauth.strategy.LimitLessStrategy"
 
 SOCIAL_AUTH_PIPELINE = (
     # Steps required by social pipeline to work - don't delete those!
@@ -245,24 +245,24 @@ SOCIAL_AUTH_PIPELINE = (
     "social_core.pipeline.social_auth.social_user",
     # If enabled in admin panel, lets your users to associate their old forum account
     # with social one, if both have same e-mail address.
-    "misago.socialauth.pipeline.associate_by_email",
+    "limitless.socialauth.pipeline.associate_by_email",
     # Those steps make sure banned users may not join your site or use banned name or email.
-    "misago.socialauth.pipeline.validate_ip_not_banned",
-    "misago.socialauth.pipeline.validate_user_not_banned",
+    "limitless.socialauth.pipeline.validate_ip_not_banned",
+    "limitless.socialauth.pipeline.validate_user_not_banned",
     # Reads user data received from social site and tries to create valid and available username
     # Required if you want automatic account creation to work. Otherwise optional.
-    "misago.socialauth.pipeline.get_username",
+    "limitless.socialauth.pipeline.get_username",
     # Uncomment next line to enable automatic account creation if data from social site is valid
     # and get_username found valid name for new user account:
-    # 'misago.socialauth.pipeline.create_user',
+    # 'limitless.socialauth.pipeline.create_user',
     # This step asks user to complete simple, pre filled registration form containing username,
     # email, legal note if you remove it without adding custom one, users will have no fallback
     # for joining your site using their social account.
-    "misago.socialauth.pipeline.create_user_with_form",
+    "limitless.socialauth.pipeline.create_user_with_form",
     # Steps finalizing social authentication flow - don't delete those!
     "social_core.pipeline.social_auth.associate_user",
     "social_core.pipeline.social_auth.load_extra_data",
-    "misago.socialauth.pipeline.require_activation",
+    "limitless.socialauth.pipeline.require_activation",
 )
 
 SOCIAL_AUTH_POSTGRES_JSONFIELD = True
@@ -282,29 +282,29 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "misago.acl.context_processors.user_acl",
-                "misago.conf.context_processors.conf",
-                "misago.conf.context_processors.og_image",
-                "misago.core.context_processors.misago_version",
-                "misago.core.context_processors.request_path",
-                "misago.core.context_processors.momentjs_locale",
-                "misago.icons.context_processors.icons",
-                "misago.search.context_processors.search_providers",
-                "misago.themes.context_processors.theme",
-                "misago.legal.context_processors.legal_links",
-                "misago.menus.context_processors.menus",
-                "misago.users.context_processors.user_links",
-                "misago.core.context_processors.hooks",
+                "limitless.acl.context_processors.user_acl",
+                "limitless.conf.context_processors.conf",
+                "limitless.conf.context_processors.og_image",
+                "limitless.core.context_processors.limitless_version",
+                "limitless.core.context_processors.request_path",
+                "limitless.core.context_processors.momentjs_locale",
+                "limitless.icons.context_processors.icons",
+                "limitless.search.context_processors.search_providers",
+                "limitless.themes.context_processors.theme",
+                "limitless.legal.context_processors.legal_links",
+                "limitless.menus.context_processors.menus",
+                "limitless.users.context_processors.user_links",
+                "limitless.core.context_processors.hooks",
                 # Data preloaders
-                "misago.conf.context_processors.preload_settings_json",
-                "misago.core.context_processors.current_link",
-                "misago.markup.context_processors.preload_api_url",
-                "misago.threads.context_processors.preload_threads_urls",
-                "misago.users.context_processors.preload_user_json",
-                "misago.socialauth.context_processors.preload_socialauth_json",
+                "limitless.conf.context_processors.preload_settings_json",
+                "limitless.core.context_processors.current_link",
+                "limitless.markup.context_processors.preload_api_url",
+                "limitless.threads.context_processors.preload_threads_urls",
+                "limitless.users.context_processors.preload_user_json",
+                "limitless.socialauth.context_processors.preload_socialauth_json",
                 # Note: keep frontend_context processor last for previous processors
                 # to be able to expose data UI app via request.frontend_context
-                "misago.core.context_processors.frontend_context",
+                "limitless.core.context_processors.frontend_context",
             ]
         },
     }
@@ -323,7 +323,7 @@ DEBUG_TOOLBAR_PANELS = [
     "debug_toolbar.panels.headers.HeadersPanel",
     "debug_toolbar.panels.request.RequestPanel",
     "debug_toolbar.panels.sql.SQLPanel",
-    "misago.acl.panels.MisagoACLPanel",
+    "limitless.acl.panels.LimitLessACLPanel",
     "debug_toolbar.panels.staticfiles.StaticFilesPanel",
     "debug_toolbar.panels.templates.TemplatesPanel",
     "debug_toolbar.panels.cache.CachePanel",
@@ -337,11 +337,11 @@ DEBUG_TOOLBAR_PANELS = [
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        "misago.core.rest_permissions.IsAuthenticatedOrReadOnly"
+        "limitless.core.rest_permissions.IsAuthenticatedOrReadOnly"
     ],
     "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
-    "EXCEPTION_HANDLER": "misago.core.exceptionhandler.handle_api_exception",
-    "UNAUTHENTICATED_USER": "misago.users.models.AnonymousUser",
+    "EXCEPTION_HANDLER": "limitless.core.exceptionhandler.handle_api_exception",
+    "UNAUTHENTICATED_USER": "limitless.users.models.AnonymousUser",
     "URL_FORMAT_OVERRIDE": None,
 }
 
@@ -360,12 +360,12 @@ CELERY_BROKER_URL = "redis://redis:6379/0"
 CELERY_WORKER_MAX_TASKS_PER_CHILD = 10
 
 
-# Misago specific settings
-# https://misago.readthedocs.io/en/latest/developers/settings.html
+# LimitLess specific settings
+# https://limitless.readthedocs.io/en/latest/developers/settings.html
 
 # On dev instance, generate only three sizes of avatars instead of default 6 sizes.
 
-MISAGO_AVATARS_SIZES = [400, 200, 100]
+LIMITLESS_AVATARS_SIZES = [400, 200, 100]
 
 
 # PostgreSQL text search configuration to use in searches
@@ -375,44 +375,44 @@ MISAGO_AVATARS_SIZES = [400, 200, 100]
 # spanish, swedish and turkish
 # Example on adding custom language can be found here: https://github.com/lemonskyjwt/plpstgrssearch
 
-MISAGO_SEARCH_CONFIG = "simple"
+LIMITLESS_SEARCH_CONFIG = "simple"
 
 
-# Path to the directory that Misago should use to prepare user data downloads.
+# Path to the directory that LimitLess should use to prepare user data downloads.
 # Should not be accessible from internet.
 
-MISAGO_USER_DATA_DOWNLOADS_WORKING_DIR = os.path.join(BASE_DIR, "userdata")
+LIMITLESS_USER_DATA_DOWNLOADS_WORKING_DIR = os.path.join(BASE_DIR, "userdata")
 
 
 # Path to directory containing avatar galleries
 # Those galleries can be loaded by running loadavatargallery command
 
-MISAGO_AVATAR_GALLERY = os.path.join(BASE_DIR, "avatargallery")
+LIMITLESS_AVATAR_GALLERY = os.path.join(BASE_DIR, "avatargallery")
 
 
 # Profile fields
 
-MISAGO_PROFILE_FIELDS = [
+LIMITLESS_PROFILE_FIELDS = [
     {
         "name": _("Personal"),
         "fields": [
-            "misago.users.profilefields.default.RealNameField",
-            "misago.users.profilefields.default.GenderField",
-            "misago.users.profilefields.default.BioField",
-            "misago.users.profilefields.default.LocationField",
+            "limitless.users.profilefields.default.RealNameField",
+            "limitless.users.profilefields.default.GenderField",
+            "limitless.users.profilefields.default.BioField",
+            "limitless.users.profilefields.default.LocationField",
         ],
     },
     {
         "name": _("Contact"),
         "fields": [
-            "misago.users.profilefields.default.TwitterHandleField",
-            "misago.users.profilefields.default.SkypeIdField",
-            "misago.users.profilefields.default.WebsiteField",
+            "limitless.users.profilefields.default.TwitterHandleField",
+            "limitless.users.profilefields.default.SkypeIdField",
+            "limitless.users.profilefields.default.WebsiteField",
         ],
     },
     {
         "name": _("IP address"),
-        "fields": ["misago.users.profilefields.default.JoinIpField"],
+        "fields": ["limitless.users.profilefields.default.JoinIpField"],
     },
 ]
 
@@ -422,8 +422,8 @@ MISAGO_PROFILE_FIELDS = [
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
-# Display debug toolbar if IN_MISAGO_DOCKER enviroment var is set to "1"
+# Display debug toolbar if IN_LIMITLESS_DOCKER enviroment var is set to "1"
 
 DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": "misago.conf.debugtoolbar.enable_debug_toolbar"
+    "SHOW_TOOLBAR_CALLBACK": "limitless.conf.debugtoolbar.enable_debug_toolbar"
 }

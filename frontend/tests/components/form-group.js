@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import FormGroup from 'misago/components/form-group'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import FormGroup from 'limitless/components/form-group'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Form Group", function() {
   afterEach(function() {

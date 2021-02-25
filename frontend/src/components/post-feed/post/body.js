@@ -1,6 +1,6 @@
 import React from "react"
-import MisagoMarkup from "misago/components/misago-markup"
-import escapeHtml from "misago/utils/escape-html"
+import MisagoMarkup from "limitless/components/limitless-markup"
+import escapeHtml from "limitless/utils/escape-html"
 
 export default function(props) {
   if (props.post.content) {

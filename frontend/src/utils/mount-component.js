@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
-import store from "misago/services/store"
+import store from "limitless/services/store"
 
 export default function(Component, rootElementId, connected = true) {
   let rootElement = document.getElementById(rootElementId)

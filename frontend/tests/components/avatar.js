@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import Avatar from 'misago/components/avatar'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import Avatar from 'limitless/components/avatar'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Avatar", function() {
   afterEach(function() {

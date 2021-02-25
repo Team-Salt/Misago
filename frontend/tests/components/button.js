@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import Button from 'misago/components/button'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import Button from 'limitless/components/button'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Button", function() {
   afterEach(function() {

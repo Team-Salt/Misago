@@ -1,5 +1,5 @@
 import React from "react"
-import Loader from "misago/components/loader"
+import Loader from "limitless/components/loader"
 
 export default function({ message }) {
   return (

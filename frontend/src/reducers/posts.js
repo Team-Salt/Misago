@@ -1,7 +1,7 @@
 import postReducer, {
   PATCH_POST,
   hydrate as hydratePost
-} from "misago/reducers/post"
+} from "limitless/reducers/post"
 
 export const APPEND_POSTS = "APPEND_POSTS"
 export const SELECT_POST = "SELECT_POST"

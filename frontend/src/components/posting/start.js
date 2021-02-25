@@ -1,16 +1,16 @@
 import React from "react"
-import CategorySelect from "misago/components/category-select"
-import Editor from "misago/components/editor"
-import Form from "misago/components/form"
+import CategorySelect from "limitless/components/category-select"
+import Editor from "limitless/components/editor"
+import Form from "limitless/components/form"
 import Container from "./utils/container"
 import Loader from "./utils/loader"
 import Message from "./utils/message"
 import Options from "./utils/options"
 import * as attachments from "./utils/attachments"
 import { getPostValidators, getTitleValidators } from "./utils/validators"
-import ajax from "misago/services/ajax"
-import posting from "misago/services/posting"
-import snackbar from "misago/services/snackbar"
+import ajax from "limitless/services/ajax"
+import posting from "limitless/services/posting"
+import snackbar from "limitless/services/snackbar"
 
 export default class extends Form {
   constructor(props) {

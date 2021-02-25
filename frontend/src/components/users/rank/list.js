@@ -1,6 +1,6 @@
 import React from "react"
-import Pager from "misago/components/users/rank/pager"
-import UsersList from "misago/components/users-list"
+import Pager from "limitless/components/users/rank/pager"
+import UsersList from "limitless/components/users-list"
 
 export default function(props) {
   return (

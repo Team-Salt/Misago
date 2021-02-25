@@ -1,8 +1,8 @@
 import React from "react"
-import SubscriptionCompact from "misago/components/threads-list/thread/subscription/compact"
-import SubscriptionFull from "misago/components/threads-list/thread/subscription/full"
-import * as select from "misago/reducers/selection"
-import store from "misago/services/store"
+import SubscriptionCompact from "limitless/components/threads-list/thread/subscription/compact"
+import SubscriptionFull from "limitless/components/threads-list/thread/subscription/full"
+import * as select from "limitless/reducers/selection"
+import store from "limitless/services/store"
 
 export function Options({ display, disabled, isSelected, thread }) {
   if (!display) return null

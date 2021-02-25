@@ -1,0 +1,14 @@
+{% extends "limitless/emails/base.txt" %}
+{% load i18n limitless_absoluteurl %}
+
+
+{% block content %}
+{% blocktrans trimmed with user=user %}
+{{ user }}, you are receiving this message because you have changed your e-mail address.
+{% endblocktrans %}
+
+{% blocktrans trimmed %}
+To confirm this change, click the link below:
+{% endblocktrans %}
+{% absoluteurl 'limitless:options-confirm-email-change' token=token %}
+{% endblock content %}

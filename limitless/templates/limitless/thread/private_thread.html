@@ -1,0 +1,36 @@
+{% extends "limitless/base.html" %}
+{% load i18n %}
+
+
+{% block title %}
+  {% if paginator.page > 1 %}
+    {{ thread.title }} ({% blocktrans with page=paginator.page %}page: {{ page }}{% endblocktrans %}) | {{ category }} | {{ block.super }}
+  {% else %}
+    {{ thread.title }} | {{ category }} | {{ block.super }}
+  {% endif %}
+{% endblock title %}
+
+
+{% block content %}
+<div class="page page-thread {% if category.css_class %}page-thread-{{ category.css_class }}{% endif %}">
+  <div class="page-header-bg">
+    <div class="page-header">
+
+      {% include "limitless/thread/breadcrumbs.html" %}
+      <div class="container">
+        <h1>{{ thread.title }}</h1>
+      </div>
+      {% include "limitless/thread/stats.html" %}
+
+    </div>
+  </div>
+  <div class="container">
+
+    {% include "limitless/thread/toolbar-top.html" %}
+    {% include "limitless/participants.html" with participants=thread.participants_list %}
+    {% include "limitless/thread/posts/index.html" %}
+    {% include "limitless/thread/paginator.html" %}
+
+  </div>
+</div>
+{% endblock content %}

@@ -1,6 +1,6 @@
 import assert from 'assert';
-import { getPageTitle, getTitle, getModerationActions } from 'misago/components/threads/utils';
-import misago from 'misago/index';
+import { getPageTitle, getTitle, getModerationActions } from 'limitless/components/threads/utils';
+import misago from 'limitless/index';
 
 describe("Threads List Title Utils", function() {
   beforeEach(function() {

@@ -1,9 +1,9 @@
 import assert from "assert";
 import React from 'react'; // jshint ignore:line
-import ajax from 'misago/services/ajax';
-import { NoCaptcha, QACaptcha, ReCaptcha, Captcha } from 'misago/services/captcha';
-import snackbar from 'misago/services/snackbar';
-import * as testUtils from 'misago/utils/test-utils';
+import ajax from 'limitless/services/ajax';
+import { NoCaptcha, QACaptcha, ReCaptcha, Captcha } from 'limitless/services/captcha';
+import snackbar from 'limitless/services/snackbar';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let captcha = null;
 let snackbarStore = null;

@@ -1,12 +1,12 @@
 import React from "react"
-import misago from "misago/index"
-import Button from "misago/components/button"
-import Form from "misago/components/form"
-import StartSocialAuth from "misago/components/StartSocialAuth"
-import ajax from "misago/services/ajax"
-import modal from "misago/services/modal"
-import snackbar from "misago/services/snackbar"
-import showBannedPage from "misago/utils/banned-page"
+import misago from "limitless/index"
+import Button from "limitless/components/button"
+import Form from "limitless/components/form"
+import StartSocialAuth from "limitless/components/StartSocialAuth"
+import ajax from "limitless/services/ajax"
+import modal from "limitless/services/modal"
+import snackbar from "limitless/services/snackbar"
+import showBannedPage from "limitless/utils/banned-page"
 
 export default class extends Form {
   constructor(props) {
@@ -49,7 +49,7 @@ export default class extends Form {
     form.append('<input type="password" name="password" />')
 
     // fill out form with user credentials and submit it, this will tell
-    // Misago to redirect user back to right page, and will trigger browser's
+    // LimitLess to redirect user back to right page, and will trigger browser's
     // key ring feature
     form.find('input[type="hidden"]').val(ajax.getCsrfToken())
     form.find('input[name="redirect_to"]').val(window.location.pathname)

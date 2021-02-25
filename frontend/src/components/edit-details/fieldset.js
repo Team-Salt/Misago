@@ -1,6 +1,6 @@
 import React from "react"
 import FieldInput from "./field-input"
-import FormGroup from "misago/components/form-group"
+import FormGroup from "limitless/components/form-group"
 
 export default function({ disabled, errors, fields, name, onChange, value }) {
   return (

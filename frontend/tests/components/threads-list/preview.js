@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import ListPreview from 'misago/components/threads-list/list/preview'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import ListPreview from 'limitless/components/threads-list/list/preview'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Threads List Preview", function() {
   afterEach(function() {

@@ -1,8 +1,8 @@
 import assert from 'assert';
 import moment from 'moment';
 import React from 'react'; // jshint ignore:line
-import UserCard from 'misago/components/users-list/user-card'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import UserCard from 'limitless/components/users-list/user-card'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Users List Item", function() {
   afterEach(function() {

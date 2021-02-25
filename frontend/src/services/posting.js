@@ -1,8 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import { PollForm } from "misago/components/poll"
-import PostingComponent from "misago/components/posting"
-import mount from "misago/utils/mount-component"
+import { PollForm } from "limitless/components/poll"
+import PostingComponent from "limitless/components/posting"
+import mount from "limitless/utils/mount-component"
 
 export class Posting {
   init(ajax, snackbar, placeholder) {

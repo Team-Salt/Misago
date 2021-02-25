@@ -1,6 +1,6 @@
 import React from "react"
-import DiffMessage from "misago/components/threads-list/list/diff-message"
-import Thread from "misago/components/threads-list/thread/ready"
+import DiffMessage from "limitless/components/threads-list/list/diff-message"
+import Thread from "limitless/components/threads-list/thread/ready"
 
 export default function(props) {
   return (

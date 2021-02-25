@@ -1,11 +1,11 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import misago from 'misago/index';
-import SignIn from 'misago/components/sign-in'; // jshint ignore:line
-import modal from 'misago/services/modal';
-import snackbar from 'misago/services/snackbar';
-import store from 'misago/services/store';
-import * as testUtils from 'misago/utils/test-utils';
+import misago from 'limitless/index';
+import SignIn from 'limitless/components/sign-in'; // jshint ignore:line
+import modal from 'limitless/services/modal';
+import snackbar from 'limitless/services/snackbar';
+import store from 'limitless/services/store';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let snackbarStore = null;
 

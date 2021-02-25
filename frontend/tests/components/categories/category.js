@@ -1,8 +1,8 @@
 import assert from 'assert';
 import moment from 'moment'; // jshint ignore:line
 import React from 'react'; // jshint ignore:line
-import Category from 'misago/components/categories/Category'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import Category from 'limitless/components/categories/Category'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Categories List Category", function() {
   afterEach(function() {

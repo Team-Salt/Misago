@@ -1,8 +1,8 @@
 import React from "react"
 import moment from "moment"
-import misago from "misago"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
+import misago from "limitless"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
 
 export default class extends React.Component {
   onChange = event => {

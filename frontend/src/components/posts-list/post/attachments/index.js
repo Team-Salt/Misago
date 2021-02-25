@@ -1,5 +1,5 @@
 import React from "react"
-import batch from "misago/utils/batch"
+import batch from "limitless/utils/batch"
 import Attachment from "./attachment"
 
 export default function(props) {

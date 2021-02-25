@@ -22,7 +22,7 @@ DEBUG_TOOLBAR_CONFIG = {}
 INTERNAL_IPS = []
 
 # Disable account validation via Stop Forum Spam
-MISAGO_NEW_REGISTRATIONS_VALIDATORS = ("misago.users.validators.validate_gmail_email",)
+LIMITLESS_NEW_REGISTRATIONS_VALIDATORS = ("limitless.users.validators.validate_gmail_email",)
 
 # Store mails in memory
 EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
@@ -44,16 +44,16 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Use english search config
-MISAGO_SEARCH_CONFIG = "english"
+LIMITLESS_SEARCH_CONFIG = "english"
 
 # Register test post validator
-MISAGO_POST_VALIDATORS = ["misago.core.testproject.validators.test_post_validator"]
+LIMITLESS_POST_VALIDATORS = ["limitless.core.testproject.validators.test_post_validator"]
 
 # Register test post search filter
-MISAGO_POST_SEARCH_FILTERS = ["misago.core.testproject.searchfilters.test_filter"]
+LIMITLESS_POST_SEARCH_FILTERS = ["limitless.core.testproject.searchfilters.test_filter"]
 
 # Default test name
-TEST_NAME = "miasago_test"
+TEST_NAME = "limitless_test"
 
 # Additional overrides for Travis-CI
 if os.environ.get("TRAVIS"):

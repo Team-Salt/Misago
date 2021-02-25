@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import PageLead from 'misago/components/page-lead'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import PageLead from 'limitless/components/page-lead'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Page Lead", function() {
   afterEach(function() {

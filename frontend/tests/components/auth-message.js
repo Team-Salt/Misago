@@ -1,7 +1,7 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import AuthMessage from 'misago/components/auth-message'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import AuthMessage from 'limitless/components/auth-message'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 describe("Auth Message", function() {
   afterEach(function() {

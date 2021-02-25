@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { int, range } from 'misago/utils/random';
+import { int, range } from 'limitless/utils/random';
 
 describe('Randoms', function() {
   it("returns random int", function() {

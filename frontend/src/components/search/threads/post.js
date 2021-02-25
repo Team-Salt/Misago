@@ -1,6 +1,6 @@
 import React from "react"
 import PostFooter from "./footer"
-import MisagoMarkup from "misago/components/misago-markup"
+import MisagoMarkup from "limitless/components/limitless-markup"
 
 export default function(props) {
   return (

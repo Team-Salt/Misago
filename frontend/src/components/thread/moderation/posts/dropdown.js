@@ -1,5 +1,5 @@
 import React from "react"
-import modal from "misago/services/modal"
+import modal from "limitless/services/modal"
 import * as moderation from "./actions"
 import MoveModal from "./move"
 import SplitModal from "./split"

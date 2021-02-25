@@ -1,5 +1,5 @@
 import React from "react"
-import Avatar from "misago/components/avatar"
+import Avatar from "limitless/components/avatar"
 import { BottomDetails, TopDetails } from "./details"
 import LastAction from "./last-action"
 import { Options } from "./options"

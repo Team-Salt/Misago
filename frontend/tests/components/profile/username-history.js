@@ -1,12 +1,12 @@
 import assert from 'assert';
 import moment from 'moment';
 import React from 'react'; // jshint ignore:line
-import UsernameHistory from 'misago/components/profile/username-history'; // jshint ignore:line
-import misago from 'misago/index';
-import reducer from 'misago/reducers/username-history';
-import snackbar from 'misago/services/snackbar';
-import store from 'misago/services/store';
-import * as testUtils from 'misago/utils/test-utils';
+import UsernameHistory from 'limitless/components/profile/username-history'; // jshint ignore:line
+import misago from 'limitless/index';
+import reducer from 'limitless/reducers/username-history';
+import snackbar from 'limitless/services/snackbar';
+import store from 'limitless/services/store';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let snackbarStore = null;
 /* jshint ignore:start */

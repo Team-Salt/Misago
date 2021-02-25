@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom"
-import mount from "misago/utils/mount-component"
+import mount from "limitless/utils/mount-component"
 
 export class Modal {
   init(element) {

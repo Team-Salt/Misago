@@ -1,6 +1,6 @@
-import misago from "misago/index"
-import reducer, { initialState } from "misago/reducers/auth"
-import store from "misago/services/store"
+import misago from "limitless/index"
+import reducer, { initialState } from "limitless/reducers/auth"
+import store from "limitless/services/store"
 
 export default function initializer(context) {
   store.addReducer(

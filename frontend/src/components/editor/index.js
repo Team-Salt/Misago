@@ -12,11 +12,11 @@ import AttachmentsEditor from "./attachments"
 import Upload from "./attachments/upload-button"
 import MarkupPreview from "./markup-preview"
 import * as textUtils from "./textutils"
-import Button from "misago/components/button"
-import misago from "misago"
-import ajax from "misago/services/ajax"
-import modal from "misago/services/modal"
-import snackbar from "misago/services/snackbar"
+import Button from "limitless/components/button"
+import misago from "limitless"
+import ajax from "limitless/services/ajax"
+import modal from "limitless/services/modal"
+import snackbar from "limitless/services/snackbar"
 
 export default class extends React.Component {
   constructor(props) {

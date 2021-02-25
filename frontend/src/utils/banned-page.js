@@ -2,9 +2,9 @@ import moment from "moment"
 import React from "react"
 import ReactDOM from "react-dom"
 import { Provider, connect } from "react-redux"
-import BannedPage from "misago/components/banned-page"
-import misago from "misago/index"
-import store from "misago/services/store"
+import BannedPage from "limitless/components/banned-page"
+import misago from "limitless/index"
+import store from "limitless/services/store"
 
 let select = function(state) {
   return state.tick

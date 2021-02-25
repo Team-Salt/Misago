@@ -1,8 +1,8 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import Form from 'misago/components/form';
-import { email, minLength } from 'misago/utils/validators'; // jshint ignore:line
-import * as testUtils from 'misago/utils/test-utils';
+import Form from 'limitless/components/form';
+import { email, minLength } from 'limitless/utils/validators'; // jshint ignore:line
+import * as testUtils from 'limitless/utils/test-utils';
 
 var form = null;
 

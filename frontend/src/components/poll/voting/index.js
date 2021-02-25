@@ -4,12 +4,12 @@ import ChoicesSelect from "./select"
 import { getChoicesLeft, getChoiceFromHash } from "./utils"
 import PollInfo from "../info"
 import { Delete, Edit, getClassName } from "../results/options"
-import Button from "misago/components/button"
-import Form from "misago/components/form"
-import * as poll from "misago/reducers/poll"
-import ajax from "misago/services/ajax"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
+import Button from "limitless/components/button"
+import Form from "limitless/components/form"
+import * as poll from "limitless/reducers/poll"
+import ajax from "limitless/services/ajax"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
 
 export default class extends Form {
   constructor(props) {

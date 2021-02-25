@@ -1,10 +1,10 @@
 import React from "react"
-import Button from "misago/components/button"
-import ajax from "misago/services/ajax"
-import title from "misago/services/page-title"
-import snackbar from "misago/services/snackbar"
-import store from "misago/services/store"
-import misago from "misago"
+import Button from "limitless/components/button"
+import ajax from "limitless/services/ajax"
+import title from "limitless/services/page-title"
+import snackbar from "limitless/services/snackbar"
+import store from "limitless/services/store"
+import misago from "limitless"
 
 export default class extends React.Component {
   constructor(props) {

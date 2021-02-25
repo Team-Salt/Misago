@@ -1,10 +1,10 @@
 import assert from 'assert';
 import React from 'react'; // jshint ignore:line
-import AvatarControls from 'misago/components/profile/moderation/avatar-controls'; // jshint ignore:line
-import reducer from 'misago/reducers/profile';
-import snackbar from 'misago/services/snackbar';
-import store from 'misago/services/store';
-import * as testUtils from 'misago/utils/test-utils';
+import AvatarControls from 'limitless/components/profile/moderation/avatar-controls'; // jshint ignore:line
+import reducer from 'limitless/reducers/profile';
+import snackbar from 'limitless/services/snackbar';
+import store from 'limitless/services/store';
+import * as testUtils from 'limitless/utils/test-utils';
 
 let snackbarStore = null;
 let profileMock = {

@@ -1,6 +1,6 @@
 import React from "react"
-import Avatar from "misago/components/avatar"
-import * as random from "misago/utils/random"
+import Avatar from "limitless/components/avatar"
+import * as random from "limitless/utils/random"
 
 export default class extends React.Component {
   shouldComponentUpdate() {

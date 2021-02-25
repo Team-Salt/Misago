@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
-import Categories, { select } from "misago/components/categories"
-import misago from "misago/index"
-import mount from "misago/utils/mount-component"
+import Categories, { select } from "limitless/components/categories"
+import misago from "limitless/index"
+import mount from "limitless/utils/mount-component"
 
 export default function initializer() {
   if (document.getElementById("categories-mount")) {
