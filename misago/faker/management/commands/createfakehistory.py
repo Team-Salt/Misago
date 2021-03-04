@@ -68,16 +68,17 @@ class Command(BaseCommand):
         for days_ago in reversed(range(history_length)):
             date = start_timestamp - timedelta(days=days_ago)
             for date_variation in get_random_date_variations(date, 0, max_actions):
-                action = random.randint(0, 100)
-                if action >= 80:
-                    self.create_fake_user(fake, date_variation, ranks)
-                elif action > 50:
-                    self.create_fake_thread(fake, date_variation, categories)
-                else:
-                    self.create_fake_post(fake, date_variation)
+                self.create_fake_thread(fake, date_variation, categories)
+                # action = random.randint(0, 100)
+                # if action >= 80:
+                #     self.create_fake_user(fake, date_variation, ranks)
+                # elif action > 50:
+                #     self.create_fake_thread(fake, date_variation, categories)
+                # else:
+                #     self.create_fake_post(fake, date_variation)
 
-                if random.randint(0, 100) > 80:
-                    self.create_fake_follow(date)
+                # if random.randint(0, 100) > 80:
+                #     self.create_fake_follow(date)
 
         self.synchronize_threads()
         self.synchronize_categories()

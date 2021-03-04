@@ -14,6 +14,7 @@ corpus = EnglishCorpus()
 
 def get_fake_post(fake, thread, poster=None):
     original, parsed = get_fake_post_content(fake)
+    print("content", original, parsed)
     posted_on = timezone.now()
 
     post = Post.objects.create(

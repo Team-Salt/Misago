@@ -324,3 +324,6 @@ def like_post(post, liker=None, username=None):
     post.save()
 
     return like
+
+if __name__ == '__main__':
+    post_thread()

@@ -1,6 +1,7 @@
 import React from "react"
 import PageLead from "misago/components/page-lead"
 import Toolbar from "misago/components/threads/toolbar"
+import NavbarSearch from "misago/components/navbar-search"
 
 export default class extends React.Component {
   getCategoryDescription() {
@@ -57,12 +58,18 @@ export default class extends React.Component {
     )
   }
 
+  getSearch() {
+    return (
+        <NavbarSearch />
+    )
+  }
+
   render() {
     return (
       <div className="container">
         {this.getCategoryDescription()}
         {this.getToolbar()}
-
+        {this.getSearch()}
         {this.props.children}
       </div>
     )

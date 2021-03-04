@@ -119,7 +119,7 @@ init() {
             exit 1
         fi
     done
-    
+
     docker-compose stop
     docker-compose build --pull --force-rm "${@:2}"
     docker-compose run --rm misago ./dev init_in_docker
@@ -205,7 +205,7 @@ makemessages() {
 # Docker part of makemessages
 makemessages_in_docker() {
     require_in_docker
-    
+
     echo "Extracting messages for $1 language:"
     cd ./misago
 
@@ -279,6 +279,10 @@ create_fake_bigdata() {
     docker-compose run --rm misago python manage.py createfakehistory 2190 120
 }
 
+create_papers() {
+    docker-compose run --rm misago python manage.py createpapers
+}
+
 # Command dispatcher
 if [[ $1 ]]; then
     if [[ $1 = "init" ]]; then
@@ -329,6 +333,8 @@ if [[ $1 ]]; then
         create_fake_data
     elif [[ $1 = "fakebigdata" ]]; then
         create_fake_bigdata
+    elif [[ $1 = "papers" ]]; then
+        create_papers
     else
         invalid_argument $1
     fi

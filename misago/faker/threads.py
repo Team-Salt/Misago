@@ -4,7 +4,7 @@ from ..threads.models import Thread
 from .englishcorpus import EnglishCorpus
 from .posts import get_fake_hidden_post, get_fake_post, get_fake_unapproved_post
 
-corpus_short = EnglishCorpus(max_length=150)
+corpus_short = EnglishCorpus(max_length=20)
 
 
 def get_fake_thread(fake, category, starter=None):
